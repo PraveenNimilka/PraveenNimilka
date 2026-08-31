@@ -390,21 +390,13 @@ Can the architecture be redesigned?
 
 <div align="center">
 
-<picture>
-  <source
-    media="(prefers-color-scheme: dark)"
-    srcset="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake-dark.svg"
-  />
-  <source
-    media="(prefers-color-scheme: light)"
-    srcset="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake.svg"
-  />
-  <img
-    src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake-dark.svg"
-    width="100%"
-    alt="GitHub Contribution Snake"
-  />
-</picture>
+# `~/CONTRIBUTION ENGINE`
+
+<img
+  src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/main/assets/contribution-engine.svg?v=4"
+  width="100%"
+  alt="PRAVEEN.OS Contribution Engine"
+/>
 
 </div>
 
