@@ -30,27 +30,29 @@ jobs:
     steps:
 
       # ==========================================================
-      # 1. CHECKOUT
+      # CHECKOUT
       # ==========================================================
 
-      - name: Checkout profile repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           ref: main
+          fetch-depth: 0
 
 
       # ==========================================================
-      # 2. PREPARE
+      # PREPARE
       # ==========================================================
 
       - name: Prepare assets
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p assets
 
 
       # ==========================================================
-      # 3. GENERATE GITHUB SIGNAL
+      # GENERATE GITHUB SIGNAL
       # ==========================================================
 
       - name: Generate GitHub Signal
@@ -65,8 +67,6 @@ jobs:
           import json
           import urllib.request
           import urllib.parse
-          import urllib.error
-
           from html import escape
           from datetime import datetime, timezone
 
@@ -81,7 +81,7 @@ jobs:
           # API HELPER
           # ======================================================
 
-          def github_api(path):
+          def api(path):
 
               request = urllib.request.Request(
                   API + path,
@@ -93,33 +93,34 @@ jobs:
                   }
               )
 
-              try:
+              with urllib.request.urlopen(
+                  request,
+                  timeout=30
+              ) as response:
 
-                  with urllib.request.urlopen(
-                      request,
-                      timeout=30
-                  ) as response:
-
-                      return json.loads(
-                          response.read().decode("utf-8")
-                      )
-
-              except Exception as error:
-
-                  print(
-                      f"GitHub API error on {path}: {error}"
+                  return json.loads(
+                      response.read().decode("utf-8")
                   )
-
-                  return None
 
 
           # ======================================================
           # USER
           # ======================================================
 
-          user = github_api(
-              f"/users/{urllib.parse.quote(OWNER)}"
-          ) or {}
+          try:
+
+              user = api(
+                  f"/users/{urllib.parse.quote(OWNER)}"
+              )
+
+          except Exception as error:
+
+              print(
+                  f"User API warning: {error}"
+              )
+
+              user = {}
+
 
           followers = int(
               user.get("followers") or 0
@@ -131,26 +132,46 @@ jobs:
           # ======================================================
 
           repositories = []
+
           page = 1
 
           while True:
 
-              result = github_api(
-                  f"/users/{urllib.parse.quote(OWNER)}/repos"
-                  f"?type=owner"
-                  f"&sort=updated"
-                  f"&direction=desc"
-                  f"&per_page=100"
-                  f"&page={page}"
-              )
+              try:
 
-              if not isinstance(result, list):
+                  result = api(
+                      f"/users/{urllib.parse.quote(OWNER)}/repos"
+                      f"?type=owner"
+                      f"&sort=updated"
+                      f"&direction=desc"
+                      f"&per_page=100"
+                      f"&page={page}"
+                  )
+
+              except Exception as error:
+
+                  print(
+                      f"Repository API warning: {error}"
+                  )
+
                   break
 
-              repositories.extend(result)
+
+              if not isinstance(
+                  result,
+                  list
+              ):
+                  break
+
+
+              repositories.extend(
+                  result
+              )
+
 
               if len(result) < 100:
                   break
+
 
               page += 1
 
@@ -167,11 +188,15 @@ jobs:
           )
 
 
-          project_repositories = [
+          # Remove profile repository from project list
+
+          projects = [
               repo
               for repo in original_repositories
-              if repo.get("name", "").lower()
-              != OWNER.lower()
+              if repo.get(
+                  "name",
+                  ""
+              ).lower() != OWNER.lower()
           ]
 
 
@@ -181,7 +206,9 @@ jobs:
 
           total_stars = sum(
               int(
-                  repo.get("stargazers_count") or 0
+                  repo.get(
+                      "stargazers_count"
+                  ) or 0
               )
               for repo in original_repositories
           )
@@ -189,7 +216,9 @@ jobs:
 
           total_forks = sum(
               int(
-                  repo.get("forks_count") or 0
+                  repo.get(
+                      "forks_count"
+                  ) or 0
               )
               for repo in original_repositories
           )
@@ -201,21 +230,34 @@ jobs:
 
           language_counts = {}
 
-          for repo in project_repositories:
 
-              language = repo.get("language")
+          for repo in projects:
+
+              language = repo.get(
+                  "language"
+              )
 
               if not language:
                   continue
 
-              language_counts[language] = (
-                  language_counts.get(language, 0) + 1
+
+              language_counts[
+                  language
+              ] = (
+                  language_counts.get(
+                      language,
+                      0
+                  )
+                  + 1
               )
 
 
           top_languages = sorted(
               language_counts.items(),
-              key=lambda item: (-item[1], item[0])
+              key=lambda item: (
+                  -item[1],
+                  item[0]
+              )
           )[:4]
 
 
@@ -239,62 +281,83 @@ jobs:
           # ======================================================
 
           def safe(value):
+
               return escape(
                   str(value),
                   quote=True
               )
 
 
-          def trim(value, maximum=28):
+          def trim(
+              value,
+              maximum=28
+          ):
 
               value = str(value)
 
               if len(value) <= maximum:
                   return value
 
-              return value[:maximum - 1] + "…"
+              return (
+                  value[:maximum - 1]
+                  + "…"
+              )
 
 
           # ======================================================
           # RECENT PROJECTS
           # ======================================================
 
-          recent_projects = project_repositories[:4]
+          recent = projects[:4]
 
           rows = []
 
-          y_positions = [
-              308,
-              344,
-              380,
-              416
+          row_y = [
+              307,
+              343,
+              379,
+              415
           ]
 
 
-          if recent_projects:
+          if recent:
 
               for index, repo in enumerate(
-                  recent_projects
+                  recent
               ):
 
-                  y = y_positions[index]
+                  y = row_y[
+                      index
+                  ]
+
 
                   name = safe(
                       trim(
-                          repo.get("name", "repository"),
+                          repo.get(
+                              "name",
+                              "repository"
+                          ),
                           30
                       )
                   )
 
+
                   language = safe(
                       trim(
-                          repo.get("language") or "unknown",
+                          repo.get(
+                              "language"
+                          )
+                          or "unknown",
                           15
                       )
                   )
 
+
                   stars = int(
-                      repo.get("stargazers_count") or 0
+                      repo.get(
+                          "stargazers_count"
+                      )
+                      or 0
                   )
 
 
@@ -312,7 +375,7 @@ jobs:
                         </text>
 
                         <text
-                          x="125"
+                          x="126"
                           y="{y}"
                           fill="#d0d7de"
                           font-size="12"
@@ -342,13 +405,14 @@ jobs:
                       '''
                   )
 
+
           else:
 
               rows.append(
                   '''
                   <text
                     x="82"
-                    y="326"
+                    y="327"
                     fill="#7d8590"
                     font-size="12"
                   >
@@ -357,7 +421,7 @@ jobs:
 
                   <text
                     x="82"
-                    y="352"
+                    y="353"
                     fill="#484f58"
                     font-size="10"
                   >
@@ -367,7 +431,9 @@ jobs:
               )
 
 
-          recent_markup = "\n".join(rows)
+          row_markup = "\n".join(
+              rows
+          )
 
 
           sync_time = datetime.now(
@@ -378,7 +444,7 @@ jobs:
 
 
           # ======================================================
-          # GITHUB SIGNAL SVG
+          # SIGNAL SVG
           # ======================================================
 
           svg = f'''<svg
@@ -398,37 +464,44 @@ jobs:
                 x2="1"
                 y2="1"
               >
+
                 <stop
                   offset="0%"
                   stop-color="#090d12"
                 />
+
                 <stop
                   offset="100%"
                   stop-color="#0d1117"
                 />
+
               </linearGradient>
 
 
               <linearGradient
-                id="signal"
+                id="beam"
                 x1="0"
                 x2="1"
               >
+
                 <stop
                   offset="0%"
                   stop-color="#39ff88"
                   stop-opacity="0"
                 />
+
                 <stop
                   offset="50%"
                   stop-color="#39ff88"
                   stop-opacity=".9"
                 />
+
                 <stop
                   offset="100%"
                   stop-color="#39ff88"
                   stop-opacity="0"
                 />
+
               </linearGradient>
 
 
@@ -439,14 +512,17 @@ jobs:
                 width="300%"
                 height="300%"
               >
+
                 <feGaussianBlur
                   stdDeviation="4"
                   result="blur"
                 />
+
                 <feMerge>
                   <feMergeNode in="blur"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
+
               </filter>
 
             </defs>
@@ -465,25 +541,28 @@ jobs:
 
 
             <rect
-              x="-300"
+              x="-280"
               y="1"
-              width="300"
+              width="280"
               height="2"
-              fill="url(#signal)"
+              fill="url(#beam)"
             >
+
               <animate
                 attributeName="x"
-                from="-300"
+                from="-280"
                 to="1100"
                 dur="5s"
                 repeatCount="indefinite"
               />
+
             </rect>
 
 
             <g
               font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
             >
+
 
               <circle
                 cx="80"
@@ -492,12 +571,14 @@ jobs:
                 fill="#39ff88"
                 filter="url(#glow)"
               >
+
                 <animate
                   attributeName="opacity"
                   values="1;.2;1"
                   dur="1.7s"
                   repeatCount="indefinite"
                 />
+
               </circle>
 
 
@@ -583,6 +664,7 @@ jobs:
                 PUBLIC REPOS
               </text>
 
+
               <text
                 x="330"
                 y="176"
@@ -593,6 +675,7 @@ jobs:
                 TOTAL STARS
               </text>
 
+
               <text
                 x="570"
                 y="176"
@@ -602,6 +685,7 @@ jobs:
               >
                 FOLLOWERS
               </text>
+
 
               <text
                 x="810"
@@ -624,6 +708,7 @@ jobs:
                 {public_repo_count}
               </text>
 
+
               <text
                 x="330"
                 y="218"
@@ -634,6 +719,7 @@ jobs:
                 {total_stars}
               </text>
 
+
               <text
                 x="570"
                 y="218"
@@ -643,6 +729,7 @@ jobs:
               >
                 {followers}
               </text>
+
 
               <text
                 x="810"
@@ -697,7 +784,7 @@ jobs:
               </text>
 
 
-              {recent_markup}
+              {row_markup}
 
 
               <text
@@ -705,7 +792,6 @@ jobs:
                 y="447"
                 fill="#30363d"
                 font-size="9"
-                letter-spacing="1.3"
               >
                 DATA // GITHUB PUBLIC API
               </text>
@@ -729,12 +815,14 @@ jobs:
                 height="14"
                 fill="#39ff88"
               >
+
                 <animate
                   attributeName="opacity"
                   values="1;0;1"
                   dur="1s"
                   repeatCount="indefinite"
                 />
+
               </rect>
 
             </g>
@@ -757,13 +845,15 @@ jobs:
               file.write(svg)
 
 
-          print("✓ github-signal.svg generated")
+          print(
+              "✓ GitHub signal generated"
+          )
 
           PYTHON
 
 
       # ==========================================================
-      # 4. GENERATE PROPER CONTRIBUTION ENGINE
+      # GENERATE CONTRIBUTION ENGINE
       # ==========================================================
 
       - name: Generate Contribution Engine
@@ -777,7 +867,6 @@ jobs:
           import os
           import json
           import urllib.request
-
           from datetime import datetime
 
 
@@ -791,22 +880,36 @@ jobs:
 
           query = """
           query($login: String!) {
+
             user(login: $login) {
+
               contributionsCollection {
+
                 contributionCalendar {
+
                   totalContributions
+
                   weeks {
+
                     firstDay
+
                     contributionDays {
+
                       contributionCount
                       contributionLevel
                       date
                       weekday
+
                     }
+
                   }
+
                 }
+
               }
+
             }
+
           }
           """
 
@@ -816,7 +919,9 @@ jobs:
               "variables": {
                   "login": OWNER
               }
-          }).encode("utf-8")
+          }).encode(
+              "utf-8"
+          )
 
 
           request = urllib.request.Request(
@@ -861,7 +966,7 @@ jobs:
           if not user:
 
               raise RuntimeError(
-                  f"GitHub user not found: {OWNER}"
+                  f"User not found: {OWNER}"
               )
 
 
@@ -872,9 +977,11 @@ jobs:
           )
 
 
-          total = calendar[
-              "totalContributions"
-          ]
+          total = int(
+              calendar[
+                  "totalContributions"
+              ]
+          )
 
 
           weeks = calendar[
@@ -883,21 +990,22 @@ jobs:
 
 
           # ======================================================
-          # LAYOUT
+          # GRID
           # ======================================================
 
           WIDTH = 1100
-          HEIGHT = 410
+          HEIGHT = 390
 
           CELL = 13
           GAP = 4
-          STEP = CELL + GAP
 
-          GRID_X = 118
-          GRID_Y = 164
+          STEP = (
+              CELL
+              + GAP
+          )
 
-          GRID_W = 53 * STEP
-          GRID_H = 7 * STEP
+          GRID_X = 126
+          GRID_Y = 154
 
 
           colors = {
@@ -909,8 +1017,8 @@ jobs:
           }
 
 
-          strokes = {
-              "NONE": "#27313b",
+          borders = {
+              "NONE": "#30363d",
               "FIRST_QUARTILE": "#155f3c",
               "SECOND_QUARTILE": "#128a47",
               "THIRD_QUARTILE": "#38c765",
@@ -935,12 +1043,23 @@ jobs:
               ):
 
                   weekday = int(
-                      day.get("weekday", 0)
+                      day.get(
+                          "weekday",
+                          0
+                      )
                   )
 
-                  x = GRID_X + week_index * STEP
 
-                  y = GRID_Y + weekday * STEP
+                  x = (
+                      GRID_X
+                      + week_index * STEP
+                  )
+
+
+                  y = (
+                      GRID_Y
+                      + weekday * STEP
+                  )
 
 
                   level = day.get(
@@ -955,15 +1074,9 @@ jobs:
                   )
 
 
-                  stroke = strokes.get(
+                  border = borders.get(
                       level,
-                      strokes["NONE"]
-                  )
-
-
-                  date = day.get(
-                      "date",
-                      ""
+                      borders["NONE"]
                   )
 
 
@@ -972,6 +1085,12 @@ jobs:
                           "contributionCount",
                           0
                       )
+                  )
+
+
+                  date = day.get(
+                      "date",
+                      ""
                   )
 
 
@@ -990,7 +1109,7 @@ jobs:
                           height="{CELL}"
                           rx="3"
                           fill="{fill}"
-                          stroke="{stroke}"
+                          stroke="{border}"
                           stroke-width="1"
                         />
 
@@ -999,14 +1118,16 @@ jobs:
                   )
 
 
-          grid_markup = "\n".join(cells)
+          cells_markup = "\n".join(
+              cells
+          )
 
 
           # ======================================================
           # MONTH LABELS
           # ======================================================
 
-          month_labels = []
+          months = []
 
           last_month = None
 
@@ -1018,6 +1139,7 @@ jobs:
               first_day = week.get(
                   "firstDay"
               )
+
 
               if not first_day:
                   continue
@@ -1031,33 +1153,36 @@ jobs:
                   )
 
               except Exception:
+
                   continue
 
 
-              current_month = (
+              key = (
                   date.year,
                   date.month
               )
 
 
-              if current_month == last_month:
+              if key == last_month:
                   continue
 
 
-              last_month = current_month
+              last_month = key
 
 
-              x = GRID_X + index * STEP
+              x = (
+                  GRID_X
+                  + index * STEP
+              )
 
 
-              month_labels.append(
+              months.append(
                   f'''
                   <text
                     x="{x}"
-                    y="143"
+                    y="136"
                     fill="#7d8590"
                     font-size="9"
-                    letter-spacing=".5"
                   >
                     {date.strftime("%b")}
                   </text>
@@ -1065,47 +1190,19 @@ jobs:
               )
 
 
-          month_markup = "\n".join(
-              month_labels
+          months_markup = "\n".join(
+              months
           )
 
 
-          # ======================================================
-          # DAY LABELS
-          # ======================================================
-
-          day_markup = '''
-          <text
-            x="80"
-            y="192"
-            fill="#484f58"
-            font-size="9"
-          >
-            MON
-          </text>
-
-          <text
-            x="80"
-            y="226"
-            fill="#484f58"
-            font-size="9"
-          >
-            WED
-          </text>
-
-          <text
-            x="80"
-            y="260"
-            fill="#484f58"
-            font-size="9"
-          >
-            FRI
-          </text>
-          '''
+          grid_width = max(
+              len(weeks),
+              1
+          ) * STEP
 
 
           # ======================================================
-          # CONTRIBUTION SVG
+          # SVG
           # ======================================================
 
           svg = f'''<svg
@@ -1125,14 +1222,17 @@ jobs:
                 x2="1"
                 y2="1"
               >
+
                 <stop
                   offset="0%"
                   stop-color="#090d12"
                 />
+
                 <stop
                   offset="100%"
                   stop-color="#0d1117"
                 />
+
               </linearGradient>
 
 
@@ -1141,21 +1241,25 @@ jobs:
                 x1="0"
                 x2="1"
               >
+
                 <stop
                   offset="0%"
                   stop-color="#39ff88"
                   stop-opacity="0"
                 />
+
                 <stop
                   offset="50%"
                   stop-color="#39ff88"
-                  stop-opacity=".22"
+                  stop-opacity=".18"
                 />
+
                 <stop
                   offset="100%"
                   stop-color="#39ff88"
                   stop-opacity="0"
                 />
+
               </linearGradient>
 
 
@@ -1166,26 +1270,27 @@ jobs:
                 width="300%"
                 height="300%"
               >
+
                 <feGaussianBlur
                   stdDeviation="3"
                   result="blur"
                 />
+
                 <feMerge>
                   <feMergeNode in="blur"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
+
               </filter>
 
             </defs>
 
 
-            <!-- BACKGROUND -->
-
             <rect
               x="1"
               y="1"
-              width="{WIDTH - 2}"
-              height="{HEIGHT - 2}"
+              width="1098"
+              height="388"
               rx="16"
               fill="url(#bg)"
               stroke="#30363d"
@@ -1202,23 +1307,25 @@ jobs:
 
               <circle
                 cx="74"
-                cy="56"
+                cy="54"
                 r="5"
                 fill="#39ff88"
                 filter="url(#glow)"
               >
+
                 <animate
                   attributeName="opacity"
                   values="1;.2;1"
-                  dur="1.6s"
+                  dur="1.5s"
                   repeatCount="indefinite"
                 />
+
               </circle>
 
 
               <text
-                x="93"
-                y="61"
+                x="94"
+                y="59"
                 fill="#39ff88"
                 font-size="12"
                 letter-spacing="2"
@@ -1229,7 +1336,7 @@ jobs:
 
               <text
                 x="1026"
-                y="61"
+                y="59"
                 text-anchor="end"
                 fill="#484f58"
                 font-size="9"
@@ -1242,7 +1349,7 @@ jobs:
 
               <text
                 x="74"
-                y="100"
+                y="96"
                 fill="#39ff88"
                 font-size="11"
               >
@@ -1251,8 +1358,8 @@ jobs:
 
 
               <text
-                x="189"
-                y="100"
+                x="190"
+                y="96"
                 fill="#7d8590"
                 font-size="11"
               >
@@ -1261,8 +1368,8 @@ jobs:
 
 
               <text
-                x="219"
-                y="100"
+                x="221"
+                y="96"
                 fill="#d0d7de"
                 font-size="11"
               >
@@ -1272,7 +1379,7 @@ jobs:
 
               <text
                 x="1026"
-                y="100"
+                y="96"
                 text-anchor="end"
                 fill="#39ff88"
                 font-size="11"
@@ -1283,73 +1390,104 @@ jobs:
 
               <line
                 x1="74"
-                y1="119"
+                y1="116"
                 x2="1026"
-                y2="119"
+                y2="116"
                 stroke="#21262d"
               />
 
 
               <!-- MONTHS -->
 
-              {month_markup}
+              {months_markup}
 
 
               <!-- DAY LABELS -->
 
-              {day_markup}
+              <text
+                x="82"
+                y="183"
+                fill="#484f58"
+                font-size="9"
+              >
+                MON
+              </text>
 
 
-              <!-- GRID -->
+              <text
+                x="82"
+                y="217"
+                fill="#484f58"
+                font-size="9"
+              >
+                WED
+              </text>
 
-              {grid_markup}
+
+              <text
+                x="82"
+                y="251"
+                fill="#484f58"
+                font-size="9"
+              >
+                FRI
+              </text>
 
 
-              <!-- MOVING SCANNER COLUMN -->
+              <!-- MATRIX -->
+
+              {cells_markup}
+
+
+              <!-- SCANNING COLUMN -->
 
               <rect
                 x="{GRID_X - 10}"
-                y="{GRID_Y - 4}"
+                y="{GRID_Y - 5}"
                 width="32"
-                height="{GRID_H}"
+                height="124"
                 fill="url(#scanner)"
-                pointer-events="none"
               >
+
                 <animate
                   attributeName="x"
                   from="{GRID_X - 10}"
-                  to="{GRID_X + GRID_W - 10}"
+                  to="{GRID_X + grid_width - 10}"
                   dur="8s"
                   repeatCount="indefinite"
                 />
+
               </rect>
 
 
+              <!-- SCANNER LINE -->
+
               <rect
                 x="{GRID_X}"
-                y="{GRID_Y - 4}"
+                y="{GRID_Y - 5}"
                 width="2"
-                height="{GRID_H}"
+                height="124"
                 fill="#39ff88"
-                opacity=".65"
+                opacity=".7"
                 filter="url(#glow)"
-                pointer-events="none"
               >
+
                 <animate
                   attributeName="x"
                   from="{GRID_X}"
-                  to="{GRID_X + GRID_W}"
+                  to="{GRID_X + grid_width}"
                   dur="8s"
                   repeatCount="indefinite"
                 />
+
               </rect>
 
 
               <!-- LEGEND -->
 
               <text
-                x="118"
-                y="313"
+                x="126"
+                y="304"
                 fill="#484f58"
                 font-size="9"
               >
@@ -1358,45 +1496,49 @@ jobs:
 
 
               <rect
-                x="154"
-                y="303"
+                x="164"
+                y="294"
                 width="11"
                 height="11"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
               />
 
+
               <rect
-                x="171"
-                y="303"
+                x="181"
+                y="294"
                 width="11"
                 height="11"
                 rx="3"
                 fill="#0e4429"
               />
 
+
               <rect
-                x="188"
-                y="303"
+                x="198"
+                y="294"
                 width="11"
                 height="11"
                 rx="3"
                 fill="#006d32"
               />
 
+
               <rect
-                x="205"
-                y="303"
+                x="215"
+                y="294"
                 width="11"
                 height="11"
                 rx="3"
                 fill="#26a641"
               />
 
+
               <rect
-                x="222"
-                y="303"
+                x="232"
+                y="294"
                 width="11"
                 height="11"
                 rx="3"
@@ -1405,8 +1547,8 @@ jobs:
 
 
               <text
-                x="242"
-                y="313"
+                x="254"
+                y="304"
                 fill="#484f58"
                 font-size="9"
               >
@@ -1416,16 +1558,16 @@ jobs:
 
               <line
                 x1="74"
-                y1="338"
+                y1="326"
                 x2="1026"
-                y2="338"
+                y2="326"
                 stroke="#21262d"
               />
 
 
               <text
                 x="74"
-                y="365"
+                y="353"
                 fill="#484f58"
                 font-size="9"
                 letter-spacing="1.3"
@@ -1436,7 +1578,7 @@ jobs:
 
               <text
                 x="1026"
-                y="365"
+                y="353"
                 text-anchor="end"
                 fill="#484f58"
                 font-size="9"
@@ -1447,19 +1589,20 @@ jobs:
 
               <rect
                 x="1019"
-                y="382"
+                y="369"
                 width="7"
                 height="13"
                 fill="#39ff88"
               >
+
                 <animate
                   attributeName="opacity"
                   values="1;0;1"
                   dur="1s"
                   repeatCount="indefinite"
                 />
-              </rect>
 
+              </rect>
 
             </g>
 
@@ -1482,49 +1625,58 @@ jobs:
 
 
           print(
-              f"✓ Contribution engine generated with {total} events"
+              f"✓ Contribution engine generated: {total} events"
           )
 
           PYTHON
 
 
       # ==========================================================
-      # 5. VALIDATE ASSETS
+      # VALIDATE GENERATED FILES
       # ==========================================================
 
       - name: Validate generated assets
+        shell: bash
         run: |
           set -euo pipefail
 
           test -s assets/github-signal.svg
           test -s assets/contribution-engine.svg
 
-          echo "✓ Generated assets:"
-          ls -lh assets/github-signal.svg
-          ls -lh assets/contribution-engine.svg
+          echo "Generated:"
+          ls -lh \
+            assets/github-signal.svg \
+            assets/contribution-engine.svg
 
 
       # ==========================================================
-      # 6. SAFE COMMIT / PUSH
+      # SAFE COMMIT
       # ==========================================================
 
-      - name: Commit profile assets
+      - name: Commit generated profile assets
         shell: bash
         run: |
           set -euo pipefail
 
-          echo "Preserving generated assets..."
 
-          mkdir -p /tmp/praveen-profile-assets
+          # ------------------------------------------------------
+          # Preserve generated files
+          # ------------------------------------------------------
+
+          TEMP_DIR="$(mktemp -d)"
 
           cp \
             assets/github-signal.svg \
-            /tmp/praveen-profile-assets/github-signal.svg
+            "$TEMP_DIR/github-signal.svg"
 
           cp \
             assets/contribution-engine.svg \
-            /tmp/praveen-profile-assets/contribution-engine.svg
+            "$TEMP_DIR/contribution-engine.svg"
 
+
+          # ------------------------------------------------------
+          # Configure Git
+          # ------------------------------------------------------
 
           git config \
             user.name \
@@ -1535,12 +1687,89 @@ jobs:
             "41898282+github-actions[bot]@users.noreply.github.com"
 
 
-          echo "Fetching latest main..."
+          # ------------------------------------------------------
+          # Synchronise with newest remote main
+          # ------------------------------------------------------
 
-          git fetch origin main
+          git fetch \
+            origin \
+            main
+
+          git reset \
+            --hard \
+            origin/main
 
 
-          echo "Resetting to latest origin/main..."
+          # ------------------------------------------------------
+          # Restore generated assets
+          # ------------------------------------------------------
+
+          mkdir -p assets
+
+          cp \
+            "$TEMP_DIR/github-signal.svg" \
+            assets/github-signal.svg
+
+          cp \
+            "$TEMP_DIR/contribution-engine.svg" \
+            assets/contribution-engine.svg
+
+
+          git add \
+            assets/github-signal.svg \
+            assets/contribution-engine.svg
+
+
+          # ------------------------------------------------------
+          # No changes
+          # ------------------------------------------------------
+
+          if git diff --cached --quiet; then
+
+            echo "✓ Dynamic profile already current."
+            exit 0
+
+          fi
+
+
+          # ------------------------------------------------------
+          # Commit
+          # ------------------------------------------------------
+
+          git commit \
+            -m "chore: refresh PRAVEEN.OS telemetry [skip ci]"
+
+
+          # ------------------------------------------------------
+          # Push with safe retry
+          # ------------------------------------------------------
+
+          if git push origin HEAD:main; then
+
+            echo "✓ Profile updated."
+            exit 0
+
+          fi
+
+
+          echo "Remote changed. Retrying..."
+
+
+          # Save generated files again
+
+          cp \
+            assets/github-signal.svg \
+            "$TEMP_DIR/github-signal.svg"
+
+          cp \
+            assets/contribution-engine.svg \
+            "$TEMP_DIR/contribution-engine.svg"
+
+
+          git fetch \
+            origin \
+            main
+
 
           git reset \
             --hard \
@@ -1550,14 +1779,12 @@ jobs:
           mkdir -p assets
 
 
-          echo "Restoring generated files..."
-
           cp \
-            /tmp/praveen-profile-assets/github-signal.svg \
+            "$TEMP_DIR/github-signal.svg" \
             assets/github-signal.svg
 
           cp \
-            /tmp/praveen-profile-assets/contribution-engine.svg \
+            "$TEMP_DIR/contribution-engine.svg" \
             assets/contribution-engine.svg
 
 
@@ -1568,7 +1795,7 @@ jobs:
 
           if git diff --cached --quiet; then
 
-            echo "✓ Assets already current."
+            echo "✓ Remote already contains generated assets."
             exit 0
 
           fi
@@ -1578,61 +1805,9 @@ jobs:
             -m "chore: refresh PRAVEEN.OS telemetry [skip ci]"
 
 
-          # Retry once if main changed while we were generating.
-          if ! git push origin HEAD:main; then
-
-            echo "Remote changed during generation. Retrying safely..."
-
-            cp \
-              assets/github-signal.svg \
-              /tmp/praveen-profile-assets/github-signal.svg
-
-            cp \
-              assets/contribution-engine.svg \
-              /tmp/praveen-profile-assets/contribution-engine.svg
+          git push \
+            origin \
+            HEAD:main
 
 
-            git fetch origin main
-
-            git reset \
-              --hard \
-              origin/main
-
-
-            mkdir -p assets
-
-
-            cp \
-              /tmp/praveen-profile-assets/github-signal.svg \
-              assets/github-signal.svg
-
-            cp \
-              /tmp/praveen-profile-assets/contribution-engine.svg \
-              assets/contribution-engine.svg
-
-
-            git add \
-              assets/github-signal.svg \
-              assets/contribution-engine.svg
-
-
-            if git diff --cached --quiet; then
-
-              echo "✓ Remote already contains latest assets."
-              exit 0
-
-            fi
-
-
-            git commit \
-              -m "chore: refresh PRAVEEN.OS telemetry [skip ci]"
-
-
-            git push \
-              origin \
-              HEAD:main
-
-          fi
-
-
-          echo "✓ PRAVEEN.OS successfully updated."
+          echo "✓ Retry successful."
