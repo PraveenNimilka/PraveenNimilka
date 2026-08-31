@@ -1,38 +1,48 @@
-name: PRAVEEN OS Profile Engine
+name: PRAVEEN.OS Profile Engine
 
 on:
   workflow_dispatch:
 
   schedule:
-    - cron: "0 */12 * * *"
+    # Refresh every 12 hours
+    - cron: "17 */12 * * *"
 
 permissions:
   contents: write
 
+concurrency:
+  group: praveen-os-profile
+  cancel-in-progress: true
+
 jobs:
-  update-profile:
+  build-profile:
+    name: Build PRAVEEN.OS
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
+      # ==========================================================
+      # 1. CHECKOUT
+      # ==========================================================
 
-      # ======================================================
-      # CHECKOUT
-      # ======================================================
-
-      - name: Checkout repository
+      - name: Checkout profile repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Create assets directory
-        run: mkdir -p assets
+      - name: Create directories
+        run: |
+          mkdir -p assets
+          mkdir -p dist
 
 
-      # ======================================================
-      # GENERATE CUSTOM GITHUB SIGNAL
-      # ======================================================
+      # ==========================================================
+      # 2. GENERATE LIVE GITHUB SIGNAL
+      # ==========================================================
 
-      - name: Generate GitHub Signal
+      - name: Generate GitHub signal
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
           OWNER: ${{ github.repository_owner }}
 
         run: |
@@ -41,200 +51,380 @@ jobs:
           import os
           import json
           import urllib.request
+          import urllib.parse
+          import urllib.error
           from html import escape
+          from datetime import datetime, timezone
 
 
-          owner = os.environ["OWNER"]
-          token = os.environ["GH_TOKEN"]
+          # ======================================================
+          # CONFIG
+          # ======================================================
+
+          OWNER = os.environ["OWNER"]
+          TOKEN = os.environ["GH_TOKEN"]
+
+          API = "https://api.github.com"
 
 
-          def request(path):
+          # ======================================================
+          # GITHUB API
+          # ======================================================
 
-              req = urllib.request.Request(
-                  f"https://api.github.com{path}",
+          def github_api(path):
+
+              request = urllib.request.Request(
+                  API + path,
                   headers={
-                      "Authorization": f"Bearer {token}",
+                      "Authorization": f"Bearer {TOKEN}",
                       "Accept": "application/vnd.github+json",
-                      "User-Agent": "praveen-os"
+                      "X-GitHub-Api-Version": "2022-11-28",
+                      "User-Agent": "praveen-os-profile"
                   }
               )
 
-              with urllib.request.urlopen(req) as response:
-                  return json.loads(response.read())
+              try:
+                  with urllib.request.urlopen(
+                      request,
+                      timeout=20
+                  ) as response:
+
+                      return json.loads(
+                          response.read().decode("utf-8")
+                      )
+
+              except urllib.error.HTTPError as error:
+
+                  print(
+                      f"GitHub API HTTP error "
+                      f"{error.code}: {path}"
+                  )
+
+                  return None
+
+              except Exception as error:
+
+                  print(
+                      f"GitHub API error: "
+                      f"{path}: {error}"
+                  )
+
+                  return None
 
 
-          # ==================================================
-          # USER DATA
-          # ==================================================
+          # ======================================================
+          # USER PROFILE
+          # ======================================================
 
-          user = request(f"/users/{owner}")
+          user = github_api(
+              f"/users/{urllib.parse.quote(OWNER)}"
+          ) or {}
 
-          followers = user.get("followers", 0)
-          repos_count = user.get("public_repos", 0)
 
-
-          # ==================================================
-          # REPOSITORY DATA
-          # ==================================================
-
-          repos = request(
-              f"/users/{owner}/repos"
-              "?per_page=100"
-              "&sort=updated"
-              "&direction=desc"
+          followers = int(
+              user.get("followers") or 0
           )
 
 
+          # ======================================================
+          # FETCH ALL PUBLIC REPOSITORIES
+          # ======================================================
+
+          repositories = []
+
+          page = 1
+
+          while True:
+
+              result = github_api(
+                  f"/users/{urllib.parse.quote(OWNER)}/repos"
+                  f"?type=owner"
+                  f"&sort=updated"
+                  f"&direction=desc"
+                  f"&per_page=100"
+                  f"&page={page}"
+              )
+
+              if not isinstance(result, list):
+                  break
+
+              repositories.extend(result)
+
+              if len(result) < 100:
+                  break
+
+              page += 1
+
+
+          # ======================================================
+          # FILTER
+          # ======================================================
+
+          # Public, non-fork repositories.
           original_repos = [
-              repo for repo in repos
-              if not repo.get("fork")
+              repo
+              for repo in repositories
+              if not repo.get("fork", False)
           ]
 
 
-          stars = sum(
-              repo.get("stargazers_count", 0)
+          public_repo_count = len(
+              original_repos
+          )
+
+
+          # Do not show the profile repository as a project
+          project_repos = [
+              repo
+              for repo in original_repos
+              if repo.get("name", "").lower()
+              != OWNER.lower()
+          ]
+
+
+          # ======================================================
+          # STATS
+          # ======================================================
+
+          total_stars = sum(
+              int(repo.get("stargazers_count") or 0)
               for repo in original_repos
           )
 
 
-          languages = {}
+          total_forks = sum(
+              int(repo.get("forks_count") or 0)
+              for repo in original_repos
+          )
 
-          for repo in original_repos:
+
+          # ======================================================
+          # LANGUAGES
+          # ======================================================
+
+          language_counts = {}
+
+          for repo in project_repos:
 
               language = repo.get("language")
 
-              if language:
-                  languages[language] = languages.get(language, 0) + 1
+              if not language:
+                  continue
+
+              language_counts[language] = (
+                  language_counts.get(language, 0) + 1
+              )
 
 
           top_languages = sorted(
-              languages.items(),
-              key=lambda item: item[1],
-              reverse=True
+              language_counts.items(),
+              key=lambda pair: (-pair[1], pair[0])
           )[:4]
 
 
-          recent = original_repos[:4]
-
-
-          # ==================================================
-          # HELPERS
-          # ==================================================
-
-          def safe(text):
-              return escape(str(text))
-
-
-          def shorten(text, maximum=28):
-
-              text = str(text)
-
-              if len(text) <= maximum:
-                  return text
-
-              return text[:maximum - 1] + "…"
-
-
-          # ==================================================
-          # RECENT REPOSITORY ROWS
-          # ==================================================
-
-          repo_rows = []
-
-          ys = [290, 325, 360, 395]
-
-          for index, y in enumerate(ys):
-
-              if index < len(recent):
-
-                  repo = recent[index]
-
-                  name = safe(shorten(repo["name"], 32))
-
-                  language = safe(
-                      repo.get("language") or "unknown"
-                  )
-
-                  repo_stars = repo.get(
-                      "stargazers_count",
-                      0
-                  )
-
-                  repo_rows.append(
-                      f'''
-                      <text
-                        x="78"
-                        y="{y}"
-                        fill="#39ff88"
-                        font-size="11"
-                      >
-                        {str(index + 1).zfill(2)}
-                      </text>
-
-                      <text
-                        x="120"
-                        y="{y}"
-                        fill="#d0d7de"
-                        font-size="12"
-                      >
-                        {name}
-                      </text>
-
-                      <text
-                        x="500"
-                        y="{y}"
-                        fill="#7d8590"
-                        font-size="11"
-                      >
-                        {language}
-                      </text>
-
-                      <text
-                        x="675"
-                        y="{y}"
-                        fill="#7d8590"
-                        font-size="11"
-                      >
-                        ★ {repo_stars}
-                      </text>
-                      '''
-                  )
-
-
-          rows = "\n".join(repo_rows)
-
-
-          # ==================================================
-          # LANGUAGE LABEL
-          # ==================================================
-
           if top_languages:
 
-              language_text = "  /  ".join(
+              language_line = "  /  ".join(
                   language.upper()
-                  for language, count
+                  for language, _
                   in top_languages
               )
 
           else:
-              language_text = "BUILDING"
+
+              language_line = (
+                  "AI  /  SOFTWARE  /  SYSTEMS"
+              )
 
 
-          # ==================================================
+          # ======================================================
+          # RECENT PROJECTS
+          # ======================================================
+
+          recent = project_repos[:4]
+
+
+          # ======================================================
+          # HELPERS
+          # ======================================================
+
+          def safe(value):
+
+              return escape(
+                  str(value),
+                  quote=True
+              )
+
+
+          def trim(value, maximum=30):
+
+              value = str(value)
+
+              if len(value) <= maximum:
+                  return value
+
+              return (
+                  value[:maximum - 1]
+                  + "…"
+              )
+
+
+          # ======================================================
+          # PROJECT ROWS
+          # ======================================================
+
+          rows = []
+
+          y_positions = [
+              306,
+              342,
+              378,
+              414
+          ]
+
+
+          if recent:
+
+              for index, repo in enumerate(recent):
+
+                  y = y_positions[index]
+
+                  repo_name = safe(
+                      trim(
+                          repo.get(
+                              "name",
+                              "repository"
+                          ),
+                          30
+                      )
+                  )
+
+                  language = safe(
+                      trim(
+                          repo.get("language")
+                          or "unknown",
+                          14
+                      )
+                  )
+
+                  stars = int(
+                      repo.get(
+                          "stargazers_count"
+                      ) or 0
+                  )
+
+
+                  rows.append(
+                      f'''
+                      <g>
+
+                        <text
+                          x="82"
+                          y="{y}"
+                          fill="#39ff88"
+                          font-size="11"
+                        >
+                          {index + 1:02d}
+                        </text>
+
+                        <text
+                          x="125"
+                          y="{y}"
+                          fill="#d0d7de"
+                          font-size="12"
+                        >
+                          {repo_name}
+                        </text>
+
+                        <text
+                          x="515"
+                          y="{y}"
+                          fill="#7d8590"
+                          font-size="11"
+                        >
+                          {language}
+                        </text>
+
+                        <text
+                          x="690"
+                          y="{y}"
+                          fill="#7d8590"
+                          font-size="11"
+                        >
+                          ★ {stars}
+                        </text>
+
+                      </g>
+                      '''
+                  )
+
+          else:
+
+              rows.append(
+                  '''
+                  <text
+                    x="82"
+                    y="325"
+                    fill="#7d8590"
+                    font-size="12"
+                  >
+                    No public project repositories detected.
+                  </text>
+
+                  <text
+                    x="82"
+                    y="350"
+                    fill="#484f58"
+                    font-size="10"
+                  >
+                    Private repositories are intentionally not exposed.
+                  </text>
+                  '''
+              )
+
+
+          recent_markup = "\n".join(
+              rows
+          )
+
+
+          # ======================================================
+          # SYNC TIME
+          # ======================================================
+
+          sync_time = datetime.now(
+              timezone.utc
+          ).strftime(
+              "%Y-%m-%d %H:%M UTC"
+          )
+
+
+          # ======================================================
           # SVG
-          # ==================================================
+          # ======================================================
 
           svg = f'''<svg
             xmlns="http://www.w3.org/2000/svg"
             width="1100"
-            height="455"
-            viewBox="0 0 1100 455"
+            height="475"
+            viewBox="0 0 1100 475"
+            role="img"
+            aria-labelledby="title desc"
           >
+
+            <title id="title">
+              PRAVEEN.OS GitHub Signal
+            </title>
+
+            <desc id="desc">
+              Live public GitHub statistics for Praveen Nimilka.
+            </desc>
+
 
             <defs>
 
               <linearGradient
-                id="bg"
+                id="background"
                 x1="0"
                 y1="0"
                 x2="1"
@@ -254,6 +444,33 @@ jobs:
               </linearGradient>
 
 
+              <linearGradient
+                id="signal"
+                x1="0"
+                x2="1"
+              >
+
+                <stop
+                  offset="0%"
+                  stop-color="#39ff88"
+                  stop-opacity="0"
+                />
+
+                <stop
+                  offset="50%"
+                  stop-color="#39ff88"
+                  stop-opacity=".85"
+                />
+
+                <stop
+                  offset="100%"
+                  stop-color="#39ff88"
+                  stop-opacity="0"
+                />
+
+              </linearGradient>
+
+
               <filter
                 id="glow"
                 x="-100%"
@@ -263,13 +480,20 @@ jobs:
               >
 
                 <feGaussianBlur
-                  stdDeviation="3"
+                  stdDeviation="4"
                   result="blur"
                 />
 
                 <feMerge>
-                  <feMergeNode in="blur"/>
-                  <feMergeNode in="SourceGraphic"/>
+
+                  <feMergeNode
+                    in="blur"
+                  />
+
+                  <feMergeNode
+                    in="SourceGraphic"
+                  />
+
                 </feMerge>
 
               </filter>
@@ -277,18 +501,41 @@ jobs:
             </defs>
 
 
-            <!-- BACKGROUND -->
+            <!-- ==================================================
+                 BACKGROUND
+            =================================================== -->
 
             <rect
               x="1"
               y="1"
               width="1098"
-              height="453"
+              height="473"
               rx="16"
-              fill="url(#bg)"
+              fill="url(#background)"
               stroke="#30363d"
               stroke-width="2"
             />
+
+
+            <!-- MOVING TOP SIGNAL -->
+
+            <rect
+              x="-300"
+              y="1"
+              width="300"
+              height="2"
+              fill="url(#signal)"
+            >
+
+              <animate
+                attributeName="x"
+                from="-300"
+                to="1100"
+                dur="5s"
+                repeatCount="indefinite"
+              />
+
+            </rect>
 
 
             <g
@@ -296,7 +543,9 @@ jobs:
             >
 
 
-              <!-- HEADER -->
+              <!-- ==================================================
+                   HEADER
+              =================================================== -->
 
               <circle
                 cx="80"
@@ -309,7 +558,7 @@ jobs:
                 <animate
                   attributeName="opacity"
                   values="1;.2;1"
-                  dur="1.6s"
+                  dur="1.7s"
                   repeatCount="indefinite"
                 />
 
@@ -317,8 +566,8 @@ jobs:
 
 
               <text
-                x="98"
-                y="62"
+                x="99"
+                y="63"
                 fill="#39ff88"
                 font-size="12"
                 letter-spacing="2"
@@ -328,20 +577,23 @@ jobs:
 
 
               <text
-                x="1020"
+                x="1018"
                 y="62"
                 text-anchor="end"
                 fill="#484f58"
-                font-size="10"
+                font-size="9"
+                letter-spacing="1"
               >
                 PRAVEEN.OS
               </text>
 
 
-              <!-- COMMAND -->
+              <!-- ==================================================
+                   COMMAND
+              =================================================== -->
 
               <text
-                x="78"
+                x="80"
                 y="108"
                 fill="#39ff88"
                 font-size="12"
@@ -351,7 +603,7 @@ jobs:
 
 
               <text
-                x="200"
+                x="202"
                 y="108"
                 fill="#7d8590"
                 font-size="12"
@@ -361,7 +613,7 @@ jobs:
 
 
               <text
-                x="232"
+                x="236"
                 y="108"
                 fill="#d0d7de"
                 font-size="12"
@@ -370,78 +622,103 @@ jobs:
               </text>
 
 
-              <!-- DIVIDER -->
+              <text
+                x="1018"
+                y="108"
+                text-anchor="end"
+                fill="#30363d"
+                font-size="9"
+              >
+                {safe(sync_time)}
+              </text>
+
 
               <line
-                x1="78"
+                x1="80"
                 y1="132"
-                x2="1020"
+                x2="1018"
                 y2="132"
                 stroke="#21262d"
               />
 
 
-              <!-- STAT 1 -->
+              <!-- ==================================================
+                   STAT LABELS
+              =================================================== -->
 
               <text
-                x="78"
-                y="174"
+                x="80"
+                y="176"
                 fill="#7d8590"
-                font-size="10"
-                letter-spacing="1.5"
+                font-size="9"
+                letter-spacing="1.6"
               >
-                REPOSITORIES
+                PUBLIC REPOS
               </text>
 
-              <text
-                x="78"
-                y="214"
-                fill="#f0f6fc"
-                font-size="30"
-                font-weight="700"
-              >
-                {repos_count}
-              </text>
-
-
-              <!-- STAT 2 -->
 
               <text
                 x="330"
-                y="174"
+                y="176"
                 fill="#7d8590"
-                font-size="10"
-                letter-spacing="1.5"
+                font-size="9"
+                letter-spacing="1.6"
               >
                 TOTAL STARS
               </text>
 
-              <text
-                x="330"
-                y="214"
-                fill="#f0f6fc"
-                font-size="30"
-                font-weight="700"
-              >
-                {stars}
-              </text>
-
-
-              <!-- STAT 3 -->
 
               <text
                 x="570"
-                y="174"
+                y="176"
                 fill="#7d8590"
-                font-size="10"
-                letter-spacing="1.5"
+                font-size="9"
+                letter-spacing="1.6"
               >
                 FOLLOWERS
               </text>
 
+
+              <text
+                x="810"
+                y="176"
+                fill="#7d8590"
+                font-size="9"
+                letter-spacing="1.6"
+              >
+                SYSTEM
+              </text>
+
+
+              <!-- ==================================================
+                   STAT VALUES
+              =================================================== -->
+
+              <text
+                x="80"
+                y="218"
+                fill="#f0f6fc"
+                font-size="30"
+                font-weight="700"
+              >
+                {public_repo_count}
+              </text>
+
+
+              <text
+                x="330"
+                y="218"
+                fill="#f0f6fc"
+                font-size="30"
+                font-weight="700"
+              >
+                {total_stars}
+              </text>
+
+
               <text
                 x="570"
-                y="214"
+                y="218"
                 fill="#f0f6fc"
                 font-size="30"
                 font-weight="700"
@@ -450,73 +727,103 @@ jobs:
               </text>
 
 
-              <!-- STATUS -->
-
               <text
-                x="805"
-                y="174"
-                fill="#7d8590"
-                font-size="10"
-                letter-spacing="1.5"
-              >
-                SYSTEM
-              </text>
-
-              <text
-                x="805"
-                y="214"
+                x="810"
+                y="218"
                 fill="#39ff88"
-                font-size="30"
+                font-size="28"
                 font-weight="700"
               >
                 ONLINE
               </text>
 
 
-              <!-- LANGUAGES -->
+              <!-- ==================================================
+                   SUB SIGNAL
+              =================================================== -->
 
               <text
-                x="78"
-                y="250"
+                x="80"
+                y="252"
                 fill="#484f58"
-                font-size="10"
+                font-size="9"
                 letter-spacing="1.4"
               >
-                {safe(language_text)}
+                {safe(language_line)}
               </text>
 
 
-              <!-- RECENT -->
+              <text
+                x="1018"
+                y="252"
+                fill="#484f58"
+                text-anchor="end"
+                font-size="9"
+              >
+                FORKS // {total_forks}
+              </text>
+
 
               <line
-                x1="78"
-                y1="267"
-                x2="1020"
-                y2="267"
+                x1="80"
+                y1="268"
+                x2="1018"
+                y2="268"
                 stroke="#21262d"
               />
 
 
+              <!-- ==================================================
+                   RECENT PROJECTS
+              =================================================== -->
+
               <text
-                x="78"
-                y="280"
+                x="80"
+                y="289"
                 fill="#484f58"
                 font-size="9"
-                letter-spacing="1.5"
+                letter-spacing="1.6"
               >
-                RECENTLY UPDATED
+                RECENT PUBLIC PROJECTS
               </text>
 
 
-              {rows}
+              {recent_markup}
 
 
-              <!-- CURSOR -->
+              <!-- ==================================================
+                   FOOTER
+              =================================================== -->
+
+              <text
+                x="80"
+                y="447"
+                fill="#30363d"
+                font-size="9"
+                letter-spacing="1.4"
+              >
+                DATA // GITHUB PUBLIC API
+              </text>
+
+
+              <text
+                x="1018"
+                y="447"
+                fill="#30363d"
+                text-anchor="end"
+                font-size="9"
+                letter-spacing="1"
+              >
+                PRIVATE DATA // NOT EXPOSED
+              </text>
+
+
+              <!-- BLINKING CURSOR -->
 
               <rect
-                x="1010"
-                y="421"
-                width="8"
+                x="1012"
+                y="417"
+                width="7"
                 height="14"
                 fill="#39ff88"
               >
@@ -530,21 +837,14 @@ jobs:
 
               </rect>
 
-
-              <text
-                x="78"
-                y="432"
-                fill="#30363d"
-                font-size="9"
-                letter-spacing="1.4"
-              >
-                DATA // GITHUB API
-              </text>
-
             </g>
 
           </svg>'''
 
+
+          # ======================================================
+          # WRITE ASSET
+          # ======================================================
 
           with open(
               "assets/github-signal.svg",
@@ -555,17 +855,27 @@ jobs:
               file.write(svg)
 
 
-          print("github-signal.svg generated")
+          print("")
+          print("PRAVEEN.OS signal generated")
+          print("----------------------------")
+          print(f"Owner:        {OWNER}")
+          print(f"Public repos: {public_repo_count}")
+          print(f"Stars:        {total_stars}")
+          print(f"Followers:    {followers}")
+          print(f"Projects:     {len(project_repos)}")
+          print("")
 
           PYTHON
 
 
-      # ======================================================
-      # COMMIT GITHUB SIGNAL
-      # ======================================================
+      # ==========================================================
+      # 3. COMMIT SIGNAL ASSET TO MAIN
+      # ==========================================================
 
-      - name: Commit GitHub Signal
+      - name: Commit updated GitHub signal
+        shell: bash
         run: |
+          set -e
 
           git config user.name "praveen-os[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -573,38 +883,37 @@ jobs:
           git add assets/github-signal.svg
 
           if git diff --cached --quiet; then
-            echo "No GitHub signal changes."
+            echo "No signal changes to commit."
           else
-            git commit -m "chore: update profile signal [skip ci]"
-            git push
+            git commit -m "chore: refresh PRAVEEN.OS signal [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
           fi
 
 
-      # ======================================================
-      # GENERATE CONTRIBUTION SNAKE
-      # ======================================================
+      # ==========================================================
+      # 4. GENERATE CONTRIBUTION SNAKE
+      # ==========================================================
 
       - name: Generate contribution snake
         uses: Platane/snk/svg-only@v3
         with:
-
           github_user_name: ${{ github.repository_owner }}
 
           outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+            dist/github-contribution-grid-snake.svg?color_snake=#39ff88&color_dots=#0d1117,#123524,#176b3a,#26a65b,#39ff88
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#39ff88&color_dots=#0d1117,#123524,#176b3a,#26a65b,#39ff88
 
 
-      # ======================================================
-      # DEPLOY OUTPUT BRANCH
-      # ======================================================
+      # ==========================================================
+      # 5. PUBLISH SNAKE TO OUTPUT BRANCH
+      # ==========================================================
 
-      - name: Publish contribution animation
-        uses: crazy-max/ghaction-github-pages@v4
-
+      - name: Publish snake to output branch
+        uses: crazy-max/ghaction-github-pages@v5
         with:
+          target_branch: output
           build_dir: dist
-          branch: output
+          keep_history: false
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
