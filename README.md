@@ -1,491 +1,531 @@
-<!--
-██████╗ ██████╗  █████╗ ██╗   ██╗███████╗███████╗███╗   ██╗
-██╔══██╗██╔══██╗██╔══██╗██║   ██║██╔════╝██╔════╝████╗  ██║
-██████╔╝██████╔╝███████║██║   ██║█████╗  █████╗  ██╔██╗ ██║
-██╔═══╝ ██╔══██╗██╔══██║╚██╗ ██╔╝██╔══╝  ██╔══╝  ██║╚██╗██║
-██║     ██║  ██║██║  ██║ ╚████╔╝ ███████╗███████╗██║ ╚████║
-╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚══════╝╚═╝  ╚═══╝
+<!-- ========================================================= -->
 
-PRAVEEN NIMILKA
-github profile // build 01
--->
+<!--                   PRAVEEN // SYSTEM                       -->
+
+<!-- ========================================================= -->
 
 <div align="center">
 
-<br>
+<img src="./assets/boot.svg" width="100%" alt="Praveen Nimilka Terminal"/>
 
-<pre>
-┌──────────────────────────────────────────────────────────────┐
-│                                                              │
-│                    PRAVEEN NIMILKA                           │
-│                                                              │
-│          AI • SOFTWARE • SYSTEMS • EXPERIMENTS              │
-│                                                              │
-│              BUILDING THE UNLIKELY.                          │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
-</pre>
+<br/>
 
-<a href="https://git.io/typing-svg">
-<img
-src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=16&duration=2500&pause=900&color=8B949E&center=true&vCenter=true&width=720&lines=%24+booting+praveen.dev...;%24+building+things+that+probably+shouldn't+work;%24+ai+%C3%97+software+%C3%97+experiments;%24+idea+%E2%86%92+prototype+%E2%86%92+break+%E2%86%92+rebuild+%E2%86%92+ship;%24+system.status+%3D+BUILDING"
-alt="terminal typing"
-/>
-</a>
+<code>AI SYSTEMS</code>
+ •  <code>EXPERIMENTAL SOFTWARE</code>
+ •  <code>PRODUCT ENGINEERING</code>
+ •  <code>BUILDING THE UNLIKELY</code>
 
-<br>
+<br/><br/>
 
-<sub>
-builder · product hacker · experimental developer
-</sub>
-
-<br><br>
-
-<img src="https://komarev.com/ghpvc/?username=YOUR_GITHUB_USERNAME&style=flat-square&label=visitors&color=21262d"/>
+<sup>PRAVEEN NIMILKA // SYSTEM ONLINE</sup>
 
 </div>
 
-<br>
-
 ---
 
 ```console
-praveen@localhost:~$ whoami
+visitor@github:~$ ssh praveen@mind
+connecting...
+handshake complete.
+access granted.
 
-name        : Praveen Nimilka
-role        : builder
-location    : somewhere between idea and execution
-interests   : AI / products / systems / experiments
-status      : ███████████████████░ building
-````
+Welcome to PRAVEEN/OS.
+Type `help` to explore.
+```
 
-```console
-praveen@localhost:~$ cat mission.txt
+## `> help`
 
-> turn ambitious ideas into working software.
-> remove complexity.
-> experiment aggressively.
-> learn from broken things.
-> build products people actually want.
+```text
+AVAILABLE COMMANDS
+──────────────────────────────────────────────────────────
+
+./whoami        identify operator
+./mission       current objective
+./lab           enter experimental projects
+./telemetry     live GitHub system information
+./stack         inspect technology stack
+./processes     inspect active ideas
+./principles    read operating principles
+./contributions visualize build history
+./brain         enter restricted area
+
+──────────────────────────────────────────────────────────
+STATUS: ONLINE
 ```
 
 ---
 
-## `~/about`
+<details open>
+<summary><code>visitor@github:~$ ./whoami</code></summary>
 
-I build at the intersection of **artificial intelligence, software, product design and experimental technology**.
+<br/>
 
-I like ideas that initially sound a little unreasonable.
+```yaml
+operator:
+  name: "Praveen Nimilka"
+  type: "builder"
 
-Not because they are guaranteed to work.
+mode:
+  - research
+  - prototype
+  - break
+  - understand
+  - rebuild
+  - ship
 
-Because finding out **why they can or cannot work** is usually where the interesting engineering begins.
+interests:
+  - artificial intelligence
+  - experimental software
+  - product engineering
+  - AI infrastructure
+  - automation
+  - developer tools
+  - creative technology
 
-```ts
-const praveen = {
-  identity: "builder",
-
-  obsessedWith: [
-    "artificial intelligence",
-    "experimental software",
-    "developer tools",
-    "AI infrastructure",
-    "automation",
-    "SaaS",
-    "creative technology"
-  ],
-
-  currentMode: "build → test → break → learn → rebuild → ship",
-
-  belief:
-    "The best way to know if an idea is impossible is to try building it."
-};
+current_state: "BUILDING"
 ```
+
+I like building things somewhere between:
+
+```text
+possible ──────────────────────────────── impossible
+                         ▲
+                         │
+                   interesting zone
+```
+
+The projects I enjoy most usually begin with:
+
+> **"I don't know if this is possible... but what happens if we try?"**
+
+</details>
 
 ---
 
-## `~/lab`
+<details>
+<summary><code>visitor@github:~$ ./mission</code></summary>
+
+<br/>
+
+```text
+MISSION CONTROL
+────────────────────────────────────────────────────────────
+
+01 // REMOVE COMPLEXITY
+
+     complicated workflow
+              │
+              ▼
+       ┌─────────────┐
+       │  rethink it │
+       └──────┬──────┘
+              │
+              ▼
+          one action
+
+
+02 // EXPERIMENT
+
+     IDEA
+       │
+       ▼
+     BUILD
+       │
+       ▼
+     BREAK
+       │
+       ▼
+   UNDERSTAND
+       │
+       ▼
+    REBUILD
+
+
+03 // SHIP
+
+     experiments are useful.
+     working products are better.
+
+────────────────────────────────────────────────────────────
+```
+
+</details>
+
+---
+
+## `> ./telemetry`
+
+<div align="center">
+
+<img src="./assets/live-status.svg" width="100%" alt="Live GitHub Telemetry"/>
+
+</div>
+
+<sup>
+↑ Generated automatically from GitHub every 12 hours.
+</sup>
+
+---
+
+<details>
+<summary><code>visitor@github:~$ cd ./lab</code></summary>
+
+<br/>
 
 ```text
 PRAVEEN LABS
 ──────────────────────────────────────────────────────────────
 
-[01] CiteShield
-     citation intelligence / academic document auditing
-     status ............. BETA
+drwxr-xr-x    citeshield/
+drwxr-xr-x    aether/
+drwxr-xr-x    ai-infrastructure/
+drwxr-xr-x    one-click/
+drwxr-xr-x    experiments/
 
-[02] Aether
-     neural physics sandbox / emergent digital worlds
-     status ............. EXPERIMENT
-
-[03] AI Infrastructure
-     efficient training / local compute / model systems
-     status ............. RESEARCH
-
-[04] One-Click Software
-     remove complicated workflows with tiny interfaces
-     status ............. BUILDING
-
-──────────────────────────────────────────────────────────────
-4 experiments loaded.
+5 directories detected.
 ```
 
-<details>
-<summary><code>open ./projects/citeshield</code></summary>
-
-<br>
-
-### `CiteShield`
-
-AI-powered citation and reference intelligence.
+### `01 // CITESHIELD`
 
 ```text
-document
-   │
-   ▼
-┌──────────────┐
-│  CiteShield  │
-└──────┬───────┘
-       │
-       ├── reference parsing
-       ├── DOI validation
-       ├── citation matching
-       ├── unsupported claim detection
-       ├── duplicate detection
-       └── audit report
+type      : citation intelligence
+state     : beta
+objective : make academic-document auditing faster and safer
 ```
 
-**Goal:** make citation auditing dramatically faster and safer.
+```text
+          DOCUMENT
+              │
+              ▼
+      ┌──────────────┐
+      │  CITESHIELD  │
+      └───────┬──────┘
+              │
+     ┌────────┼────────┐
+     │        │        │
+     ▼        ▼        ▼
+ citations   DOI    references
+     │        │        │
+     └────────┼────────┘
+              ▼
+        EVIDENCE ENGINE
+              │
+              ▼
+          AUDIT REPORT
+```
 
-`state: beta`
+---
+
+### `02 // PROJECT AETHER`
+
+```text
+type      : neural physical sandbox
+state     : experimental
+objective : explore AI-defined physical worlds
+```
+
+```text
+"corrosive liquid star"
+          │
+          ▼
+   NATURAL LANGUAGE
+          │
+          ▼
+      AI MODEL
+          │
+          ▼
+    PHYSICAL DNA
+          │
+          ▼
+  PARTICLE BEHAVIOR
+          │
+          ▼
+    EMERGENT WORLD
+```
+
+---
+
+### `03 // AI INFRASTRUCTURE`
+
+```text
+type      : systems research
+state     : researching
+
+questions:
+
+> can AI training become dramatically more efficient?
+> how much computation can move onto ordinary hardware?
+> can memory become more important than brute-force compute?
+> are current training architectures actually the final form?
+```
+
+```text
+research/
+│
+├── efficient-training
+├── memory-systems
+├── local-ai
+├── distributed-compute
+├── model-optimisation
+├── unconventional-architectures
+└── probably-something-that-will-break-my-pc
+```
+
+---
+
+### `04 // ONE-CLICK SOFTWARE`
+
+My favourite product challenge:
+
+```text
+BEFORE
+
+[ upload ]
+    ↓
+[ configure ]
+    ↓
+[ select ]
+    ↓
+[ clean ]
+    ↓
+[ process ]
+    ↓
+[ export ]
+    ↓
+[ fix ]
+    ↓
+[ repeat ]
+
+
+AFTER
+
+┌──────────────────────┐
+│                      │
+│        DO IT         │
+│                      │
+└──────────────────────┘
+
+            ↓
+
+         DONE.
+```
 
 </details>
 
-<details>
-<summary><code>open ./projects/aether</code></summary>
-
-<br>
-
-### `Project Aether`
-
-A neural physical sandbox exploring what happens when AI helps define the rules of a simulated world.
-
-```text
-natural language
-      │
-      ▼
- neural model
-      │
-      ▼
- physical DNA
-      │
-      ▼
-particle behaviour
-      │
-      ▼
- emergent world
-```
-
-`state: experimental`
-
-</details>
+---
 
 <details>
-<summary><code>open ./projects/ai-infrastructure</code></summary>
+<summary><code>visitor@github:~$ ./stack --inspect</code></summary>
 
-<br>
+<br/>
 
-### `AI Infrastructure Lab`
+<div align="center">
 
-Researching ways to make AI computation more accessible.
+<img src="https://skillicons.dev/icons?i=python,js,ts,html,css,react,nextjs,nodejs,pytorch,tensorflow,supabase,postgres,docker,git,github,vercel,vscode,linux&perline=9&theme=dark"/>
 
-```text
-focus/
+</div>
 
-├── memory efficiency
-├── consumer hardware
-├── distributed compute
-├── training efficiency
-├── local AI
-├── model optimisation
-└── unconventional architectures
-```
-
-`state: research`
-
-</details>
-
-<details>
-<summary><code>open ./projects/one-click</code></summary>
-
-<br>
-
-### `One-Click Software`
-
-My favourite product equation:
+<br/>
 
 ```text
-     COMPLEX WORKFLOW
-            │
-            │ simplify
-            ▼
-       ┌─────────┐
-       │  CLICK  │
-       └────┬────┘
-            │
-            ▼
-       USEFUL RESULT
+STACK INSPECTOR
+───────────────────────────────────────────────────────
+
+LANG        Python       ███████████████░
+            JavaScript   ██████████████░░
+            TypeScript   █████████████░░░
+
+WEB         React
+            Next.js
+            Node.js
+
+AI          PyTorch
+            TensorFlow
+            LLM APIs
+            neural experiments
+
+DATA        PostgreSQL
+            Supabase
+
+SYSTEMS     Docker
+            Linux
+            Git
+            GitHub Actions
+
+SHIP        Vercel
+
+───────────────────────────────────────────────────────
 ```
-
-If something normally requires twelve steps, I want to know whether it can require one.
-
-`state: building`
 
 </details>
 
 ---
 
-## `~/stack`
-
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=python,js,ts,react,nextjs,nodejs,pytorch,supabase,postgres,docker,git,github,vercel,vscode,linux&perline=8&theme=dark" />
-
-</div>
-
-<br>
-
-```text
-languages        python / javascript / typescript
-frontend         react / next.js
-backend          node.js / APIs
-data             postgres / supabase
-ai               pytorch / LLM APIs / experimentation
-infrastructure   docker / vercel / linux
-tools            git / github / vscode
-```
-
----
-
-## `~/current`
-
-```yaml
-currently:
-
-  researching:
-    - efficient AI systems
-    - local artificial intelligence
-    - model optimisation
-    - distributed compute
-    - AI agents
-
-  building:
-    - AI SaaS products
-    - developer tools
-    - experimental interfaces
-    - automation systems
-
-  learning:
-    - machine learning systems
-    - scalable architecture
-    - product engineering
-    - system design
-
-  trying_to_answer:
-    - "How much complexity can software remove?"
-    - "How much AI can move onto ordinary hardware?"
-    - "What looks impossible only because nobody redesigned it yet?"
-```
-
----
-
-## `~/principles`
-
-```text
-01  BUILD > TALK
-
-02  SIMPLE INTERFACE
-    ≠
-    SIMPLE ENGINEERING
-
-03  SMALL EXPERIMENTS
-    CAN BECOME
-    LARGE COMPANIES
-
-04  FAILURE IS DATA
-
-05  IF IT SOUNDS SLIGHTLY IMPOSSIBLE
-    IT IS PROBABLY WORTH INVESTIGATING
-```
-
----
-
-## `~/runtime`
-
-```console
-praveen@localhost:~$ systemctl status curiosity
-
-● curiosity.service
-     Loaded: loaded
-     Active: active (running)
-
-     Ideas             ████████████████████ 100%
-     Curiosity         ████████████████████ 100%
-     Experiments       ██████████████████░░  91%
-     Shipping          ███████████████░░░░░  76%
-     Sleep             ██████░░░░░░░░░░░░░  ERR
-```
-
----
-
-## `~/github`
-
-<div align="center">
-
-<img
-src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&hide_title=true&hide_border=true&bg_color=00000000&text_color=8B949E&icon_color=8B949E&ring_color=8B949E"
-height="145"
-/>
-
-<img
-src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&hide_border=true&bg_color=00000000&text_color=8B949E&title_color=C9D1D9"
-height="145"
-/>
-
-</div>
-
-<br>
-
-<div align="center">
-
-<img
-src="https://github-readme-activity-graph.vercel.app/graph?username=YOUR_GITHUB_USERNAME&bg_color=00000000&color=8B949E&line=8B949E&point=C9D1D9&area=false&hide_border=true"
-width="95%"
-/>
-
-</div>
-
----
-
-## `~/contributions`
-
-<div align="center">
-
-<img
-src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_GITHUB_USERNAME/output/github-contribution-grid-snake-dark.svg"
-alt="contribution snake"
-/>
-
-</div>
-
----
-
-## `~/network`
-
-```console
-praveen@localhost:~$ ./connect
-
-github     → https://github.com/YOUR_GITHUB_USERNAME
-linkedin   → YOUR_LINKEDIN_URL
-email      → YOUR_EMAIL
-
-waiting for interesting humans...
-█
-```
-
-<div align="center">
-
-<a href="https://github.com/YOUR_GITHUB_USERNAME">
-<img src="https://img.shields.io/badge/github-0d1117?style=for-the-badge&logo=github&logoColor=c9d1d9"/>
-</a>
-
-<a href="YOUR_LINKEDIN_URL">
-<img src="https://img.shields.io/badge/linkedin-0d1117?style=for-the-badge&logo=linkedin&logoColor=c9d1d9"/>
-</a>
-
-<a href="mailto:YOUR_EMAIL">
-<img src="https://img.shields.io/badge/email-0d1117?style=for-the-badge&logo=gmail&logoColor=c9d1d9"/>
-</a>
-
-</div>
-
----
-
 <details>
-<summary><code>sudo open /dev/brain</code></summary>
+<summary><code>visitor@github:~$ ps aux | grep ideas</code></summary>
 
-<br>
+<br/>
 
 ```text
-ACCESS GRANTED.
+PID    CPU    MEM    PROCESS
+────────────────────────────────────────────────────────────
 
-recent processes:
+001    91%    42%    build_ai_product
+002    76%    31%    research_random_idea
+003    99%    63%    why_is_this_not_working
+004    88%    41%    rebuild_from_scratch
+005    52%    28%    maybe_this_is_a_startup
+006    69%    33%    optimize_everything
+007    100%   95%    start_another_project
 
-PID      PROCESS
-────────────────────────────────────────
-001      thinking_about_new_ai_idea
-002      rebuilding_the_same_feature
-003      why_does_this_bug_exist
-004      maybe_this_should_be_a_startup
-005      researching_something_unnecessary
-006      turning_it_into_a_prototype
-007      starting_another_project
+────────────────────────────────────────────────────────────
 
 WARNING:
+
 process 007 cannot be terminated.
 ```
 
 </details>
 
-<details>
-<summary><code>cat /etc/warning</code></summary>
+---
 
-<br>
+<details>
+<summary><code>visitor@github:~$ cat principles.sys</code></summary>
+
+<br/>
 
 ```text
-┌───────────────────────────────────────────────────────────┐
-│                    SYSTEM WARNING                         │
-├───────────────────────────────────────────────────────────┤
-│                                                           │
-│ Opening this GitHub profile may result in:                │
-│                                                           │
-│  > unnecessary startup ideas                             │
-│  > random AI experiments                                 │
-│  > redesigning things that already work                  │
-│  > attempting something technically unreasonable         │
-│  > another repository appearing at 2:47 AM               │
-│                                                           │
-│ proceed? [Y/n]                                            │
-│                                                           │
-│ > Y_                                                      │
-└───────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────┐
+│ 01                                                        │
+│                                                            │
+│ BUILD > TALK                                               │
+│                                                            │
+├────────────────────────────────────────────────────────────┤
+│ 02                                                        │
+│                                                            │
+│ SIMPLE INTERFACE                                           │
+│ DOES NOT MEAN                                              │
+│ SIMPLE ENGINEERING                                         │
+│                                                            │
+├────────────────────────────────────────────────────────────┤
+│ 03                                                        │
+│                                                            │
+│ FAILURE                                                    │
+│ IS                                                         │
+│ DATA                                                       │
+│                                                            │
+├────────────────────────────────────────────────────────────┤
+│ 04                                                        │
+│                                                            │
+│ SMALL EXPERIMENTS                                          │
+│ CAN BECOME                                                 │
+│ VERY LARGE IDEAS                                           │
+│                                                            │
+├────────────────────────────────────────────────────────────┤
+│ 05                                                        │
+│                                                            │
+│ IF IT SOUNDS SLIGHTLY IMPOSSIBLE,                          │
+│ INVESTIGATE IT.                                            │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
 ```
 
 </details>
 
-<br>
+---
+
+## `> ./contributions --animate`
+
+<div align="center">
+
+<img src="./assets/snake.svg" width="100%" alt="Animated GitHub contribution snake"/>
+
+</div>
+
+```text
+CONTRIBUTION GRID ONLINE.
+
+each square = something built,
+broken,
+learned,
+or shipped.
+```
+
+---
+
+<details>
+<summary><code>visitor@github:~$ sudo ./brain</code></summary>
+
+<br/>
+
+```text
+[sudo] password for visitor: ************
+
+authenticating...
+████████████████████████████████████ 100%
+
+ACCESS GRANTED.
+
+
+/dev/brain
+──────────────────────────────────────────────────────
+
+current thoughts:
+
+[01] can this become 10x simpler?
+
+[02] can AI do this locally?
+
+[03] why does this require seven buttons?
+
+[04] there must be a better architecture.
+
+[05] wait...
+
+[06] this could actually work.
+
+[07] create_new_repository()
+
+
+──────────────────────────────────────────────────────
+
+WARNING:
+
+The operator has detected another project idea.
+```
+
+</details>
 
 ---
 
 <div align="center">
 
+<br/>
+
 ```text
-┌───────────────────────────────────────────────────────────────┐
-│                                                               │
-│              what if we actually tried?                       │
-│                                                               │
-│                         ── PN                                 │
-│                                                               │
-└───────────────────────────────────────────────────────────────┘
+            ┌───────────────────────────────┐
+            │                               │
+            │   WHAT IF WE ACTUALLY TRIED? │
+            │                               │
+            └───────────────────────────────┘
 ```
 
-<sub>PRAVEEN NIMILKA // BUILDING IN PUBLIC</sub>
+<br/>
 
-<br><br>
+<code>PRAVEEN NIMILKA</code>
 
-`EOF`
+<br/>
 
-<br><br>
+<sub>AI × SOFTWARE × EXPERIMENTS</sub>
+
+<br/><br/>
+
+```text
+visitor@github:~$ exit
+
+connection closed.
+
+█
+```
 
 </div>
-```
