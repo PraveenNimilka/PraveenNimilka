@@ -1,0 +1,610 @@
+name: PRAVEEN OS Profile Engine
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "0 */12 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-profile:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ======================================================
+      # CHECKOUT
+      # ======================================================
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create assets directory
+        run: mkdir -p assets
+
+
+      # ======================================================
+      # GENERATE CUSTOM GITHUB SIGNAL
+      # ======================================================
+
+      - name: Generate GitHub Signal
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+
+        run: |
+          python3 <<'PYTHON'
+
+          import os
+          import json
+          import urllib.request
+          from html import escape
+
+
+          owner = os.environ["OWNER"]
+          token = os.environ["GH_TOKEN"]
+
+
+          def request(path):
+
+              req = urllib.request.Request(
+                  f"https://api.github.com{path}",
+                  headers={
+                      "Authorization": f"Bearer {token}",
+                      "Accept": "application/vnd.github+json",
+                      "User-Agent": "praveen-os"
+                  }
+              )
+
+              with urllib.request.urlopen(req) as response:
+                  return json.loads(response.read())
+
+
+          # ==================================================
+          # USER DATA
+          # ==================================================
+
+          user = request(f"/users/{owner}")
+
+          followers = user.get("followers", 0)
+          repos_count = user.get("public_repos", 0)
+
+
+          # ==================================================
+          # REPOSITORY DATA
+          # ==================================================
+
+          repos = request(
+              f"/users/{owner}/repos"
+              "?per_page=100"
+              "&sort=updated"
+              "&direction=desc"
+          )
+
+
+          original_repos = [
+              repo for repo in repos
+              if not repo.get("fork")
+          ]
+
+
+          stars = sum(
+              repo.get("stargazers_count", 0)
+              for repo in original_repos
+          )
+
+
+          languages = {}
+
+          for repo in original_repos:
+
+              language = repo.get("language")
+
+              if language:
+                  languages[language] = languages.get(language, 0) + 1
+
+
+          top_languages = sorted(
+              languages.items(),
+              key=lambda item: item[1],
+              reverse=True
+          )[:4]
+
+
+          recent = original_repos[:4]
+
+
+          # ==================================================
+          # HELPERS
+          # ==================================================
+
+          def safe(text):
+              return escape(str(text))
+
+
+          def shorten(text, maximum=28):
+
+              text = str(text)
+
+              if len(text) <= maximum:
+                  return text
+
+              return text[:maximum - 1] + "…"
+
+
+          # ==================================================
+          # RECENT REPOSITORY ROWS
+          # ==================================================
+
+          repo_rows = []
+
+          ys = [290, 325, 360, 395]
+
+          for index, y in enumerate(ys):
+
+              if index < len(recent):
+
+                  repo = recent[index]
+
+                  name = safe(shorten(repo["name"], 32))
+
+                  language = safe(
+                      repo.get("language") or "unknown"
+                  )
+
+                  repo_stars = repo.get(
+                      "stargazers_count",
+                      0
+                  )
+
+                  repo_rows.append(
+                      f'''
+                      <text
+                        x="78"
+                        y="{y}"
+                        fill="#39ff88"
+                        font-size="11"
+                      >
+                        {str(index + 1).zfill(2)}
+                      </text>
+
+                      <text
+                        x="120"
+                        y="{y}"
+                        fill="#d0d7de"
+                        font-size="12"
+                      >
+                        {name}
+                      </text>
+
+                      <text
+                        x="500"
+                        y="{y}"
+                        fill="#7d8590"
+                        font-size="11"
+                      >
+                        {language}
+                      </text>
+
+                      <text
+                        x="675"
+                        y="{y}"
+                        fill="#7d8590"
+                        font-size="11"
+                      >
+                        ★ {repo_stars}
+                      </text>
+                      '''
+                  )
+
+
+          rows = "\n".join(repo_rows)
+
+
+          # ==================================================
+          # LANGUAGE LABEL
+          # ==================================================
+
+          if top_languages:
+
+              language_text = "  /  ".join(
+                  language.upper()
+                  for language, count
+                  in top_languages
+              )
+
+          else:
+              language_text = "BUILDING"
+
+
+          # ==================================================
+          # SVG
+          # ==================================================
+
+          svg = f'''<svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1100"
+            height="455"
+            viewBox="0 0 1100 455"
+          >
+
+            <defs>
+
+              <linearGradient
+                id="bg"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+
+                <stop
+                  offset="0%"
+                  stop-color="#090d12"
+                />
+
+                <stop
+                  offset="100%"
+                  stop-color="#0d1117"
+                />
+
+              </linearGradient>
+
+
+              <filter
+                id="glow"
+                x="-100%"
+                y="-100%"
+                width="300%"
+                height="300%"
+              >
+
+                <feGaussianBlur
+                  stdDeviation="3"
+                  result="blur"
+                />
+
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+
+              </filter>
+
+            </defs>
+
+
+            <!-- BACKGROUND -->
+
+            <rect
+              x="1"
+              y="1"
+              width="1098"
+              height="453"
+              rx="16"
+              fill="url(#bg)"
+              stroke="#30363d"
+              stroke-width="2"
+            />
+
+
+            <g
+              font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+            >
+
+
+              <!-- HEADER -->
+
+              <circle
+                cx="80"
+                cy="58"
+                r="5"
+                fill="#39ff88"
+                filter="url(#glow)"
+              >
+
+                <animate
+                  attributeName="opacity"
+                  values="1;.2;1"
+                  dur="1.6s"
+                  repeatCount="indefinite"
+                />
+
+              </circle>
+
+
+              <text
+                x="98"
+                y="62"
+                fill="#39ff88"
+                font-size="12"
+                letter-spacing="2"
+              >
+                GITHUB SIGNAL // LIVE
+              </text>
+
+
+              <text
+                x="1020"
+                y="62"
+                text-anchor="end"
+                fill="#484f58"
+                font-size="10"
+              >
+                PRAVEEN.OS
+              </text>
+
+
+              <!-- COMMAND -->
+
+              <text
+                x="78"
+                y="108"
+                fill="#39ff88"
+                font-size="12"
+              >
+                praveen@github
+              </text>
+
+
+              <text
+                x="200"
+                y="108"
+                fill="#7d8590"
+                font-size="12"
+              >
+                :~$
+              </text>
+
+
+              <text
+                x="232"
+                y="108"
+                fill="#d0d7de"
+                font-size="12"
+              >
+                ./signal --live
+              </text>
+
+
+              <!-- DIVIDER -->
+
+              <line
+                x1="78"
+                y1="132"
+                x2="1020"
+                y2="132"
+                stroke="#21262d"
+              />
+
+
+              <!-- STAT 1 -->
+
+              <text
+                x="78"
+                y="174"
+                fill="#7d8590"
+                font-size="10"
+                letter-spacing="1.5"
+              >
+                REPOSITORIES
+              </text>
+
+              <text
+                x="78"
+                y="214"
+                fill="#f0f6fc"
+                font-size="30"
+                font-weight="700"
+              >
+                {repos_count}
+              </text>
+
+
+              <!-- STAT 2 -->
+
+              <text
+                x="330"
+                y="174"
+                fill="#7d8590"
+                font-size="10"
+                letter-spacing="1.5"
+              >
+                TOTAL STARS
+              </text>
+
+              <text
+                x="330"
+                y="214"
+                fill="#f0f6fc"
+                font-size="30"
+                font-weight="700"
+              >
+                {stars}
+              </text>
+
+
+              <!-- STAT 3 -->
+
+              <text
+                x="570"
+                y="174"
+                fill="#7d8590"
+                font-size="10"
+                letter-spacing="1.5"
+              >
+                FOLLOWERS
+              </text>
+
+              <text
+                x="570"
+                y="214"
+                fill="#f0f6fc"
+                font-size="30"
+                font-weight="700"
+              >
+                {followers}
+              </text>
+
+
+              <!-- STATUS -->
+
+              <text
+                x="805"
+                y="174"
+                fill="#7d8590"
+                font-size="10"
+                letter-spacing="1.5"
+              >
+                SYSTEM
+              </text>
+
+              <text
+                x="805"
+                y="214"
+                fill="#39ff88"
+                font-size="30"
+                font-weight="700"
+              >
+                ONLINE
+              </text>
+
+
+              <!-- LANGUAGES -->
+
+              <text
+                x="78"
+                y="250"
+                fill="#484f58"
+                font-size="10"
+                letter-spacing="1.4"
+              >
+                {safe(language_text)}
+              </text>
+
+
+              <!-- RECENT -->
+
+              <line
+                x1="78"
+                y1="267"
+                x2="1020"
+                y2="267"
+                stroke="#21262d"
+              />
+
+
+              <text
+                x="78"
+                y="280"
+                fill="#484f58"
+                font-size="9"
+                letter-spacing="1.5"
+              >
+                RECENTLY UPDATED
+              </text>
+
+
+              {rows}
+
+
+              <!-- CURSOR -->
+
+              <rect
+                x="1010"
+                y="421"
+                width="8"
+                height="14"
+                fill="#39ff88"
+              >
+
+                <animate
+                  attributeName="opacity"
+                  values="1;0;1"
+                  dur="1s"
+                  repeatCount="indefinite"
+                />
+
+              </rect>
+
+
+              <text
+                x="78"
+                y="432"
+                fill="#30363d"
+                font-size="9"
+                letter-spacing="1.4"
+              >
+                DATA // GITHUB API
+              </text>
+
+            </g>
+
+          </svg>'''
+
+
+          with open(
+              "assets/github-signal.svg",
+              "w",
+              encoding="utf-8"
+          ) as file:
+
+              file.write(svg)
+
+
+          print("github-signal.svg generated")
+
+          PYTHON
+
+
+      # ======================================================
+      # COMMIT GITHUB SIGNAL
+      # ======================================================
+
+      - name: Commit GitHub Signal
+        run: |
+
+          git config user.name "praveen-os[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add assets/github-signal.svg
+
+          if git diff --cached --quiet; then
+            echo "No GitHub signal changes."
+          else
+            git commit -m "chore: update profile signal [skip ci]"
+            git push
+          fi
+
+
+      # ======================================================
+      # GENERATE CONTRIBUTION SNAKE
+      # ======================================================
+
+      - name: Generate contribution snake
+        uses: Platane/snk/svg-only@v3
+        with:
+
+          github_user_name: ${{ github.repository_owner }}
+
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+
+      # ======================================================
+      # DEPLOY OUTPUT BRANCH
+      # ======================================================
+
+      - name: Publish contribution animation
+        uses: crazy-max/ghaction-github-pages@v4
+
+        with:
+          build_dir: dist
+          branch: output
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
