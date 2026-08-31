@@ -28,7 +28,6 @@
 />
 
 <br><br>
-
 <sub>PRAVEEN.OS // SYSTEM ONLINE</sub>
 
 </div>
