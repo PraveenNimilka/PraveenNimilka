@@ -4,14 +4,14 @@
   height="475"
   viewBox="0 0 1100 475"
   role="img"
-  aria-labelledby="title desc"
+  aria-labelledby="signal-title signal-desc"
 >
 
-  <title id="title">
+  <title id="signal-title">
     PRAVEEN.OS GitHub Signal
   </title>
 
-  <desc id="desc">
+  <desc id="signal-desc">
     Live public GitHub statistics for Praveen Nimilka.
   </desc>
 
@@ -19,7 +19,7 @@
   <defs>
 
     <linearGradient
-      id="background"
+      id="signal-background"
       x1="0"
       y1="0"
       x2="1"
@@ -40,7 +40,7 @@
 
 
     <linearGradient
-      id="signal"
+      id="moving-signal"
       x1="0"
       x2="1"
     >
@@ -54,7 +54,7 @@
       <stop
         offset="50%"
         stop-color="#39ff88"
-        stop-opacity=".85"
+        stop-opacity=".9"
       />
 
       <stop
@@ -67,7 +67,7 @@
 
 
     <filter
-      id="glow"
+      id="signal-glow"
       x="-100%"
       y="-100%"
       width="300%"
@@ -96,30 +96,24 @@
   </defs>
 
 
-  <!-- ==================================================
-       BACKGROUND
-  =================================================== -->
-
   <rect
     x="1"
     y="1"
     width="1098"
     height="473"
     rx="16"
-    fill="url(#background)"
+    fill="url(#signal-background)"
     stroke="#30363d"
     stroke-width="2"
   />
 
-
-  <!-- MOVING TOP SIGNAL -->
 
   <rect
     x="-300"
     y="1"
     width="300"
     height="2"
-    fill="url(#signal)"
+    fill="url(#moving-signal)"
   >
 
     <animate
@@ -138,16 +132,12 @@
   >
 
 
-    <!-- ==================================================
-         HEADER
-    =================================================== -->
-
     <circle
       cx="80"
       cy="58"
       r="5"
       fill="#39ff88"
-      filter="url(#glow)"
+      filter="url(#signal-glow)"
     >
 
       <animate
@@ -182,10 +172,6 @@
       PRAVEEN.OS
     </text>
 
-
-    <!-- ==================================================
-         COMMAND
-    =================================================== -->
 
     <text
       x="80"
@@ -224,7 +210,7 @@
       fill="#30363d"
       font-size="9"
     >
-      2026-08-31 18:38 UTC
+      2026-08-31 18:44 UTC
     </text>
 
 
@@ -236,10 +222,6 @@
       stroke="#21262d"
     />
 
-
-    <!-- ==================================================
-         STAT LABELS
-    =================================================== -->
 
     <text
       x="80"
@@ -285,10 +267,6 @@
     </text>
 
 
-    <!-- ==================================================
-         STAT VALUES
-    =================================================== -->
-
     <text
       x="80"
       y="218"
@@ -333,10 +311,6 @@
     </text>
 
 
-    <!-- ==================================================
-         SUB SIGNAL
-    =================================================== -->
-
     <text
       x="80"
       y="252"
@@ -344,7 +318,7 @@
       font-size="9"
       letter-spacing="1.4"
     >
-      AI  /  SOFTWARE  /  SYSTEMS
+      AI  /  SOFTWARE  /  SYSTEMS  /  EXPERIMENTS
     </text>
 
 
@@ -368,10 +342,6 @@
     />
 
 
-    <!-- ==================================================
-         RECENT PROJECTS
-    =================================================== -->
-
     <text
       x="80"
       y="289"
@@ -386,7 +356,7 @@
     
         <text
           x="82"
-          y="325"
+          y="320"
           fill="#7d8590"
           font-size="12"
         >
@@ -395,18 +365,14 @@
 
         <text
           x="82"
-          y="350"
+          y="346"
           fill="#484f58"
           font-size="10"
         >
-          Private repositories are intentionally not exposed.
+          Profile repository excluded from project list.
         </text>
         
 
-
-    <!-- ==================================================
-         FOOTER
-    =================================================== -->
 
     <text
       x="80"
@@ -430,8 +396,6 @@
       PRIVATE DATA // NOT EXPOSED
     </text>
 
-
-    <!-- BLINKING CURSOR -->
 
     <rect
       x="1012"
