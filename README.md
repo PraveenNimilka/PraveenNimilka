@@ -10,10 +10,26 @@
 
 <br><br>
 
-<img src="https://img.shields.io/badge/AI_SYSTEMS-0D1117?style=for-the-badge&logo=openai&logoColor=39FF88">
-<img src="https://img.shields.io/badge/SOFTWARE-0D1117?style=for-the-badge&logo=github&logoColor=39FF88">
-<img src="https://img.shields.io/badge/PRODUCTS-0D1117?style=for-the-badge&logo=vercel&logoColor=39FF88">
-<img src="https://img.shields.io/badge/EXPERIMENTS-0D1117?style=for-the-badge&logo=probot&logoColor=39FF88">
+<img
+  src="https://img.shields.io/badge/AI_SYSTEMS-0D1117?style=for-the-badge&logo=googlegemini&logoColor=39FF88&labelColor=0D1117"
+  alt="AI Systems"
+/>
+
+<img
+  src="https://img.shields.io/badge/SOFTWARE-0D1117?style=for-the-badge&logo=github&logoColor=39FF88&labelColor=0D1117"
+  alt="Software"
+/>
+
+<img
+  src="https://img.shields.io/badge/PRODUCTS-0D1117?style=for-the-badge&logo=vercel&logoColor=39FF88&labelColor=0D1117"
+  alt="Products"
+/>
+
+<img
+  src="https://img.shields.io/badge/EXPERIMENTS-0D1117?style=for-the-badge&logo=probot&logoColor=39FF88&labelColor=0D1117"
+  alt="Experiments"
+/>
+
 
 <br><br>
 
