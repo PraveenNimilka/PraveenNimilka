@@ -390,8 +390,6 @@ Can the architecture be redesigned?
 
 <div align="center">
 
-# `~/CONTRIBUTION ENGINE`
-
 <img
   src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/main/assets/contribution-engine.svg?v=4"
   width="100%"
