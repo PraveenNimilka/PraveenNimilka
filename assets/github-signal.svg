@@ -4,89 +4,66 @@
   height="475"
   viewBox="0 0 1100 475"
   role="img"
-  aria-labelledby="signal-title signal-desc"
 >
-
-  <title id="signal-title">
-    PRAVEEN.OS GitHub Signal
-  </title>
-
-  <desc id="signal-desc">
-    Live public GitHub statistics for Praveen Nimilka.
-  </desc>
-
 
   <defs>
 
     <linearGradient
-      id="signal-background"
+      id="bg"
       x1="0"
       y1="0"
       x2="1"
       y2="1"
     >
-
       <stop
         offset="0%"
         stop-color="#090d12"
       />
-
       <stop
         offset="100%"
         stop-color="#0d1117"
       />
-
     </linearGradient>
 
 
     <linearGradient
-      id="moving-signal"
+      id="signal"
       x1="0"
       x2="1"
     >
-
       <stop
         offset="0%"
         stop-color="#39ff88"
         stop-opacity="0"
       />
-
       <stop
         offset="50%"
         stop-color="#39ff88"
         stop-opacity=".9"
       />
-
       <stop
         offset="100%"
         stop-color="#39ff88"
         stop-opacity="0"
       />
-
     </linearGradient>
 
 
     <filter
-      id="signal-glow"
+      id="glow"
       x="-100%"
       y="-100%"
       width="300%"
       height="300%"
     >
-
       <feGaussianBlur
         stdDeviation="4"
         result="blur"
       />
-
       <feMerge>
-
         <feMergeNode in="blur"/>
-
         <feMergeNode in="SourceGraphic"/>
-
       </feMerge>
-
     </filter>
 
   </defs>
@@ -98,7 +75,7 @@
     width="1098"
     height="473"
     rx="16"
-    fill="url(#signal-background)"
+    fill="url(#bg)"
     stroke="#30363d"
     stroke-width="2"
   />
@@ -109,9 +86,8 @@
     y="1"
     width="300"
     height="2"
-    fill="url(#moving-signal)"
+    fill="url(#signal)"
   >
-
     <animate
       attributeName="x"
       from="-300"
@@ -119,7 +95,6 @@
       dur="5s"
       repeatCount="indefinite"
     />
-
   </rect>
 
 
@@ -132,16 +107,14 @@
       cy="58"
       r="5"
       fill="#39ff88"
-      filter="url(#signal-glow)"
+      filter="url(#glow)"
     >
-
       <animate
         attributeName="opacity"
         values="1;.2;1"
         dur="1.7s"
         repeatCount="indefinite"
       />
-
     </circle>
 
 
@@ -162,7 +135,6 @@
       text-anchor="end"
       fill="#484f58"
       font-size="9"
-      letter-spacing="1"
     >
       PRAVEEN.OS
     </text>
@@ -205,7 +177,7 @@
       fill="#30363d"
       font-size="9"
     >
-      2026-08-31 18:48 UTC
+      2026-08-31 19:02 UTC
     </text>
 
 
@@ -223,40 +195,37 @@
       y="176"
       fill="#7d8590"
       font-size="9"
-      letter-spacing="1.6"
+      letter-spacing="1.5"
     >
       PUBLIC REPOS
     </text>
-
 
     <text
       x="330"
       y="176"
       fill="#7d8590"
       font-size="9"
-      letter-spacing="1.6"
+      letter-spacing="1.5"
     >
       TOTAL STARS
     </text>
-
 
     <text
       x="570"
       y="176"
       fill="#7d8590"
       font-size="9"
-      letter-spacing="1.6"
+      letter-spacing="1.5"
     >
       FOLLOWERS
     </text>
-
 
     <text
       x="810"
       y="176"
       fill="#7d8590"
       font-size="9"
-      letter-spacing="1.6"
+      letter-spacing="1.5"
     >
       SYSTEM
     </text>
@@ -272,7 +241,6 @@
       1
     </text>
 
-
     <text
       x="330"
       y="218"
@@ -283,7 +251,6 @@
       0
     </text>
 
-
     <text
       x="570"
       y="218"
@@ -293,7 +260,6 @@
     >
       0
     </text>
-
 
     <text
       x="810"
@@ -311,7 +277,7 @@
       y="252"
       fill="#484f58"
       font-size="9"
-      letter-spacing="1.4"
+      letter-spacing="1.3"
     >
       AI  /  SOFTWARE  /  SYSTEMS  /  EXPERIMENTS
     </text>
@@ -342,7 +308,7 @@
       y="289"
       fill="#484f58"
       font-size="9"
-      letter-spacing="1.6"
+      letter-spacing="1.5"
     >
       RECENT PUBLIC PROJECTS
     </text>
@@ -351,7 +317,7 @@
     
         <text
           x="82"
-          y="320"
+          y="326"
           fill="#7d8590"
           font-size="12"
         >
@@ -360,7 +326,7 @@
 
         <text
           x="82"
-          y="346"
+          y="352"
           fill="#484f58"
           font-size="10"
         >
@@ -374,7 +340,7 @@
       y="447"
       fill="#30363d"
       font-size="9"
-      letter-spacing="1.4"
+      letter-spacing="1.3"
     >
       DATA // GITHUB PUBLIC API
     </text>
@@ -386,7 +352,6 @@
       fill="#30363d"
       text-anchor="end"
       font-size="9"
-      letter-spacing="1"
     >
       PRIVATE DATA // NOT EXPOSED
     </text>
@@ -399,14 +364,12 @@
       height="14"
       fill="#39ff88"
     >
-
       <animate
         attributeName="opacity"
         values="1;0;1"
         dur="1s"
         repeatCount="indefinite"
       />
-
     </rect>
 
   </g>
