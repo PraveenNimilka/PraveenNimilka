@@ -1,14 +1,25 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
   width="1100"
-  height="455"
-  viewBox="0 0 1100 455"
+  height="475"
+  viewBox="0 0 1100 475"
+  role="img"
+  aria-labelledby="title desc"
 >
+
+  <title id="title">
+    PRAVEEN.OS GitHub Signal
+  </title>
+
+  <desc id="desc">
+    Live public GitHub statistics for Praveen Nimilka.
+  </desc>
+
 
   <defs>
 
     <linearGradient
-      id="bg"
+      id="background"
       x1="0"
       y1="0"
       x2="1"
@@ -28,6 +39,33 @@
     </linearGradient>
 
 
+    <linearGradient
+      id="signal"
+      x1="0"
+      x2="1"
+    >
+
+      <stop
+        offset="0%"
+        stop-color="#39ff88"
+        stop-opacity="0"
+      />
+
+      <stop
+        offset="50%"
+        stop-color="#39ff88"
+        stop-opacity=".85"
+      />
+
+      <stop
+        offset="100%"
+        stop-color="#39ff88"
+        stop-opacity="0"
+      />
+
+    </linearGradient>
+
+
     <filter
       id="glow"
       x="-100%"
@@ -37,13 +75,20 @@
     >
 
       <feGaussianBlur
-        stdDeviation="3"
+        stdDeviation="4"
         result="blur"
       />
 
       <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
+
+        <feMergeNode
+          in="blur"
+        />
+
+        <feMergeNode
+          in="SourceGraphic"
+        />
+
       </feMerge>
 
     </filter>
@@ -51,18 +96,41 @@
   </defs>
 
 
-  <!-- BACKGROUND -->
+  <!-- ==================================================
+       BACKGROUND
+  =================================================== -->
 
   <rect
     x="1"
     y="1"
     width="1098"
-    height="453"
+    height="473"
     rx="16"
-    fill="url(#bg)"
+    fill="url(#background)"
     stroke="#30363d"
     stroke-width="2"
   />
+
+
+  <!-- MOVING TOP SIGNAL -->
+
+  <rect
+    x="-300"
+    y="1"
+    width="300"
+    height="2"
+    fill="url(#signal)"
+  >
+
+    <animate
+      attributeName="x"
+      from="-300"
+      to="1100"
+      dur="5s"
+      repeatCount="indefinite"
+    />
+
+  </rect>
 
 
   <g
@@ -70,7 +138,9 @@
   >
 
 
-    <!-- HEADER -->
+    <!-- ==================================================
+         HEADER
+    =================================================== -->
 
     <circle
       cx="80"
@@ -83,7 +153,7 @@
       <animate
         attributeName="opacity"
         values="1;.2;1"
-        dur="1.6s"
+        dur="1.7s"
         repeatCount="indefinite"
       />
 
@@ -91,8 +161,8 @@
 
 
     <text
-      x="98"
-      y="62"
+      x="99"
+      y="63"
       fill="#39ff88"
       font-size="12"
       letter-spacing="2"
@@ -102,20 +172,23 @@
 
 
     <text
-      x="1020"
+      x="1018"
       y="62"
       text-anchor="end"
       fill="#484f58"
-      font-size="10"
+      font-size="9"
+      letter-spacing="1"
     >
       PRAVEEN.OS
     </text>
 
 
-    <!-- COMMAND -->
+    <!-- ==================================================
+         COMMAND
+    =================================================== -->
 
     <text
-      x="78"
+      x="80"
       y="108"
       fill="#39ff88"
       font-size="12"
@@ -125,7 +198,7 @@
 
 
     <text
-      x="200"
+      x="202"
       y="108"
       fill="#7d8590"
       font-size="12"
@@ -135,7 +208,7 @@
 
 
     <text
-      x="232"
+      x="236"
       y="108"
       fill="#d0d7de"
       font-size="12"
@@ -144,32 +217,81 @@
     </text>
 
 
-    <!-- DIVIDER -->
+    <text
+      x="1018"
+      y="108"
+      text-anchor="end"
+      fill="#30363d"
+      font-size="9"
+    >
+      2026-08-31 18:38 UTC
+    </text>
+
 
     <line
-      x1="78"
+      x1="80"
       y1="132"
-      x2="1020"
+      x2="1018"
       y2="132"
       stroke="#21262d"
     />
 
 
-    <!-- STAT 1 -->
+    <!-- ==================================================
+         STAT LABELS
+    =================================================== -->
 
     <text
-      x="78"
-      y="174"
+      x="80"
+      y="176"
       fill="#7d8590"
-      font-size="10"
-      letter-spacing="1.5"
+      font-size="9"
+      letter-spacing="1.6"
     >
-      REPOSITORIES
+      PUBLIC REPOS
     </text>
 
+
     <text
-      x="78"
-      y="214"
+      x="330"
+      y="176"
+      fill="#7d8590"
+      font-size="9"
+      letter-spacing="1.6"
+    >
+      TOTAL STARS
+    </text>
+
+
+    <text
+      x="570"
+      y="176"
+      fill="#7d8590"
+      font-size="9"
+      letter-spacing="1.6"
+    >
+      FOLLOWERS
+    </text>
+
+
+    <text
+      x="810"
+      y="176"
+      fill="#7d8590"
+      font-size="9"
+      letter-spacing="1.6"
+    >
+      SYSTEM
+    </text>
+
+
+    <!-- ==================================================
+         STAT VALUES
+    =================================================== -->
+
+    <text
+      x="80"
+      y="218"
       fill="#f0f6fc"
       font-size="30"
       font-weight="700"
@@ -178,21 +300,9 @@
     </text>
 
 
-    <!-- STAT 2 -->
-
     <text
       x="330"
-      y="174"
-      fill="#7d8590"
-      font-size="10"
-      letter-spacing="1.5"
-    >
-      TOTAL STARS
-    </text>
-
-    <text
-      x="330"
-      y="214"
+      y="218"
       fill="#f0f6fc"
       font-size="30"
       font-weight="700"
@@ -201,21 +311,9 @@
     </text>
 
 
-    <!-- STAT 3 -->
-
     <text
       x="570"
-      y="174"
-      fill="#7d8590"
-      font-size="10"
-      letter-spacing="1.5"
-    >
-      FOLLOWERS
-    </text>
-
-    <text
-      x="570"
-      y="214"
+      y="218"
       fill="#f0f6fc"
       font-size="30"
       font-weight="700"
@@ -224,109 +322,121 @@
     </text>
 
 
-    <!-- STATUS -->
-
     <text
-      x="805"
-      y="174"
-      fill="#7d8590"
-      font-size="10"
-      letter-spacing="1.5"
-    >
-      SYSTEM
-    </text>
-
-    <text
-      x="805"
-      y="214"
+      x="810"
+      y="218"
       fill="#39ff88"
-      font-size="30"
+      font-size="28"
       font-weight="700"
     >
       ONLINE
     </text>
 
 
-    <!-- LANGUAGES -->
+    <!-- ==================================================
+         SUB SIGNAL
+    =================================================== -->
 
     <text
-      x="78"
-      y="250"
+      x="80"
+      y="252"
       fill="#484f58"
-      font-size="10"
+      font-size="9"
       letter-spacing="1.4"
     >
-      BUILDING
+      AI  /  SOFTWARE  /  SYSTEMS
     </text>
 
 
-    <!-- RECENT -->
+    <text
+      x="1018"
+      y="252"
+      fill="#484f58"
+      text-anchor="end"
+      font-size="9"
+    >
+      FORKS // 0
+    </text>
+
 
     <line
-      x1="78"
-      y1="267"
-      x2="1020"
-      y2="267"
+      x1="80"
+      y1="268"
+      x2="1018"
+      y2="268"
       stroke="#21262d"
     />
 
 
+    <!-- ==================================================
+         RECENT PROJECTS
+    =================================================== -->
+
     <text
-      x="78"
-      y="280"
+      x="80"
+      y="289"
       fill="#484f58"
       font-size="9"
-      letter-spacing="1.5"
+      letter-spacing="1.6"
     >
-      RECENTLY UPDATED
+      RECENT PUBLIC PROJECTS
     </text>
 
 
     
-            <text
-              x="78"
-              y="290"
-              fill="#39ff88"
-              font-size="11"
-            >
-              01
-            </text>
+        <text
+          x="82"
+          y="325"
+          fill="#7d8590"
+          font-size="12"
+        >
+          No public project repositories detected.
+        </text>
 
-            <text
-              x="120"
-              y="290"
-              fill="#d0d7de"
-              font-size="12"
-            >
-              PraveenNimilka
-            </text>
-
-            <text
-              x="500"
-              y="290"
-              fill="#7d8590"
-              font-size="11"
-            >
-              unknown
-            </text>
-
-            <text
-              x="675"
-              y="290"
-              fill="#7d8590"
-              font-size="11"
-            >
-              ★ 0
-            </text>
-            
+        <text
+          x="82"
+          y="350"
+          fill="#484f58"
+          font-size="10"
+        >
+          Private repositories are intentionally not exposed.
+        </text>
+        
 
 
-    <!-- CURSOR -->
+    <!-- ==================================================
+         FOOTER
+    =================================================== -->
+
+    <text
+      x="80"
+      y="447"
+      fill="#30363d"
+      font-size="9"
+      letter-spacing="1.4"
+    >
+      DATA // GITHUB PUBLIC API
+    </text>
+
+
+    <text
+      x="1018"
+      y="447"
+      fill="#30363d"
+      text-anchor="end"
+      font-size="9"
+      letter-spacing="1"
+    >
+      PRIVATE DATA // NOT EXPOSED
+    </text>
+
+
+    <!-- BLINKING CURSOR -->
 
     <rect
-      x="1010"
-      y="421"
-      width="8"
+      x="1012"
+      y="417"
+      width="7"
       height="14"
       fill="#39ff88"
     >
@@ -339,17 +449,6 @@
       />
 
     </rect>
-
-
-    <text
-      x="78"
-      y="432"
-      fill="#30363d"
-      font-size="9"
-      letter-spacing="1.4"
-    >
-      DATA // GITHUB API
-    </text>
 
   </g>
 
