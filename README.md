@@ -359,16 +359,13 @@ Can the architecture be redesigned?
 
 # `~/GITHUB SIGNAL`
 
-<img src="https://github-readme-stats.vercel.app/api?username=PraveenNimilka&show_icons=true&hide_border=true&hide_title=true&bg_color=0D1117&text_color=8B949E&icon_color=39FF88&ring_color=39FF88"
-     height="165">
+<div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=PraveenNimilka&layout=compact&hide_border=true&bg_color=0D1117&text_color=8B949E&title_color=39FF88"
-     height="165">
-
-<br><br>
-
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=PraveenNimilka&bg_color=0D1117&color=8B949E&line=39FF88&point=FFFFFF&area=true&hide_border=true"
-     width="100%">
+<img
+  src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/main/assets/github-signal.svg"
+  width="100%"
+  alt="Praveen GitHub Signal"
+/>
 
 </div>
 
