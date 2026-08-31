@@ -4,8 +4,13 @@ on:
   workflow_dispatch:
 
   schedule:
-    # Refresh every 12 hours
     - cron: "17 */12 * * *"
+
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/profile.yml"
 
 permissions:
   contents: write
@@ -14,15 +19,20 @@ concurrency:
   group: praveen-os-profile
   cancel-in-progress: true
 
+
 jobs:
+
   build-profile:
+
     name: Build PRAVEEN.OS
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
+
     steps:
+
       # ==========================================================
-      # 1. CHECKOUT
+      # CHECKOUT
       # ==========================================================
 
       - name: Checkout profile repository
@@ -30,17 +40,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Create directories
+
+      # ==========================================================
+      # PREPARE
+      # ==========================================================
+
+      - name: Prepare asset directory
         run: |
           mkdir -p assets
-          mkdir -p dist
 
 
       # ==========================================================
-      # 2. GENERATE LIVE GITHUB SIGNAL
+      # GENERATE GITHUB SIGNAL
       # ==========================================================
 
-      - name: Generate GitHub signal
+      - name: Generate GitHub Signal
         env:
           GH_TOKEN: ${{ github.token }}
           OWNER: ${{ github.repository_owner }}
@@ -53,6 +67,7 @@ jobs:
           import urllib.request
           import urllib.parse
           import urllib.error
+
           from html import escape
           from datetime import datetime, timezone
 
@@ -68,7 +83,7 @@ jobs:
 
 
           # ======================================================
-          # GITHUB API
+          # REST API
           # ======================================================
 
           def github_api(path):
@@ -84,9 +99,10 @@ jobs:
               )
 
               try:
+
                   with urllib.request.urlopen(
                       request,
-                      timeout=20
+                      timeout=30
                   ) as response:
 
                       return json.loads(
@@ -96,8 +112,7 @@ jobs:
               except urllib.error.HTTPError as error:
 
                   print(
-                      f"GitHub API HTTP error "
-                      f"{error.code}: {path}"
+                      f"REST API HTTP error {error.code}: {path}"
                   )
 
                   return None
@@ -105,15 +120,14 @@ jobs:
               except Exception as error:
 
                   print(
-                      f"GitHub API error: "
-                      f"{path}: {error}"
+                      f"REST API error for {path}: {error}"
                   )
 
                   return None
 
 
           # ======================================================
-          # USER PROFILE
+          # USER
           # ======================================================
 
           user = github_api(
@@ -127,12 +141,13 @@ jobs:
 
 
           # ======================================================
-          # FETCH ALL PUBLIC REPOSITORIES
+          # FETCH ALL PUBLIC OWNER REPOSITORIES
           # ======================================================
 
           repositories = []
 
           page = 1
+
 
           while True:
 
@@ -157,28 +172,38 @@ jobs:
 
 
           # ======================================================
-          # FILTER
+          # FILTER REPOSITORIES
           # ======================================================
 
-          # Public, non-fork repositories.
-          original_repos = [
+          original_repositories = [
+
               repo
+
               for repo in repositories
+
               if not repo.get("fork", False)
+
           ]
 
 
           public_repo_count = len(
-              original_repos
+              original_repositories
           )
 
 
-          # Do not show the profile repository as a project
-          project_repos = [
+          # Remove the profile repository from recent projects.
+
+          project_repositories = [
+
               repo
-              for repo in original_repos
-              if repo.get("name", "").lower()
-              != OWNER.lower()
+
+              for repo in original_repositories
+
+              if repo.get(
+                  "name",
+                  ""
+              ).lower() != OWNER.lower()
+
           ]
 
 
@@ -187,14 +212,30 @@ jobs:
           # ======================================================
 
           total_stars = sum(
-              int(repo.get("stargazers_count") or 0)
-              for repo in original_repos
+
+              int(
+                  repo.get(
+                      "stargazers_count"
+                  ) or 0
+              )
+
+              for repo
+              in original_repositories
+
           )
 
 
           total_forks = sum(
-              int(repo.get("forks_count") or 0)
-              for repo in original_repos
+
+              int(
+                  repo.get(
+                      "forks_count"
+                  ) or 0
+              )
+
+              for repo
+              in original_repositories
+
           )
 
 
@@ -204,44 +245,60 @@ jobs:
 
           language_counts = {}
 
-          for repo in project_repos:
 
-              language = repo.get("language")
+          for repo in project_repositories:
+
+              language = repo.get(
+                  "language"
+              )
 
               if not language:
                   continue
 
               language_counts[language] = (
-                  language_counts.get(language, 0) + 1
+                  language_counts.get(
+                      language,
+                      0
+                  )
+                  + 1
               )
 
 
           top_languages = sorted(
+
               language_counts.items(),
-              key=lambda pair: (-pair[1], pair[0])
+
+              key=lambda pair: (
+                  -pair[1],
+                  pair[0]
+              )
+
           )[:4]
 
 
           if top_languages:
 
               language_line = "  /  ".join(
+
                   language.upper()
+
                   for language, _
                   in top_languages
+
               )
 
           else:
 
               language_line = (
-                  "AI  /  SOFTWARE  /  SYSTEMS"
+                  "AI  /  SOFTWARE  /  SYSTEMS  /  EXPERIMENTS"
               )
 
 
           # ======================================================
-          # RECENT PROJECTS
+          # RECENT PUBLIC PROJECTS
           # ======================================================
 
-          recent = project_repos[:4]
+          recent_projects = project_repositories[:4]
 
 
           # ======================================================
@@ -256,7 +313,10 @@ jobs:
               )
 
 
-          def trim(value, maximum=30):
+          def trim(
+              value,
+              maximum=30
+          ):
 
               value = str(value)
 
@@ -273,9 +333,9 @@ jobs:
           # PROJECT ROWS
           # ======================================================
 
-          rows = []
+          project_rows = []
 
-          y_positions = [
+          row_positions = [
               306,
               342,
               378,
@@ -283,11 +343,14 @@ jobs:
           ]
 
 
-          if recent:
+          if recent_projects:
 
-              for index, repo in enumerate(recent):
+              for index, repo in enumerate(
+                  recent_projects
+              ):
 
-                  y = y_positions[index]
+                  y = row_positions[index]
+
 
                   repo_name = safe(
                       trim(
@@ -299,22 +362,27 @@ jobs:
                       )
                   )
 
+
                   language = safe(
                       trim(
-                          repo.get("language")
+                          repo.get(
+                              "language"
+                          )
                           or "unknown",
                           14
                       )
                   )
 
-                  stars = int(
+
+                  repo_stars = int(
                       repo.get(
                           "stargazers_count"
-                      ) or 0
+                      )
+                      or 0
                   )
 
 
-                  rows.append(
+                  project_rows.append(
                       f'''
                       <g>
 
@@ -351,20 +419,21 @@ jobs:
                           fill="#7d8590"
                           font-size="11"
                         >
-                          ★ {stars}
+                          ★ {repo_stars}
                         </text>
 
                       </g>
                       '''
                   )
 
+
           else:
 
-              rows.append(
+              project_rows.append(
                   '''
                   <text
                     x="82"
-                    y="325"
+                    y="320"
                     fill="#7d8590"
                     font-size="12"
                   >
@@ -373,24 +442,20 @@ jobs:
 
                   <text
                     x="82"
-                    y="350"
+                    y="346"
                     fill="#484f58"
                     font-size="10"
                   >
-                    Private repositories are intentionally not exposed.
+                    Profile repository excluded from project list.
                   </text>
                   '''
               )
 
 
           recent_markup = "\n".join(
-              rows
+              project_rows
           )
 
-
-          # ======================================================
-          # SYNC TIME
-          # ======================================================
 
           sync_time = datetime.now(
               timezone.utc
@@ -400,23 +465,23 @@ jobs:
 
 
           # ======================================================
-          # SVG
+          # GITHUB SIGNAL SVG
           # ======================================================
 
-          svg = f'''<svg
+          signal_svg = f'''<svg
             xmlns="http://www.w3.org/2000/svg"
             width="1100"
             height="475"
             viewBox="0 0 1100 475"
             role="img"
-            aria-labelledby="title desc"
+            aria-labelledby="signal-title signal-desc"
           >
 
-            <title id="title">
+            <title id="signal-title">
               PRAVEEN.OS GitHub Signal
             </title>
 
-            <desc id="desc">
+            <desc id="signal-desc">
               Live public GitHub statistics for Praveen Nimilka.
             </desc>
 
@@ -424,7 +489,7 @@ jobs:
             <defs>
 
               <linearGradient
-                id="background"
+                id="signal-background"
                 x1="0"
                 y1="0"
                 x2="1"
@@ -445,7 +510,7 @@ jobs:
 
 
               <linearGradient
-                id="signal"
+                id="moving-signal"
                 x1="0"
                 x2="1"
               >
@@ -459,7 +524,7 @@ jobs:
                 <stop
                   offset="50%"
                   stop-color="#39ff88"
-                  stop-opacity=".85"
+                  stop-opacity=".9"
                 />
 
                 <stop
@@ -472,7 +537,7 @@ jobs:
 
 
               <filter
-                id="glow"
+                id="signal-glow"
                 x="-100%"
                 y="-100%"
                 width="300%"
@@ -501,30 +566,24 @@ jobs:
             </defs>
 
 
-            <!-- ==================================================
-                 BACKGROUND
-            =================================================== -->
-
             <rect
               x="1"
               y="1"
               width="1098"
               height="473"
               rx="16"
-              fill="url(#background)"
+              fill="url(#signal-background)"
               stroke="#30363d"
               stroke-width="2"
             />
 
-
-            <!-- MOVING TOP SIGNAL -->
 
             <rect
               x="-300"
               y="1"
               width="300"
               height="2"
-              fill="url(#signal)"
+              fill="url(#moving-signal)"
             >
 
               <animate
@@ -543,16 +602,12 @@ jobs:
             >
 
 
-              <!-- ==================================================
-                   HEADER
-              =================================================== -->
-
               <circle
                 cx="80"
                 cy="58"
                 r="5"
                 fill="#39ff88"
-                filter="url(#glow)"
+                filter="url(#signal-glow)"
               >
 
                 <animate
@@ -587,10 +642,6 @@ jobs:
                 PRAVEEN.OS
               </text>
 
-
-              <!-- ==================================================
-                   COMMAND
-              =================================================== -->
 
               <text
                 x="80"
@@ -642,10 +693,6 @@ jobs:
               />
 
 
-              <!-- ==================================================
-                   STAT LABELS
-              =================================================== -->
-
               <text
                 x="80"
                 y="176"
@@ -689,10 +736,6 @@ jobs:
                 SYSTEM
               </text>
 
-
-              <!-- ==================================================
-                   STAT VALUES
-              =================================================== -->
 
               <text
                 x="80"
@@ -738,10 +781,6 @@ jobs:
               </text>
 
 
-              <!-- ==================================================
-                   SUB SIGNAL
-              =================================================== -->
-
               <text
                 x="80"
                 y="252"
@@ -773,10 +812,6 @@ jobs:
               />
 
 
-              <!-- ==================================================
-                   RECENT PROJECTS
-              =================================================== -->
-
               <text
                 x="80"
                 y="289"
@@ -790,10 +825,6 @@ jobs:
 
               {recent_markup}
 
-
-              <!-- ==================================================
-                   FOOTER
-              =================================================== -->
 
               <text
                 x="80"
@@ -818,8 +849,6 @@ jobs:
               </text>
 
 
-              <!-- BLINKING CURSOR -->
-
               <rect
                 x="1012"
                 y="417"
@@ -842,9 +871,11 @@ jobs:
           </svg>'''
 
 
-          # ======================================================
-          # WRITE ASSET
-          # ======================================================
+          os.makedirs(
+              "assets",
+              exist_ok=True
+          )
+
 
           with open(
               "assets/github-signal.svg",
@@ -852,68 +883,778 @@ jobs:
               encoding="utf-8"
           ) as file:
 
-              file.write(svg)
+              file.write(
+                  signal_svg
+              )
 
 
           print("")
-          print("PRAVEEN.OS signal generated")
-          print("----------------------------")
-          print(f"Owner:        {OWNER}")
-          print(f"Public repos: {public_repo_count}")
-          print(f"Stars:        {total_stars}")
-          print(f"Followers:    {followers}")
-          print(f"Projects:     {len(project_repos)}")
+          print("GitHub Signal generated.")
+          print(f"Public repos : {public_repo_count}")
+          print(f"Stars        : {total_stars}")
+          print(f"Followers    : {followers}")
+          print(f"Projects     : {len(project_repositories)}")
           print("")
 
           PYTHON
 
 
       # ==========================================================
-      # 3. COMMIT SIGNAL ASSET TO MAIN
+      # GENERATE CONTRIBUTION ENGINE
       # ==========================================================
 
-      - name: Commit updated GitHub signal
-        shell: bash
+      - name: Generate Contribution Engine
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
+
+        run: |
+          python3 <<'PYTHON'
+
+          import os
+          import json
+          import urllib.request
+
+          from datetime import datetime
+
+
+          TOKEN = os.environ["GH_TOKEN"]
+          OWNER = os.environ["OWNER"]
+
+
+          # ======================================================
+          # GRAPHQL
+          # ======================================================
+
+          query = """
+          query($login: String!) {
+
+            user(login: $login) {
+
+              contributionsCollection {
+
+                contributionCalendar {
+
+                  totalContributions
+
+                  weeks {
+
+                    contributionDays {
+
+                      contributionCount
+                      contributionLevel
+                      date
+                      weekday
+
+                    }
+
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+          """
+
+
+          payload = json.dumps({
+
+              "query": query,
+
+              "variables": {
+                  "login": OWNER
+              }
+
+          }).encode(
+              "utf-8"
+          )
+
+
+          request = urllib.request.Request(
+
+              "https://api.github.com/graphql",
+
+              data=payload,
+
+              headers={
+
+                  "Authorization":
+                      f"Bearer {TOKEN}",
+
+                  "Content-Type":
+                      "application/json",
+
+                  "Accept":
+                      "application/vnd.github+json",
+
+                  "User-Agent":
+                      "praveen-os-profile"
+
+              }
+
+          )
+
+
+          try:
+
+              with urllib.request.urlopen(
+                  request,
+                  timeout=30
+              ) as response:
+
+                  result = json.loads(
+                      response.read().decode(
+                          "utf-8"
+                      )
+                  )
+
+          except Exception as error:
+
+              raise RuntimeError(
+                  f"GraphQL request failed: {error}"
+              )
+
+
+          if result.get("errors"):
+
+              raise RuntimeError(
+                  json.dumps(
+                      result["errors"],
+                      indent=2
+                  )
+              )
+
+
+          user = (
+              result
+              .get("data", {})
+              .get("user")
+          )
+
+
+          if not user:
+
+              raise RuntimeError(
+                  f"GitHub user not found: {OWNER}"
+              )
+
+
+          calendar = (
+              user
+              ["contributionsCollection"]
+              ["contributionCalendar"]
+          )
+
+
+          weeks = calendar[
+              "weeks"
+          ]
+
+
+          total_contributions = calendar[
+              "totalContributions"
+          ]
+
+
+          # ======================================================
+          # GRID CONFIG
+          # ======================================================
+
+          CELL = 13
+          GAP = 5
+
+          STEP = CELL + GAP
+
+          START_X = 74
+          START_Y = 164
+
+          DISPLAY_WEEKS = 53
+
+
+          displayed_weeks = weeks[
+              -DISPLAY_WEEKS:
+          ]
+
+
+          # ======================================================
+          # COLORS
+          # ======================================================
+
+          colors = {
+
+              "NONE":
+                  "#111820",
+
+              "FIRST_QUARTILE":
+                  "#123524",
+
+              "SECOND_QUARTILE":
+                  "#176b3a",
+
+              "THIRD_QUARTILE":
+                  "#26a65b",
+
+              "FOURTH_QUARTILE":
+                  "#39ff88"
+
+          }
+
+
+          # ======================================================
+          # CONTRIBUTION CELLS
+          # ======================================================
+
+          cell_markup = []
+
+
+          for week_index, week in enumerate(
+              displayed_weeks
+          ):
+
+              contribution_days = week.get(
+                  "contributionDays",
+                  []
+              )
+
+
+              for day in contribution_days:
+
+                  weekday = int(
+                      day.get(
+                          "weekday",
+                          0
+                      )
+                  )
+
+
+                  x = (
+                      START_X
+                      + week_index * STEP
+                  )
+
+
+                  y = (
+                      START_Y
+                      + weekday * STEP
+                  )
+
+
+                  level = day.get(
+                      "contributionLevel",
+                      "NONE"
+                  )
+
+
+                  color = colors.get(
+                      level,
+                      "#111820"
+                  )
+
+
+                  count = int(
+                      day.get(
+                          "contributionCount",
+                          0
+                      )
+                  )
+
+
+                  date = day.get(
+                      "date",
+                      ""
+                  )
+
+
+                  cell_markup.append(
+                      f'''
+                      <g>
+
+                        <title>
+                          {date}: {count} contributions
+                        </title>
+
+                        <rect
+                          x="{x}"
+                          y="{y}"
+                          width="{CELL}"
+                          height="{CELL}"
+                          rx="3"
+                          fill="{color}"
+                        />
+
+                      </g>
+                      '''
+                  )
+
+
+          grid_markup = "\n".join(
+              cell_markup
+          )
+
+
+          # ======================================================
+          # MONTH LABELS
+          # ======================================================
+
+          month_markup = []
+
+          previous_month = None
+
+
+          for week_index, week in enumerate(
+              displayed_weeks
+          ):
+
+              days = week.get(
+                  "contributionDays",
+                  []
+              )
+
+              if not days:
+                  continue
+
+
+              try:
+
+                  first_date = datetime.strptime(
+                      days[0]["date"],
+                      "%Y-%m-%d"
+                  )
+
+              except Exception:
+                  continue
+
+
+              current_month = (
+                  first_date.year,
+                  first_date.month
+              )
+
+
+              if current_month == previous_month:
+                  continue
+
+
+              previous_month = current_month
+
+
+              x = (
+                  START_X
+                  + week_index * STEP
+              )
+
+
+              month_markup.append(
+                  f'''
+                  <text
+                    x="{x}"
+                    y="145"
+                    fill="#484f58"
+                    font-size="9"
+                  >
+                    {first_date.strftime("%b")}
+                  </text>
+                  '''
+              )
+
+
+          months_markup = "\n".join(
+              month_markup
+          )
+
+
+          grid_width = max(
+              len(displayed_weeks),
+              1
+          ) * STEP
+
+
+          # ======================================================
+          # CONTRIBUTION SVG
+          # ======================================================
+
+          contribution_svg = f'''<svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1100"
+            height="390"
+            viewBox="0 0 1100 390"
+            role="img"
+            aria-labelledby="contribution-title contribution-desc"
+          >
+
+            <title id="contribution-title">
+              PRAVEEN.OS Contribution Engine
+            </title>
+
+            <desc id="contribution-desc">
+              Animated GitHub contribution activity matrix.
+            </desc>
+
+
+            <defs>
+
+              <linearGradient
+                id="contribution-background"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+
+                <stop
+                  offset="0%"
+                  stop-color="#090d12"
+                />
+
+                <stop
+                  offset="100%"
+                  stop-color="#0d1117"
+                />
+
+              </linearGradient>
+
+
+              <linearGradient
+                id="scanner-gradient"
+                x1="0"
+                x2="1"
+              >
+
+                <stop
+                  offset="0%"
+                  stop-color="#39ff88"
+                  stop-opacity="0"
+                />
+
+                <stop
+                  offset="50%"
+                  stop-color="#39ff88"
+                  stop-opacity=".18"
+                />
+
+                <stop
+                  offset="100%"
+                  stop-color="#39ff88"
+                  stop-opacity="0"
+                />
+
+              </linearGradient>
+
+
+              <filter
+                id="contribution-glow"
+                x="-100%"
+                y="-100%"
+                width="300%"
+                height="300%"
+              >
+
+                <feGaussianBlur
+                  stdDeviation="3"
+                  result="blur"
+                />
+
+                <feMerge>
+
+                  <feMergeNode
+                    in="blur"
+                  />
+
+                  <feMergeNode
+                    in="SourceGraphic"
+                  />
+
+                </feMerge>
+
+              </filter>
+
+            </defs>
+
+
+            <rect
+              x="1"
+              y="1"
+              width="1098"
+              height="388"
+              rx="16"
+              fill="url(#contribution-background)"
+              stroke="#30363d"
+              stroke-width="2"
+            />
+
+
+            <g
+              font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+            >
+
+
+              <circle
+                cx="74"
+                cy="58"
+                r="5"
+                fill="#39ff88"
+                filter="url(#contribution-glow)"
+              >
+
+                <animate
+                  attributeName="opacity"
+                  values="1;.2;1"
+                  dur="1.6s"
+                  repeatCount="indefinite"
+                />
+
+              </circle>
+
+
+              <text
+                x="93"
+                y="63"
+                fill="#39ff88"
+                font-size="12"
+                letter-spacing="2"
+              >
+                CONTRIBUTION ENGINE // LIVE
+              </text>
+
+
+              <text
+                x="1026"
+                y="63"
+                text-anchor="end"
+                fill="#484f58"
+                font-size="9"
+                letter-spacing="1"
+              >
+                PRAVEEN.OS
+              </text>
+
+
+              <text
+                x="74"
+                y="105"
+                fill="#39ff88"
+                font-size="11"
+              >
+                praveen@github
+              </text>
+
+
+              <text
+                x="190"
+                y="105"
+                fill="#7d8590"
+                font-size="11"
+              >
+                :~$
+              </text>
+
+
+              <text
+                x="220"
+                y="105"
+                fill="#d0d7de"
+                font-size="11"
+              >
+                ./contributions --scan
+              </text>
+
+
+              <text
+                x="1026"
+                y="105"
+                text-anchor="end"
+                fill="#39ff88"
+                font-size="11"
+              >
+                {total_contributions} EVENTS
+              </text>
+
+
+              <line
+                x1="74"
+                y1="121"
+                x2="1026"
+                y2="121"
+                stroke="#21262d"
+              />
+
+
+              {months_markup}
+
+
+              {grid_markup}
+
+
+              <!-- animated scanning field -->
+
+              <rect
+                x="{START_X - 18}"
+                y="{START_Y - 7}"
+                width="42"
+                height="139"
+                fill="url(#scanner-gradient)"
+              >
+
+                <animate
+                  attributeName="x"
+                  from="{START_X - 18}"
+                  to="{START_X + grid_width}"
+                  dur="7s"
+                  repeatCount="indefinite"
+                />
+
+              </rect>
+
+
+              <!-- animated scanner beam -->
+
+              <rect
+                x="{START_X - 4}"
+                y="{START_Y - 7}"
+                width="2"
+                height="139"
+                fill="#39ff88"
+                opacity=".8"
+                filter="url(#contribution-glow)"
+              >
+
+                <animate
+                  attributeName="x"
+                  from="{START_X - 4}"
+                  to="{START_X + grid_width}"
+                  dur="7s"
+                  repeatCount="indefinite"
+                />
+
+              </rect>
+
+
+              <line
+                x1="74"
+                y1="316"
+                x2="1026"
+                y2="316"
+                stroke="#21262d"
+              />
+
+
+              <text
+                x="74"
+                y="347"
+                fill="#484f58"
+                font-size="9"
+                letter-spacing="1.3"
+              >
+                ACTIVITY MATRIX // LAST 53 WEEKS
+              </text>
+
+
+              <text
+                x="1026"
+                y="347"
+                text-anchor="end"
+                fill="#484f58"
+                font-size="9"
+              >
+                SCANNING CONTRIBUTION HISTORY
+              </text>
+
+
+              <rect
+                x="1019"
+                y="364"
+                width="7"
+                height="13"
+                fill="#39ff88"
+              >
+
+                <animate
+                  attributeName="opacity"
+                  values="1;0;1"
+                  dur="1s"
+                  repeatCount="indefinite"
+                />
+
+              </rect>
+
+            </g>
+
+          </svg>'''
+
+
+          os.makedirs(
+              "assets",
+              exist_ok=True
+          )
+
+
+          with open(
+              "assets/contribution-engine.svg",
+              "w",
+              encoding="utf-8"
+          ) as file:
+
+              file.write(
+                  contribution_svg
+              )
+
+
+          print("")
+          print("Contribution Engine generated.")
+          print(
+              f"Total contributions: {total_contributions}"
+          )
+          print(
+              f"Weeks rendered: {len(displayed_weeks)}"
+          )
+          print("")
+
+          PYTHON
+
+
+      # ==========================================================
+      # VALIDATE GENERATED FILES
+      # ==========================================================
+
+      - name: Validate generated assets
+        run: |
+          set -e
+
+          test -s assets/github-signal.svg
+          test -s assets/contribution-engine.svg
+
+          echo "Generated assets:"
+          ls -lh assets/github-signal.svg
+          ls -lh assets/contribution-engine.svg
+
+
+      # ==========================================================
+      # COMMIT BOTH ASSETS
+      # ==========================================================
+
+      - name: Commit profile assets
         run: |
           set -e
 
           git config user.name "praveen-os[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add assets/github-signal.svg
+          git add \
+            assets/github-signal.svg \
+            assets/contribution-engine.svg
 
           if git diff --cached --quiet; then
-            echo "No signal changes to commit."
+
+            echo "No profile changes detected."
+
           else
-            git commit -m "chore: refresh PRAVEEN.OS signal [skip ci]"
+
+            git commit \
+              -m "chore: refresh PRAVEEN.OS telemetry [skip ci]"
+
             git push origin HEAD:${{ github.ref_name }}
+
           fi
-
-
-      # ==========================================================
-      # 4. GENERATE CONTRIBUTION SNAKE
-      # ==========================================================
-
-      - name: Generate contribution snake
-        uses: Platane/snk/svg-only@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-
-          outputs: |
-            dist/github-contribution-grid-snake.svg?color_snake=#39ff88&color_dots=#0d1117,#123524,#176b3a,#26a65b,#39ff88
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#39ff88&color_dots=#0d1117,#123524,#176b3a,#26a65b,#39ff88
-
-
-      # ==========================================================
-      # 5. PUBLISH SNAKE TO OUTPUT BRANCH
-      # ==========================================================
-
-      - name: Publish snake to output branch
-        uses: crazy-max/ghaction-github-pages@v5
-        with:
-          target_branch: output
-          build_dir: dist
-          keep_history: false
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
