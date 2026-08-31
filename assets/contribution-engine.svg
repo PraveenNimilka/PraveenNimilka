@@ -1,8 +1,8 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
   width="1100"
-  height="410"
-  viewBox="0 0 1100 410"
+  height="390"
+  viewBox="0 0 1100 390"
   role="img"
 >
 
@@ -15,14 +15,17 @@
       x2="1"
       y2="1"
     >
+
       <stop
         offset="0%"
         stop-color="#090d12"
       />
+
       <stop
         offset="100%"
         stop-color="#0d1117"
       />
+
     </linearGradient>
 
 
@@ -31,21 +34,25 @@
       x1="0"
       x2="1"
     >
+
       <stop
         offset="0%"
         stop-color="#39ff88"
         stop-opacity="0"
       />
+
       <stop
         offset="50%"
         stop-color="#39ff88"
-        stop-opacity=".22"
+        stop-opacity=".18"
       />
+
       <stop
         offset="100%"
         stop-color="#39ff88"
         stop-opacity="0"
       />
+
     </linearGradient>
 
 
@@ -56,26 +63,27 @@
       width="300%"
       height="300%"
     >
+
       <feGaussianBlur
         stdDeviation="3"
         result="blur"
       />
+
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
+
     </filter>
 
   </defs>
 
 
-  <!-- BACKGROUND -->
-
   <rect
     x="1"
     y="1"
     width="1098"
-    height="408"
+    height="388"
     rx="16"
     fill="url(#bg)"
     stroke="#30363d"
@@ -92,23 +100,25 @@
 
     <circle
       cx="74"
-      cy="56"
+      cy="54"
       r="5"
       fill="#39ff88"
       filter="url(#glow)"
     >
+
       <animate
         attributeName="opacity"
         values="1;.2;1"
-        dur="1.6s"
+        dur="1.5s"
         repeatCount="indefinite"
       />
+
     </circle>
 
 
     <text
-      x="93"
-      y="61"
+      x="94"
+      y="59"
       fill="#39ff88"
       font-size="12"
       letter-spacing="2"
@@ -119,7 +129,7 @@
 
     <text
       x="1026"
-      y="61"
+      y="59"
       text-anchor="end"
       fill="#484f58"
       font-size="9"
@@ -132,7 +142,7 @@
 
     <text
       x="74"
-      y="100"
+      y="96"
       fill="#39ff88"
       font-size="11"
     >
@@ -141,8 +151,8 @@
 
 
     <text
-      x="189"
-      y="100"
+      x="190"
+      y="96"
       fill="#7d8590"
       font-size="11"
     >
@@ -151,8 +161,8 @@
 
 
     <text
-      x="219"
-      y="100"
+      x="221"
+      y="96"
       fill="#d0d7de"
       font-size="11"
     >
@@ -162,7 +172,7 @@
 
     <text
       x="1026"
-      y="100"
+      y="96"
       text-anchor="end"
       fill="#39ff88"
       font-size="11"
@@ -173,9 +183,9 @@
 
     <line
       x1="74"
-      y1="119"
+      y1="116"
       x2="1026"
-      y2="119"
+      y2="116"
       stroke="#21262d"
     />
 
@@ -184,143 +194,130 @@
 
     
         <text
-          x="118"
-          y="143"
+          x="126"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Aug
         </text>
         
 
         <text
-          x="135"
-          y="143"
+          x="143"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Sep
         </text>
         
 
         <text
-          x="203"
-          y="143"
+          x="211"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Oct
         </text>
         
 
         <text
-          x="271"
-          y="143"
+          x="279"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Nov
         </text>
         
 
         <text
-          x="356"
-          y="143"
+          x="364"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Dec
         </text>
         
 
         <text
-          x="424"
-          y="143"
+          x="432"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Jan
         </text>
         
 
         <text
-          x="492"
-          y="143"
+          x="500"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Feb
         </text>
         
 
         <text
-          x="560"
-          y="143"
+          x="568"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Mar
         </text>
         
 
         <text
-          x="645"
-          y="143"
+          x="653"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Apr
         </text>
         
 
         <text
-          x="713"
-          y="143"
+          x="721"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           May
         </text>
         
 
         <text
-          x="798"
-          y="143"
+          x="806"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Jun
         </text>
         
 
         <text
-          x="866"
-          y="143"
+          x="874"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Jul
         </text>
         
 
         <text
-          x="934"
-          y="143"
+          x="942"
+          y="136"
           fill="#7d8590"
           font-size="9"
-          letter-spacing=".5"
         >
           Aug
         </text>
@@ -329,37 +326,37 @@
 
     <!-- DAY LABELS -->
 
-    
-<text
-  x="80"
-  y="192"
-  fill="#484f58"
-  font-size="9"
->
-  MON
-</text>
-
-<text
-  x="80"
-  y="226"
-  fill="#484f58"
-  font-size="9"
->
-  WED
-</text>
-
-<text
-  x="80"
-  y="260"
-  fill="#484f58"
-  font-size="9"
->
-  FRI
-</text>
+    <text
+      x="82"
+      y="183"
+      fill="#484f58"
+      font-size="9"
+    >
+      MON
+    </text>
 
 
+    <text
+      x="82"
+      y="217"
+      fill="#484f58"
+      font-size="9"
+    >
+      WED
+    </text>
 
-    <!-- GRID -->
+
+    <text
+      x="82"
+      y="251"
+      fill="#484f58"
+      font-size="9"
+    >
+      FRI
+    </text>
+
+
+    <!-- MATRIX -->
 
     
             <g>
@@ -369,13 +366,13 @@
               </title>
 
               <rect
-                x="118"
-                y="164"
+                x="126"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -389,13 +386,13 @@
               </title>
 
               <rect
-                x="118"
-                y="181"
+                x="126"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -409,13 +406,13 @@
               </title>
 
               <rect
-                x="118"
-                y="198"
+                x="126"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -429,13 +426,13 @@
               </title>
 
               <rect
-                x="118"
-                y="215"
+                x="126"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -449,13 +446,13 @@
               </title>
 
               <rect
-                x="118"
-                y="232"
+                x="126"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -469,13 +466,13 @@
               </title>
 
               <rect
-                x="118"
-                y="249"
+                x="126"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -489,13 +486,13 @@
               </title>
 
               <rect
-                x="118"
-                y="266"
+                x="126"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -509,13 +506,13 @@
               </title>
 
               <rect
-                x="135"
-                y="164"
+                x="143"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -529,13 +526,13 @@
               </title>
 
               <rect
-                x="135"
-                y="181"
+                x="143"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -549,13 +546,13 @@
               </title>
 
               <rect
-                x="135"
-                y="198"
+                x="143"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -569,13 +566,13 @@
               </title>
 
               <rect
-                x="135"
-                y="215"
+                x="143"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -589,13 +586,13 @@
               </title>
 
               <rect
-                x="135"
-                y="232"
+                x="143"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -609,13 +606,13 @@
               </title>
 
               <rect
-                x="135"
-                y="249"
+                x="143"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -629,13 +626,13 @@
               </title>
 
               <rect
-                x="135"
-                y="266"
+                x="143"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -649,13 +646,13 @@
               </title>
 
               <rect
-                x="152"
-                y="164"
+                x="160"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -669,13 +666,13 @@
               </title>
 
               <rect
-                x="152"
-                y="181"
+                x="160"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -689,13 +686,13 @@
               </title>
 
               <rect
-                x="152"
-                y="198"
+                x="160"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -709,13 +706,13 @@
               </title>
 
               <rect
-                x="152"
-                y="215"
+                x="160"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -729,13 +726,13 @@
               </title>
 
               <rect
-                x="152"
-                y="232"
+                x="160"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -749,13 +746,13 @@
               </title>
 
               <rect
-                x="152"
-                y="249"
+                x="160"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -769,13 +766,13 @@
               </title>
 
               <rect
-                x="152"
-                y="266"
+                x="160"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -789,13 +786,13 @@
               </title>
 
               <rect
-                x="169"
-                y="164"
+                x="177"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -809,13 +806,13 @@
               </title>
 
               <rect
-                x="169"
-                y="181"
+                x="177"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -829,13 +826,13 @@
               </title>
 
               <rect
-                x="169"
-                y="198"
+                x="177"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -849,13 +846,13 @@
               </title>
 
               <rect
-                x="169"
-                y="215"
+                x="177"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -869,13 +866,13 @@
               </title>
 
               <rect
-                x="169"
-                y="232"
+                x="177"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -889,13 +886,13 @@
               </title>
 
               <rect
-                x="169"
-                y="249"
+                x="177"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -909,13 +906,13 @@
               </title>
 
               <rect
-                x="169"
-                y="266"
+                x="177"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -929,13 +926,13 @@
               </title>
 
               <rect
-                x="186"
-                y="164"
+                x="194"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -949,13 +946,13 @@
               </title>
 
               <rect
-                x="186"
-                y="181"
+                x="194"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -969,13 +966,13 @@
               </title>
 
               <rect
-                x="186"
-                y="198"
+                x="194"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -989,13 +986,13 @@
               </title>
 
               <rect
-                x="186"
-                y="215"
+                x="194"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1009,13 +1006,13 @@
               </title>
 
               <rect
-                x="186"
-                y="232"
+                x="194"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1029,13 +1026,13 @@
               </title>
 
               <rect
-                x="186"
-                y="249"
+                x="194"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1049,13 +1046,13 @@
               </title>
 
               <rect
-                x="186"
-                y="266"
+                x="194"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1069,13 +1066,13 @@
               </title>
 
               <rect
-                x="203"
-                y="164"
+                x="211"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1089,13 +1086,13 @@
               </title>
 
               <rect
-                x="203"
-                y="181"
+                x="211"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1109,13 +1106,13 @@
               </title>
 
               <rect
-                x="203"
-                y="198"
+                x="211"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1129,13 +1126,13 @@
               </title>
 
               <rect
-                x="203"
-                y="215"
+                x="211"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1149,13 +1146,13 @@
               </title>
 
               <rect
-                x="203"
-                y="232"
+                x="211"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1169,13 +1166,13 @@
               </title>
 
               <rect
-                x="203"
-                y="249"
+                x="211"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1189,13 +1186,13 @@
               </title>
 
               <rect
-                x="203"
-                y="266"
+                x="211"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1209,13 +1206,13 @@
               </title>
 
               <rect
-                x="220"
-                y="164"
+                x="228"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1229,13 +1226,13 @@
               </title>
 
               <rect
-                x="220"
-                y="181"
+                x="228"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1249,13 +1246,13 @@
               </title>
 
               <rect
-                x="220"
-                y="198"
+                x="228"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1269,13 +1266,13 @@
               </title>
 
               <rect
-                x="220"
-                y="215"
+                x="228"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1289,13 +1286,13 @@
               </title>
 
               <rect
-                x="220"
-                y="232"
+                x="228"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1309,13 +1306,13 @@
               </title>
 
               <rect
-                x="220"
-                y="249"
+                x="228"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1329,13 +1326,13 @@
               </title>
 
               <rect
-                x="220"
-                y="266"
+                x="228"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1349,13 +1346,13 @@
               </title>
 
               <rect
-                x="237"
-                y="164"
+                x="245"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1369,13 +1366,13 @@
               </title>
 
               <rect
-                x="237"
-                y="181"
+                x="245"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1389,13 +1386,13 @@
               </title>
 
               <rect
-                x="237"
-                y="198"
+                x="245"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1409,13 +1406,13 @@
               </title>
 
               <rect
-                x="237"
-                y="215"
+                x="245"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1429,13 +1426,13 @@
               </title>
 
               <rect
-                x="237"
-                y="232"
+                x="245"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1449,13 +1446,13 @@
               </title>
 
               <rect
-                x="237"
-                y="249"
+                x="245"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1469,13 +1466,13 @@
               </title>
 
               <rect
-                x="237"
-                y="266"
+                x="245"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1489,13 +1486,13 @@
               </title>
 
               <rect
-                x="254"
-                y="164"
+                x="262"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1509,13 +1506,13 @@
               </title>
 
               <rect
-                x="254"
-                y="181"
+                x="262"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1529,13 +1526,13 @@
               </title>
 
               <rect
-                x="254"
-                y="198"
+                x="262"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1549,13 +1546,13 @@
               </title>
 
               <rect
-                x="254"
-                y="215"
+                x="262"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1569,13 +1566,13 @@
               </title>
 
               <rect
-                x="254"
-                y="232"
+                x="262"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1589,13 +1586,13 @@
               </title>
 
               <rect
-                x="254"
-                y="249"
+                x="262"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1609,13 +1606,13 @@
               </title>
 
               <rect
-                x="254"
-                y="266"
+                x="262"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1629,13 +1626,13 @@
               </title>
 
               <rect
-                x="271"
-                y="164"
+                x="279"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1649,13 +1646,13 @@
               </title>
 
               <rect
-                x="271"
-                y="181"
+                x="279"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1669,13 +1666,13 @@
               </title>
 
               <rect
-                x="271"
-                y="198"
+                x="279"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1689,13 +1686,13 @@
               </title>
 
               <rect
-                x="271"
-                y="215"
+                x="279"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1709,13 +1706,13 @@
               </title>
 
               <rect
-                x="271"
-                y="232"
+                x="279"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1729,13 +1726,13 @@
               </title>
 
               <rect
-                x="271"
-                y="249"
+                x="279"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1749,13 +1746,13 @@
               </title>
 
               <rect
-                x="271"
-                y="266"
+                x="279"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1769,13 +1766,13 @@
               </title>
 
               <rect
-                x="288"
-                y="164"
+                x="296"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1789,13 +1786,13 @@
               </title>
 
               <rect
-                x="288"
-                y="181"
+                x="296"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1809,13 +1806,13 @@
               </title>
 
               <rect
-                x="288"
-                y="198"
+                x="296"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1829,13 +1826,13 @@
               </title>
 
               <rect
-                x="288"
-                y="215"
+                x="296"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1849,13 +1846,13 @@
               </title>
 
               <rect
-                x="288"
-                y="232"
+                x="296"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1869,13 +1866,13 @@
               </title>
 
               <rect
-                x="288"
-                y="249"
+                x="296"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1889,13 +1886,13 @@
               </title>
 
               <rect
-                x="288"
-                y="266"
+                x="296"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1909,13 +1906,13 @@
               </title>
 
               <rect
-                x="305"
-                y="164"
+                x="313"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1929,13 +1926,13 @@
               </title>
 
               <rect
-                x="305"
-                y="181"
+                x="313"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1949,13 +1946,13 @@
               </title>
 
               <rect
-                x="305"
-                y="198"
+                x="313"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1969,13 +1966,13 @@
               </title>
 
               <rect
-                x="305"
-                y="215"
+                x="313"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -1989,13 +1986,13 @@
               </title>
 
               <rect
-                x="305"
-                y="232"
+                x="313"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2009,13 +2006,13 @@
               </title>
 
               <rect
-                x="305"
-                y="249"
+                x="313"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2029,13 +2026,13 @@
               </title>
 
               <rect
-                x="305"
-                y="266"
+                x="313"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2049,13 +2046,13 @@
               </title>
 
               <rect
-                x="322"
-                y="164"
+                x="330"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2069,13 +2066,13 @@
               </title>
 
               <rect
-                x="322"
-                y="181"
+                x="330"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2089,13 +2086,13 @@
               </title>
 
               <rect
-                x="322"
-                y="198"
+                x="330"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2109,13 +2106,13 @@
               </title>
 
               <rect
-                x="322"
-                y="215"
+                x="330"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2129,13 +2126,13 @@
               </title>
 
               <rect
-                x="322"
-                y="232"
+                x="330"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2149,13 +2146,13 @@
               </title>
 
               <rect
-                x="322"
-                y="249"
+                x="330"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2169,13 +2166,13 @@
               </title>
 
               <rect
-                x="322"
-                y="266"
+                x="330"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2189,13 +2186,13 @@
               </title>
 
               <rect
-                x="339"
-                y="164"
+                x="347"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2209,13 +2206,13 @@
               </title>
 
               <rect
-                x="339"
-                y="181"
+                x="347"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2229,13 +2226,13 @@
               </title>
 
               <rect
-                x="339"
-                y="198"
+                x="347"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2249,13 +2246,13 @@
               </title>
 
               <rect
-                x="339"
-                y="215"
+                x="347"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2269,13 +2266,13 @@
               </title>
 
               <rect
-                x="339"
-                y="232"
+                x="347"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2289,13 +2286,13 @@
               </title>
 
               <rect
-                x="339"
-                y="249"
+                x="347"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2309,13 +2306,13 @@
               </title>
 
               <rect
-                x="339"
-                y="266"
+                x="347"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2329,13 +2326,13 @@
               </title>
 
               <rect
-                x="356"
-                y="164"
+                x="364"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2349,13 +2346,13 @@
               </title>
 
               <rect
-                x="356"
-                y="181"
+                x="364"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2369,13 +2366,13 @@
               </title>
 
               <rect
-                x="356"
-                y="198"
+                x="364"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2389,13 +2386,13 @@
               </title>
 
               <rect
-                x="356"
-                y="215"
+                x="364"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2409,13 +2406,13 @@
               </title>
 
               <rect
-                x="356"
-                y="232"
+                x="364"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2429,13 +2426,13 @@
               </title>
 
               <rect
-                x="356"
-                y="249"
+                x="364"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2449,13 +2446,13 @@
               </title>
 
               <rect
-                x="356"
-                y="266"
+                x="364"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2469,13 +2466,13 @@
               </title>
 
               <rect
-                x="373"
-                y="164"
+                x="381"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2489,13 +2486,13 @@
               </title>
 
               <rect
-                x="373"
-                y="181"
+                x="381"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2509,13 +2506,13 @@
               </title>
 
               <rect
-                x="373"
-                y="198"
+                x="381"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2529,13 +2526,13 @@
               </title>
 
               <rect
-                x="373"
-                y="215"
+                x="381"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2549,13 +2546,13 @@
               </title>
 
               <rect
-                x="373"
-                y="232"
+                x="381"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2569,13 +2566,13 @@
               </title>
 
               <rect
-                x="373"
-                y="249"
+                x="381"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2589,13 +2586,13 @@
               </title>
 
               <rect
-                x="373"
-                y="266"
+                x="381"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2609,13 +2606,13 @@
               </title>
 
               <rect
-                x="390"
-                y="164"
+                x="398"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2629,13 +2626,13 @@
               </title>
 
               <rect
-                x="390"
-                y="181"
+                x="398"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2649,13 +2646,13 @@
               </title>
 
               <rect
-                x="390"
-                y="198"
+                x="398"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2669,13 +2666,13 @@
               </title>
 
               <rect
-                x="390"
-                y="215"
+                x="398"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2689,13 +2686,13 @@
               </title>
 
               <rect
-                x="390"
-                y="232"
+                x="398"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2709,13 +2706,13 @@
               </title>
 
               <rect
-                x="390"
-                y="249"
+                x="398"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2729,13 +2726,13 @@
               </title>
 
               <rect
-                x="390"
-                y="266"
+                x="398"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2749,13 +2746,13 @@
               </title>
 
               <rect
-                x="407"
-                y="164"
+                x="415"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2769,13 +2766,13 @@
               </title>
 
               <rect
-                x="407"
-                y="181"
+                x="415"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2789,13 +2786,13 @@
               </title>
 
               <rect
-                x="407"
-                y="198"
+                x="415"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2809,13 +2806,13 @@
               </title>
 
               <rect
-                x="407"
-                y="215"
+                x="415"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2829,13 +2826,13 @@
               </title>
 
               <rect
-                x="407"
-                y="232"
+                x="415"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2849,13 +2846,13 @@
               </title>
 
               <rect
-                x="407"
-                y="249"
+                x="415"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2869,13 +2866,13 @@
               </title>
 
               <rect
-                x="407"
-                y="266"
+                x="415"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2889,13 +2886,13 @@
               </title>
 
               <rect
-                x="424"
-                y="164"
+                x="432"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2909,13 +2906,13 @@
               </title>
 
               <rect
-                x="424"
-                y="181"
+                x="432"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2929,13 +2926,13 @@
               </title>
 
               <rect
-                x="424"
-                y="198"
+                x="432"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2949,13 +2946,13 @@
               </title>
 
               <rect
-                x="424"
-                y="215"
+                x="432"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2969,13 +2966,13 @@
               </title>
 
               <rect
-                x="424"
-                y="232"
+                x="432"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -2989,13 +2986,13 @@
               </title>
 
               <rect
-                x="424"
-                y="249"
+                x="432"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3009,13 +3006,13 @@
               </title>
 
               <rect
-                x="424"
-                y="266"
+                x="432"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3029,13 +3026,13 @@
               </title>
 
               <rect
-                x="441"
-                y="164"
+                x="449"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3049,13 +3046,13 @@
               </title>
 
               <rect
-                x="441"
-                y="181"
+                x="449"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3069,13 +3066,13 @@
               </title>
 
               <rect
-                x="441"
-                y="198"
+                x="449"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3089,13 +3086,13 @@
               </title>
 
               <rect
-                x="441"
-                y="215"
+                x="449"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3109,13 +3106,13 @@
               </title>
 
               <rect
-                x="441"
-                y="232"
+                x="449"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3129,13 +3126,13 @@
               </title>
 
               <rect
-                x="441"
-                y="249"
+                x="449"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3149,13 +3146,13 @@
               </title>
 
               <rect
-                x="441"
-                y="266"
+                x="449"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3169,13 +3166,13 @@
               </title>
 
               <rect
-                x="458"
-                y="164"
+                x="466"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3189,13 +3186,13 @@
               </title>
 
               <rect
-                x="458"
-                y="181"
+                x="466"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3209,13 +3206,13 @@
               </title>
 
               <rect
-                x="458"
-                y="198"
+                x="466"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3229,13 +3226,13 @@
               </title>
 
               <rect
-                x="458"
-                y="215"
+                x="466"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3249,13 +3246,13 @@
               </title>
 
               <rect
-                x="458"
-                y="232"
+                x="466"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3269,13 +3266,13 @@
               </title>
 
               <rect
-                x="458"
-                y="249"
+                x="466"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3289,13 +3286,13 @@
               </title>
 
               <rect
-                x="458"
-                y="266"
+                x="466"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3309,13 +3306,13 @@
               </title>
 
               <rect
-                x="475"
-                y="164"
+                x="483"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3329,13 +3326,13 @@
               </title>
 
               <rect
-                x="475"
-                y="181"
+                x="483"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3349,13 +3346,13 @@
               </title>
 
               <rect
-                x="475"
-                y="198"
+                x="483"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3369,13 +3366,13 @@
               </title>
 
               <rect
-                x="475"
-                y="215"
+                x="483"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3389,13 +3386,13 @@
               </title>
 
               <rect
-                x="475"
-                y="232"
+                x="483"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3409,13 +3406,13 @@
               </title>
 
               <rect
-                x="475"
-                y="249"
+                x="483"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3429,13 +3426,13 @@
               </title>
 
               <rect
-                x="475"
-                y="266"
+                x="483"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3449,13 +3446,13 @@
               </title>
 
               <rect
-                x="492"
-                y="164"
+                x="500"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3469,13 +3466,13 @@
               </title>
 
               <rect
-                x="492"
-                y="181"
+                x="500"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3489,13 +3486,13 @@
               </title>
 
               <rect
-                x="492"
-                y="198"
+                x="500"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3509,13 +3506,13 @@
               </title>
 
               <rect
-                x="492"
-                y="215"
+                x="500"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3529,13 +3526,13 @@
               </title>
 
               <rect
-                x="492"
-                y="232"
+                x="500"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3549,13 +3546,13 @@
               </title>
 
               <rect
-                x="492"
-                y="249"
+                x="500"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3569,13 +3566,13 @@
               </title>
 
               <rect
-                x="492"
-                y="266"
+                x="500"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3589,13 +3586,13 @@
               </title>
 
               <rect
-                x="509"
-                y="164"
+                x="517"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3609,13 +3606,13 @@
               </title>
 
               <rect
-                x="509"
-                y="181"
+                x="517"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3629,13 +3626,13 @@
               </title>
 
               <rect
-                x="509"
-                y="198"
+                x="517"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3649,13 +3646,13 @@
               </title>
 
               <rect
-                x="509"
-                y="215"
+                x="517"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3669,13 +3666,13 @@
               </title>
 
               <rect
-                x="509"
-                y="232"
+                x="517"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3689,13 +3686,13 @@
               </title>
 
               <rect
-                x="509"
-                y="249"
+                x="517"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3709,13 +3706,13 @@
               </title>
 
               <rect
-                x="509"
-                y="266"
+                x="517"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3729,13 +3726,13 @@
               </title>
 
               <rect
-                x="526"
-                y="164"
+                x="534"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3749,13 +3746,13 @@
               </title>
 
               <rect
-                x="526"
-                y="181"
+                x="534"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3769,13 +3766,13 @@
               </title>
 
               <rect
-                x="526"
-                y="198"
+                x="534"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3789,13 +3786,13 @@
               </title>
 
               <rect
-                x="526"
-                y="215"
+                x="534"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3809,13 +3806,13 @@
               </title>
 
               <rect
-                x="526"
-                y="232"
+                x="534"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3829,13 +3826,13 @@
               </title>
 
               <rect
-                x="526"
-                y="249"
+                x="534"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3849,13 +3846,13 @@
               </title>
 
               <rect
-                x="526"
-                y="266"
+                x="534"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3869,13 +3866,13 @@
               </title>
 
               <rect
-                x="543"
-                y="164"
+                x="551"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3889,13 +3886,13 @@
               </title>
 
               <rect
-                x="543"
-                y="181"
+                x="551"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3909,13 +3906,13 @@
               </title>
 
               <rect
-                x="543"
-                y="198"
+                x="551"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3929,13 +3926,13 @@
               </title>
 
               <rect
-                x="543"
-                y="215"
+                x="551"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3949,13 +3946,13 @@
               </title>
 
               <rect
-                x="543"
-                y="232"
+                x="551"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3969,13 +3966,13 @@
               </title>
 
               <rect
-                x="543"
-                y="249"
+                x="551"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -3989,13 +3986,13 @@
               </title>
 
               <rect
-                x="543"
-                y="266"
+                x="551"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4009,13 +4006,13 @@
               </title>
 
               <rect
-                x="560"
-                y="164"
+                x="568"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4029,13 +4026,13 @@
               </title>
 
               <rect
-                x="560"
-                y="181"
+                x="568"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4049,13 +4046,13 @@
               </title>
 
               <rect
-                x="560"
-                y="198"
+                x="568"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4069,13 +4066,13 @@
               </title>
 
               <rect
-                x="560"
-                y="215"
+                x="568"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4089,13 +4086,13 @@
               </title>
 
               <rect
-                x="560"
-                y="232"
+                x="568"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4109,13 +4106,13 @@
               </title>
 
               <rect
-                x="560"
-                y="249"
+                x="568"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4129,13 +4126,13 @@
               </title>
 
               <rect
-                x="560"
-                y="266"
+                x="568"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4149,13 +4146,13 @@
               </title>
 
               <rect
-                x="577"
-                y="164"
+                x="585"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4169,13 +4166,13 @@
               </title>
 
               <rect
-                x="577"
-                y="181"
+                x="585"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4189,13 +4186,13 @@
               </title>
 
               <rect
-                x="577"
-                y="198"
+                x="585"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4209,13 +4206,13 @@
               </title>
 
               <rect
-                x="577"
-                y="215"
+                x="585"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4229,13 +4226,13 @@
               </title>
 
               <rect
-                x="577"
-                y="232"
+                x="585"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4249,13 +4246,13 @@
               </title>
 
               <rect
-                x="577"
-                y="249"
+                x="585"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4269,13 +4266,13 @@
               </title>
 
               <rect
-                x="577"
-                y="266"
+                x="585"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4289,13 +4286,13 @@
               </title>
 
               <rect
-                x="594"
-                y="164"
+                x="602"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4309,13 +4306,13 @@
               </title>
 
               <rect
-                x="594"
-                y="181"
+                x="602"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4329,13 +4326,13 @@
               </title>
 
               <rect
-                x="594"
-                y="198"
+                x="602"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4349,13 +4346,13 @@
               </title>
 
               <rect
-                x="594"
-                y="215"
+                x="602"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4369,13 +4366,13 @@
               </title>
 
               <rect
-                x="594"
-                y="232"
+                x="602"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4389,13 +4386,13 @@
               </title>
 
               <rect
-                x="594"
-                y="249"
+                x="602"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4409,13 +4406,13 @@
               </title>
 
               <rect
-                x="594"
-                y="266"
+                x="602"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4429,13 +4426,13 @@
               </title>
 
               <rect
-                x="611"
-                y="164"
+                x="619"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4449,13 +4446,13 @@
               </title>
 
               <rect
-                x="611"
-                y="181"
+                x="619"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4469,13 +4466,13 @@
               </title>
 
               <rect
-                x="611"
-                y="198"
+                x="619"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4489,13 +4486,13 @@
               </title>
 
               <rect
-                x="611"
-                y="215"
+                x="619"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4509,13 +4506,13 @@
               </title>
 
               <rect
-                x="611"
-                y="232"
+                x="619"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4529,13 +4526,13 @@
               </title>
 
               <rect
-                x="611"
-                y="249"
+                x="619"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4549,13 +4546,13 @@
               </title>
 
               <rect
-                x="611"
-                y="266"
+                x="619"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4569,13 +4566,13 @@
               </title>
 
               <rect
-                x="628"
-                y="164"
+                x="636"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4589,13 +4586,13 @@
               </title>
 
               <rect
-                x="628"
-                y="181"
+                x="636"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4609,13 +4606,13 @@
               </title>
 
               <rect
-                x="628"
-                y="198"
+                x="636"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4629,13 +4626,13 @@
               </title>
 
               <rect
-                x="628"
-                y="215"
+                x="636"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4649,13 +4646,13 @@
               </title>
 
               <rect
-                x="628"
-                y="232"
+                x="636"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4669,13 +4666,13 @@
               </title>
 
               <rect
-                x="628"
-                y="249"
+                x="636"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4689,13 +4686,13 @@
               </title>
 
               <rect
-                x="628"
-                y="266"
+                x="636"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4709,13 +4706,13 @@
               </title>
 
               <rect
-                x="645"
-                y="164"
+                x="653"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4729,13 +4726,13 @@
               </title>
 
               <rect
-                x="645"
-                y="181"
+                x="653"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4749,13 +4746,13 @@
               </title>
 
               <rect
-                x="645"
-                y="198"
+                x="653"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4769,13 +4766,13 @@
               </title>
 
               <rect
-                x="645"
-                y="215"
+                x="653"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4789,13 +4786,13 @@
               </title>
 
               <rect
-                x="645"
-                y="232"
+                x="653"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4809,13 +4806,13 @@
               </title>
 
               <rect
-                x="645"
-                y="249"
+                x="653"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4829,13 +4826,13 @@
               </title>
 
               <rect
-                x="645"
-                y="266"
+                x="653"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4849,13 +4846,13 @@
               </title>
 
               <rect
-                x="662"
-                y="164"
+                x="670"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4869,13 +4866,13 @@
               </title>
 
               <rect
-                x="662"
-                y="181"
+                x="670"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4889,13 +4886,13 @@
               </title>
 
               <rect
-                x="662"
-                y="198"
+                x="670"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4909,13 +4906,13 @@
               </title>
 
               <rect
-                x="662"
-                y="215"
+                x="670"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4929,13 +4926,13 @@
               </title>
 
               <rect
-                x="662"
-                y="232"
+                x="670"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4949,13 +4946,13 @@
               </title>
 
               <rect
-                x="662"
-                y="249"
+                x="670"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4969,13 +4966,13 @@
               </title>
 
               <rect
-                x="662"
-                y="266"
+                x="670"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -4989,13 +4986,13 @@
               </title>
 
               <rect
-                x="679"
-                y="164"
+                x="687"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5009,13 +5006,13 @@
               </title>
 
               <rect
-                x="679"
-                y="181"
+                x="687"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5029,13 +5026,13 @@
               </title>
 
               <rect
-                x="679"
-                y="198"
+                x="687"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5049,13 +5046,13 @@
               </title>
 
               <rect
-                x="679"
-                y="215"
+                x="687"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5069,13 +5066,13 @@
               </title>
 
               <rect
-                x="679"
-                y="232"
+                x="687"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5089,13 +5086,13 @@
               </title>
 
               <rect
-                x="679"
-                y="249"
+                x="687"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5109,13 +5106,13 @@
               </title>
 
               <rect
-                x="679"
-                y="266"
+                x="687"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5129,13 +5126,13 @@
               </title>
 
               <rect
-                x="696"
-                y="164"
+                x="704"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5149,13 +5146,13 @@
               </title>
 
               <rect
-                x="696"
-                y="181"
+                x="704"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5169,13 +5166,13 @@
               </title>
 
               <rect
-                x="696"
-                y="198"
+                x="704"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5189,13 +5186,13 @@
               </title>
 
               <rect
-                x="696"
-                y="215"
+                x="704"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5209,13 +5206,13 @@
               </title>
 
               <rect
-                x="696"
-                y="232"
+                x="704"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5229,13 +5226,13 @@
               </title>
 
               <rect
-                x="696"
-                y="249"
+                x="704"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5249,13 +5246,13 @@
               </title>
 
               <rect
-                x="696"
-                y="266"
+                x="704"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5269,13 +5266,13 @@
               </title>
 
               <rect
-                x="713"
-                y="164"
+                x="721"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5289,13 +5286,13 @@
               </title>
 
               <rect
-                x="713"
-                y="181"
+                x="721"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5309,13 +5306,13 @@
               </title>
 
               <rect
-                x="713"
-                y="198"
+                x="721"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5329,13 +5326,13 @@
               </title>
 
               <rect
-                x="713"
-                y="215"
+                x="721"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5349,13 +5346,13 @@
               </title>
 
               <rect
-                x="713"
-                y="232"
+                x="721"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5369,13 +5366,13 @@
               </title>
 
               <rect
-                x="713"
-                y="249"
+                x="721"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5389,13 +5386,13 @@
               </title>
 
               <rect
-                x="713"
-                y="266"
+                x="721"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5409,13 +5406,13 @@
               </title>
 
               <rect
-                x="730"
-                y="164"
+                x="738"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5429,13 +5426,13 @@
               </title>
 
               <rect
-                x="730"
-                y="181"
+                x="738"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5449,13 +5446,13 @@
               </title>
 
               <rect
-                x="730"
-                y="198"
+                x="738"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5469,13 +5466,13 @@
               </title>
 
               <rect
-                x="730"
-                y="215"
+                x="738"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5489,13 +5486,13 @@
               </title>
 
               <rect
-                x="730"
-                y="232"
+                x="738"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5509,13 +5506,13 @@
               </title>
 
               <rect
-                x="730"
-                y="249"
+                x="738"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5529,13 +5526,13 @@
               </title>
 
               <rect
-                x="730"
-                y="266"
+                x="738"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5549,13 +5546,13 @@
               </title>
 
               <rect
-                x="747"
-                y="164"
+                x="755"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5569,13 +5566,13 @@
               </title>
 
               <rect
-                x="747"
-                y="181"
+                x="755"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5589,13 +5586,13 @@
               </title>
 
               <rect
-                x="747"
-                y="198"
+                x="755"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5609,13 +5606,13 @@
               </title>
 
               <rect
-                x="747"
-                y="215"
+                x="755"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5629,13 +5626,13 @@
               </title>
 
               <rect
-                x="747"
-                y="232"
+                x="755"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5649,13 +5646,13 @@
               </title>
 
               <rect
-                x="747"
-                y="249"
+                x="755"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5669,13 +5666,13 @@
               </title>
 
               <rect
-                x="747"
-                y="266"
+                x="755"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5689,13 +5686,13 @@
               </title>
 
               <rect
-                x="764"
-                y="164"
+                x="772"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5709,13 +5706,13 @@
               </title>
 
               <rect
-                x="764"
-                y="181"
+                x="772"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5729,13 +5726,13 @@
               </title>
 
               <rect
-                x="764"
-                y="198"
+                x="772"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5749,13 +5746,13 @@
               </title>
 
               <rect
-                x="764"
-                y="215"
+                x="772"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5769,13 +5766,13 @@
               </title>
 
               <rect
-                x="764"
-                y="232"
+                x="772"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5789,13 +5786,13 @@
               </title>
 
               <rect
-                x="764"
-                y="249"
+                x="772"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5809,13 +5806,13 @@
               </title>
 
               <rect
-                x="764"
-                y="266"
+                x="772"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5829,13 +5826,13 @@
               </title>
 
               <rect
-                x="781"
-                y="164"
+                x="789"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5849,13 +5846,13 @@
               </title>
 
               <rect
-                x="781"
-                y="181"
+                x="789"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5869,13 +5866,13 @@
               </title>
 
               <rect
-                x="781"
-                y="198"
+                x="789"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5889,13 +5886,13 @@
               </title>
 
               <rect
-                x="781"
-                y="215"
+                x="789"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5909,13 +5906,13 @@
               </title>
 
               <rect
-                x="781"
-                y="232"
+                x="789"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5929,13 +5926,13 @@
               </title>
 
               <rect
-                x="781"
-                y="249"
+                x="789"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5949,13 +5946,13 @@
               </title>
 
               <rect
-                x="781"
-                y="266"
+                x="789"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5969,13 +5966,13 @@
               </title>
 
               <rect
-                x="798"
-                y="164"
+                x="806"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -5989,13 +5986,13 @@
               </title>
 
               <rect
-                x="798"
-                y="181"
+                x="806"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6009,13 +6006,13 @@
               </title>
 
               <rect
-                x="798"
-                y="198"
+                x="806"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6029,13 +6026,13 @@
               </title>
 
               <rect
-                x="798"
-                y="215"
+                x="806"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6049,13 +6046,13 @@
               </title>
 
               <rect
-                x="798"
-                y="232"
+                x="806"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6069,13 +6066,13 @@
               </title>
 
               <rect
-                x="798"
-                y="249"
+                x="806"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6089,13 +6086,13 @@
               </title>
 
               <rect
-                x="798"
-                y="266"
+                x="806"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6109,13 +6106,13 @@
               </title>
 
               <rect
-                x="815"
-                y="164"
+                x="823"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6129,13 +6126,13 @@
               </title>
 
               <rect
-                x="815"
-                y="181"
+                x="823"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6149,13 +6146,13 @@
               </title>
 
               <rect
-                x="815"
-                y="198"
+                x="823"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6169,13 +6166,13 @@
               </title>
 
               <rect
-                x="815"
-                y="215"
+                x="823"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6189,13 +6186,13 @@
               </title>
 
               <rect
-                x="815"
-                y="232"
+                x="823"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6209,13 +6206,13 @@
               </title>
 
               <rect
-                x="815"
-                y="249"
+                x="823"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6229,13 +6226,13 @@
               </title>
 
               <rect
-                x="815"
-                y="266"
+                x="823"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6249,13 +6246,13 @@
               </title>
 
               <rect
-                x="832"
-                y="164"
+                x="840"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6269,13 +6266,13 @@
               </title>
 
               <rect
-                x="832"
-                y="181"
+                x="840"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6289,13 +6286,13 @@
               </title>
 
               <rect
-                x="832"
-                y="198"
+                x="840"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6309,13 +6306,13 @@
               </title>
 
               <rect
-                x="832"
-                y="215"
+                x="840"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6329,13 +6326,13 @@
               </title>
 
               <rect
-                x="832"
-                y="232"
+                x="840"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6349,13 +6346,13 @@
               </title>
 
               <rect
-                x="832"
-                y="249"
+                x="840"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6369,13 +6366,13 @@
               </title>
 
               <rect
-                x="832"
-                y="266"
+                x="840"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6389,13 +6386,13 @@
               </title>
 
               <rect
-                x="849"
-                y="164"
+                x="857"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6409,13 +6406,13 @@
               </title>
 
               <rect
-                x="849"
-                y="181"
+                x="857"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6429,13 +6426,13 @@
               </title>
 
               <rect
-                x="849"
-                y="198"
+                x="857"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6449,13 +6446,13 @@
               </title>
 
               <rect
-                x="849"
-                y="215"
+                x="857"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6469,13 +6466,13 @@
               </title>
 
               <rect
-                x="849"
-                y="232"
+                x="857"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6489,13 +6486,13 @@
               </title>
 
               <rect
-                x="849"
-                y="249"
+                x="857"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6509,13 +6506,13 @@
               </title>
 
               <rect
-                x="849"
-                y="266"
+                x="857"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6529,13 +6526,13 @@
               </title>
 
               <rect
-                x="866"
-                y="164"
+                x="874"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6549,13 +6546,13 @@
               </title>
 
               <rect
-                x="866"
-                y="181"
+                x="874"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6569,13 +6566,13 @@
               </title>
 
               <rect
-                x="866"
-                y="198"
+                x="874"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6589,13 +6586,13 @@
               </title>
 
               <rect
-                x="866"
-                y="215"
+                x="874"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6609,13 +6606,13 @@
               </title>
 
               <rect
-                x="866"
-                y="232"
+                x="874"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6629,13 +6626,13 @@
               </title>
 
               <rect
-                x="866"
-                y="249"
+                x="874"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6649,13 +6646,13 @@
               </title>
 
               <rect
-                x="866"
-                y="266"
+                x="874"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6669,13 +6666,13 @@
               </title>
 
               <rect
-                x="883"
-                y="164"
+                x="891"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6689,13 +6686,13 @@
               </title>
 
               <rect
-                x="883"
-                y="181"
+                x="891"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6709,13 +6706,13 @@
               </title>
 
               <rect
-                x="883"
-                y="198"
+                x="891"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6729,13 +6726,13 @@
               </title>
 
               <rect
-                x="883"
-                y="215"
+                x="891"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6749,13 +6746,13 @@
               </title>
 
               <rect
-                x="883"
-                y="232"
+                x="891"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6769,13 +6766,13 @@
               </title>
 
               <rect
-                x="883"
-                y="249"
+                x="891"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6789,13 +6786,13 @@
               </title>
 
               <rect
-                x="883"
-                y="266"
+                x="891"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6809,13 +6806,13 @@
               </title>
 
               <rect
-                x="900"
-                y="164"
+                x="908"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6829,13 +6826,13 @@
               </title>
 
               <rect
-                x="900"
-                y="181"
+                x="908"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6849,13 +6846,13 @@
               </title>
 
               <rect
-                x="900"
-                y="198"
+                x="908"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6869,13 +6866,13 @@
               </title>
 
               <rect
-                x="900"
-                y="215"
+                x="908"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6889,13 +6886,13 @@
               </title>
 
               <rect
-                x="900"
-                y="232"
+                x="908"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6909,13 +6906,13 @@
               </title>
 
               <rect
-                x="900"
-                y="249"
+                x="908"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6929,13 +6926,13 @@
               </title>
 
               <rect
-                x="900"
-                y="266"
+                x="908"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6949,13 +6946,13 @@
               </title>
 
               <rect
-                x="917"
-                y="164"
+                x="925"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6969,13 +6966,13 @@
               </title>
 
               <rect
-                x="917"
-                y="181"
+                x="925"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -6989,13 +6986,13 @@
               </title>
 
               <rect
-                x="917"
-                y="198"
+                x="925"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7009,13 +7006,13 @@
               </title>
 
               <rect
-                x="917"
-                y="215"
+                x="925"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7029,13 +7026,13 @@
               </title>
 
               <rect
-                x="917"
-                y="232"
+                x="925"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7049,13 +7046,13 @@
               </title>
 
               <rect
-                x="917"
-                y="249"
+                x="925"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7069,13 +7066,13 @@
               </title>
 
               <rect
-                x="917"
-                y="266"
+                x="925"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7089,13 +7086,13 @@
               </title>
 
               <rect
-                x="934"
-                y="164"
+                x="942"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7109,13 +7106,13 @@
               </title>
 
               <rect
-                x="934"
-                y="181"
+                x="942"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7129,13 +7126,13 @@
               </title>
 
               <rect
-                x="934"
-                y="198"
+                x="942"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7149,13 +7146,13 @@
               </title>
 
               <rect
-                x="934"
-                y="215"
+                x="942"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7169,13 +7166,13 @@
               </title>
 
               <rect
-                x="934"
-                y="232"
+                x="942"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7189,13 +7186,13 @@
               </title>
 
               <rect
-                x="934"
-                y="249"
+                x="942"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7209,13 +7206,13 @@
               </title>
 
               <rect
-                x="934"
-                y="266"
+                x="942"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7229,13 +7226,13 @@
               </title>
 
               <rect
-                x="951"
-                y="164"
+                x="959"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7249,13 +7246,13 @@
               </title>
 
               <rect
-                x="951"
-                y="181"
+                x="959"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7269,13 +7266,13 @@
               </title>
 
               <rect
-                x="951"
-                y="198"
+                x="959"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7289,13 +7286,13 @@
               </title>
 
               <rect
-                x="951"
-                y="215"
+                x="959"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7309,13 +7306,13 @@
               </title>
 
               <rect
-                x="951"
-                y="232"
+                x="959"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7329,13 +7326,13 @@
               </title>
 
               <rect
-                x="951"
-                y="249"
+                x="959"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7349,13 +7346,13 @@
               </title>
 
               <rect
-                x="951"
-                y="266"
+                x="959"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7369,13 +7366,13 @@
               </title>
 
               <rect
-                x="968"
-                y="164"
+                x="976"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7389,13 +7386,13 @@
               </title>
 
               <rect
-                x="968"
-                y="181"
+                x="976"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7409,13 +7406,13 @@
               </title>
 
               <rect
-                x="968"
-                y="198"
+                x="976"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7429,13 +7426,13 @@
               </title>
 
               <rect
-                x="968"
-                y="215"
+                x="976"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7449,13 +7446,13 @@
               </title>
 
               <rect
-                x="968"
-                y="232"
+                x="976"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7469,13 +7466,13 @@
               </title>
 
               <rect
-                x="968"
-                y="249"
+                x="976"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7489,13 +7486,13 @@
               </title>
 
               <rect
-                x="968"
-                y="266"
+                x="976"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7509,13 +7506,13 @@
               </title>
 
               <rect
-                x="985"
-                y="164"
+                x="993"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7529,13 +7526,13 @@
               </title>
 
               <rect
-                x="985"
-                y="181"
+                x="993"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7549,13 +7546,13 @@
               </title>
 
               <rect
-                x="985"
-                y="198"
+                x="993"
+                y="188"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7569,13 +7566,13 @@
               </title>
 
               <rect
-                x="985"
-                y="215"
+                x="993"
+                y="205"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7589,13 +7586,13 @@
               </title>
 
               <rect
-                x="985"
-                y="232"
+                x="993"
+                y="222"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7609,13 +7606,13 @@
               </title>
 
               <rect
-                x="985"
-                y="249"
+                x="993"
+                y="239"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7629,13 +7626,13 @@
               </title>
 
               <rect
-                x="985"
-                y="266"
+                x="993"
+                y="256"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7649,13 +7646,13 @@
               </title>
 
               <rect
-                x="1002"
-                y="164"
+                x="1010"
+                y="154"
                 width="13"
                 height="13"
                 rx="3"
                 fill="#161b22"
-                stroke="#27313b"
+                stroke="#30363d"
                 stroke-width="1"
               />
 
@@ -7669,8 +7666,8 @@
               </title>
 
               <rect
-                x="1002"
-                y="181"
+                x="1010"
+                y="171"
                 width="13"
                 height="13"
                 rx="3"
@@ -7683,51 +7680,55 @@
             
 
 
-    <!-- MOVING SCANNER COLUMN -->
+    <!-- SCANNING COLUMN -->
 
     <rect
-      x="108"
-      y="160"
+      x="116"
+      y="149"
       width="32"
-      height="119"
+      height="124"
       fill="url(#scanner)"
-      pointer-events="none"
     >
+
       <animate
         attributeName="x"
-        from="108"
-        to="1009"
+        from="116"
+        to="1017"
         dur="8s"
         repeatCount="indefinite"
       />
+
     </rect>
 
 
+    <!-- SCANNER LINE -->
+
     <rect
-      x="118"
-      y="160"
+      x="126"
+      y="149"
       width="2"
-      height="119"
+      height="124"
       fill="#39ff88"
-      opacity=".65"
+      opacity=".7"
       filter="url(#glow)"
-      pointer-events="none"
     >
+
       <animate
         attributeName="x"
-        from="118"
-        to="1019"
+        from="126"
+        to="1027"
         dur="8s"
         repeatCount="indefinite"
       />
+
     </rect>
 
 
     <!-- LEGEND -->
 
     <text
-      x="118"
-      y="313"
+      x="126"
+      y="304"
       fill="#484f58"
       font-size="9"
     >
@@ -7736,45 +7737,49 @@
 
 
     <rect
-      x="154"
-      y="303"
+      x="164"
+      y="294"
       width="11"
       height="11"
       rx="3"
       fill="#161b22"
-      stroke="#27313b"
+      stroke="#30363d"
     />
 
+
     <rect
-      x="171"
-      y="303"
+      x="181"
+      y="294"
       width="11"
       height="11"
       rx="3"
       fill="#0e4429"
     />
 
+
     <rect
-      x="188"
-      y="303"
+      x="198"
+      y="294"
       width="11"
       height="11"
       rx="3"
       fill="#006d32"
     />
 
+
     <rect
-      x="205"
-      y="303"
+      x="215"
+      y="294"
       width="11"
       height="11"
       rx="3"
       fill="#26a641"
     />
 
+
     <rect
-      x="222"
-      y="303"
+      x="232"
+      y="294"
       width="11"
       height="11"
       rx="3"
@@ -7783,8 +7788,8 @@
 
 
     <text
-      x="242"
-      y="313"
+      x="254"
+      y="304"
       fill="#484f58"
       font-size="9"
     >
@@ -7794,16 +7799,16 @@
 
     <line
       x1="74"
-      y1="338"
+      y1="326"
       x2="1026"
-      y2="338"
+      y2="326"
       stroke="#21262d"
     />
 
 
     <text
       x="74"
-      y="365"
+      y="353"
       fill="#484f58"
       font-size="9"
       letter-spacing="1.3"
@@ -7814,7 +7819,7 @@
 
     <text
       x="1026"
-      y="365"
+      y="353"
       text-anchor="end"
       fill="#484f58"
       font-size="9"
@@ -7825,19 +7830,20 @@
 
     <rect
       x="1019"
-      y="382"
+      y="369"
       width="7"
       height="13"
       fill="#39ff88"
     >
+
       <animate
         attributeName="opacity"
         values="1;0;1"
         dur="1s"
         repeatCount="indefinite"
       />
-    </rect>
 
+    </rect>
 
   </g>
 
