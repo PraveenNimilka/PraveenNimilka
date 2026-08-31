@@ -1,0 +1,652 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="480"
+  viewBox="0 0 1200 480">
+
+  <defs>
+
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#070a0e"/>
+      <stop offset="55%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#080c11"/>
+    </linearGradient>
+
+    <linearGradient id="signal" x1="0" x2="1">
+      <stop offset="0%" stop-color="#39ff88" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#39ff88"/>
+      <stop offset="100%" stop-color="#39ff88" stop-opacity="0"/>
+    </linearGradient>
+
+    <pattern
+      id="grid"
+      width="36"
+      height="36"
+      patternUnits="userSpaceOnUse">
+
+      <path
+        d="M36 0H0V36"
+        fill="none"
+        stroke="#1c2530"
+        stroke-width="1"
+        opacity=".32"/>
+
+    </pattern>
+
+    <filter
+      id="glow"
+      x="-100%"
+      y="-100%"
+      width="300%"
+      height="300%">
+
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+
+    </filter>
+
+    <clipPath id="screen">
+      <rect
+        x="44"
+        y="54"
+        width="1112"
+        height="372"
+        rx="14"/>
+    </clipPath>
+
+  </defs>
+
+
+  <!-- ======================================================
+       BACKGROUND
+  ======================================================= -->
+
+  <rect
+    width="1200"
+    height="480"
+    rx="18"
+    fill="url(#background)"/>
+
+  <rect
+    width="1200"
+    height="480"
+    rx="18"
+    fill="url(#grid)"/>
+
+  <rect
+    x="1"
+    y="1"
+    width="1198"
+    height="478"
+    rx="18"
+    fill="none"
+    stroke="#26303a"
+    stroke-width="2"/>
+
+
+  <!-- ======================================================
+       MOVING TOP SIGNAL
+  ======================================================= -->
+
+  <rect
+    x="-350"
+    y="1"
+    width="350"
+    height="2"
+    fill="url(#signal)"
+    filter="url(#glow)">
+
+    <animate
+      attributeName="x"
+      from="-350"
+      to="1200"
+      dur="4s"
+      repeatCount="indefinite"/>
+
+  </rect>
+
+
+  <!-- ======================================================
+       WINDOW
+  ======================================================= -->
+
+  <rect
+    x="44"
+    y="54"
+    width="1112"
+    height="372"
+    rx="14"
+    fill="#090d12"
+    stroke="#26303a"/>
+
+  <path
+    d="M44 69Q44 54 59 54H1141Q1156 54 1156 69V99H44Z"
+    fill="#111820"/>
+
+
+  <!-- WINDOW BUTTONS -->
+
+  <circle cx="73" cy="76" r="5" fill="#ff5f56"/>
+  <circle cx="94" cy="76" r="5" fill="#ffbd2e"/>
+  <circle cx="115" cy="76" r="5" fill="#27c93f"/>
+
+
+  <text
+    x="600"
+    y="81"
+    text-anchor="middle"
+    fill="#6e7681"
+    font-family="monospace"
+    font-size="12">
+
+    praveen@github — /dev/mind
+
+  </text>
+
+
+  <!-- ======================================================
+       SCANNER
+  ======================================================= -->
+
+  <g clip-path="url(#screen)">
+
+    <rect
+      x="45"
+      y="100"
+      width="1110"
+      height="2"
+      fill="#39ff88"
+      opacity=".14"
+      filter="url(#glow)">
+
+      <animate
+        attributeName="y"
+        from="100"
+        to="420"
+        dur="5s"
+        repeatCount="indefinite"/>
+
+    </rect>
+
+  </g>
+
+
+  <!-- ======================================================
+       TERMINAL LEFT
+  ======================================================= -->
+
+  <g font-family="monospace">
+
+
+    <!-- BOOT COMMAND -->
+
+    <g opacity="0">
+
+      <animate
+        attributeName="opacity"
+        values="0;1;1"
+        keyTimes="0;.05;1"
+        dur="12s"
+        repeatCount="indefinite"/>
+
+      <text
+        x="80"
+        y="137"
+        fill="#39ff88"
+        font-size="14">
+
+        visitor@github
+
+      </text>
+
+      <text
+        x="196"
+        y="137"
+        fill="#8b949e"
+        font-size="14">
+
+        :~$
+
+      </text>
+
+      <text
+        x="228"
+        y="137"
+        fill="#f0f6fc"
+        font-size="14">
+
+        ./boot praveen.os
+
+      </text>
+
+    </g>
+
+
+    <!-- LOADING -->
+
+    <g opacity="0">
+
+      <animate
+        attributeName="opacity"
+        values="0;0;1;1"
+        keyTimes="0;.10;.12;1"
+        dur="12s"
+        repeatCount="indefinite"/>
+
+      <text
+        x="80"
+        y="174"
+        fill="#6e7681"
+        font-size="12">
+
+        initializing operator...
+
+      </text>
+
+    </g>
+
+
+    <!-- SERVICE ONE -->
+
+    <g opacity="0">
+
+      <animate
+        attributeName="opacity"
+        values="0;0;1;1"
+        keyTimes="0;.18;.20;1"
+        dur="12s"
+        repeatCount="indefinite"/>
+
+      <text
+        x="80"
+        y="214"
+        fill="#39ff88"
+        font-size="12">
+
+        [ OK ]
+
+      </text>
+
+      <text
+        x="138"
+        y="214"
+        fill="#8b949e"
+        font-size="12">
+
+        curiosity.service
+
+      </text>
+
+    </g>
+
+
+    <!-- SERVICE TWO -->
+
+    <g opacity="0">
+
+      <animate
+        attributeName="opacity"
+        values="0;0;1;1"
+        keyTimes="0;.25;.27;1"
+        dur="12s"
+        repeatCount="indefinite"/>
+
+      <text
+        x="80"
+        y="244"
+        fill="#39ff88"
+        font-size="12">
+
+        [ OK ]
+
+      </text>
+
+      <text
+        x="138"
+        y="244"
+        fill="#8b949e"
+        font-size="12">
+
+        experimental-mode.service
+
+      </text>
+
+    </g>
+
+
+    <!-- SERVICE THREE -->
+
+    <g opacity="0">
+
+      <animate
+        attributeName="opacity"
+        values="0;0;1;1"
+        keyTimes="0;.31;.33;1"
+        dur="12s"
+        repeatCount="indefinite"/>
+
+      <text
+        x="80"
+        y="274"
+        fill="#39ff88"
+        font-size="12">
+
+        [ OK ]
+
+      </text>
+
+      <text
+        x="138"
+        y="274"
+        fill="#8b949e"
+        font-size="12">
+
+        builder.service
+
+      </text>
+
+    </g>
+
+
+    <!-- SERVICE FOUR -->
+
+    <g opacity="0">
+
+      <animate
+        attributeName="opacity"
+        values="0;0;1;1"
+        keyTimes="0;.37;.39;1"
+        dur="12s"
+        repeatCount="indefinite"/>
+
+      <text
+        x="80"
+        y="304"
+        fill="#ffbd2e"
+        font-size="12">
+
+        [ .. ]
+
+      </text>
+
+      <text
+        x="138"
+        y="304"
+        fill="#8b949e"
+        font-size="12">
+
+        impossible-ideas.service
+
+      </text>
+
+    </g>
+
+
+    <!-- LOADING BAR -->
+
+    <rect
+      x="80"
+      y="332"
+      width="400"
+      height="6"
+      rx="3"
+      fill="#18222c"/>
+
+    <rect
+      x="80"
+      y="332"
+      width="0"
+      height="6"
+      rx="3"
+      fill="#39ff88"
+      filter="url(#glow)">
+
+      <animate
+        attributeName="width"
+        values="0;0;400;400"
+        keyTimes="0;.41;.60;1"
+        dur="12s"
+        repeatCount="indefinite"/>
+
+    </rect>
+
+
+    <!-- READY -->
+
+    <g opacity="0">
+
+      <animate
+        attributeName="opacity"
+        values="0;0;1;1"
+        keyTimes="0;.62;.64;1"
+        dur="12s"
+        repeatCount="indefinite"/>
+
+      <text
+        x="80"
+        y="377"
+        fill="#39ff88"
+        font-size="13">
+
+        ACCESS GRANTED.
+
+      </text>
+
+      <text
+        x="80"
+        y="400"
+        fill="#8b949e"
+        font-size="12">
+
+        entering builder mode...
+
+      </text>
+
+    </g>
+
+  </g>
+
+
+  <!-- ======================================================
+       RIGHT IDENTITY
+  ======================================================= -->
+
+  <g font-family="monospace">
+
+    <text
+      x="620"
+      y="145"
+      fill="#3b4652"
+      font-size="10"
+      letter-spacing="4">
+
+      OPERATOR // 001
+
+    </text>
+
+
+    <text
+      x="620"
+      y="211"
+      fill="#f0f6fc"
+      font-size="48"
+      font-weight="700"
+      letter-spacing="3">
+
+      PRAVEEN
+
+    </text>
+
+
+    <text
+      x="620"
+      y="265"
+      fill="#f0f6fc"
+      font-size="48"
+      font-weight="700"
+      letter-spacing="3">
+
+      NIMILKA
+
+    </text>
+
+
+    <!-- ANIMATED UNDERLINE -->
+
+    <rect
+      x="620"
+      y="286"
+      width="0"
+      height="2"
+      fill="#39ff88"
+      filter="url(#glow)">
+
+      <animate
+        attributeName="width"
+        values="0;390"
+        dur="1.8s"
+        begin=".4s"
+        fill="freeze"/>
+
+    </rect>
+
+
+    <text
+      x="620"
+      y="321"
+      fill="#8b949e"
+      font-size="11"
+      letter-spacing="2">
+
+      AI × SOFTWARE × SYSTEMS
+
+    </text>
+
+
+    <g>
+
+      <text
+        x="620"
+        y="354"
+        fill="#39ff88"
+        font-size="14"
+        letter-spacing="1.5">
+
+        BUILDING THE UNLIKELY
+
+      </text>
+
+    </g>
+
+
+    <!-- RANDOM SYSTEM MESSAGE -->
+
+    <g opacity="0">
+
+      <animate
+        attributeName="opacity"
+        values="0;0;1;1;0"
+        keyTimes="0;.66;.69;.92;1"
+        dur="12s"
+        repeatCount="indefinite"/>
+
+      <text
+        x="620"
+        y="390"
+        fill="#484f58"
+        font-size="10">
+
+        another idea has been detected...
+
+      </text>
+
+    </g>
+
+
+    <!-- LIVE -->
+
+    <circle
+      cx="1090"
+      cy="126"
+      r="5"
+      fill="#39ff88"
+      filter="url(#glow)">
+
+      <animate
+        attributeName="opacity"
+        values="1;.15;1"
+        dur="1.5s"
+        repeatCount="indefinite"/>
+
+    </circle>
+
+    <text
+      x="1075"
+      y="130"
+      text-anchor="end"
+      fill="#39ff88"
+      font-size="9"
+      letter-spacing="2">
+
+      LIVE
+
+    </text>
+
+  </g>
+
+
+  <!-- ======================================================
+       CURSOR
+  ======================================================= -->
+
+  <rect
+    x="254"
+    y="390"
+    width="8"
+    height="13"
+    fill="#39ff88">
+
+    <animate
+      attributeName="opacity"
+      values="1;0;1"
+      dur=".9s"
+      repeatCount="indefinite"/>
+
+  </rect>
+
+
+  <!-- ======================================================
+       FOOTER
+  ======================================================= -->
+
+  <text
+    x="45"
+    y="461"
+    fill="#30363d"
+    font-family="monospace"
+    font-size="9"
+    letter-spacing="2">
+
+    PRAVEEN.OS // BUILD 01
+
+  </text>
+
+
+  <text
+    x="1155"
+    y="461"
+    text-anchor="end"
+    fill="#30363d"
+    font-family="monospace"
+    font-size="9"
+    letter-spacing="2">
+
+    SYSTEM ONLINE
+
+  </text>
+
+</svg>
