@@ -1,6 +1,6 @@
 <!-- ==========================================================
-     PRAVEEN NIMILKA // GITHUB PROFILE
-     PRAVEEN.OS
+     PRAVEEN NIMILKA // PRAVEEN.OS
+     GitHub Profile README
 =========================================================== -->
 
 <div align="center">
@@ -8,17 +8,17 @@
 <img
   src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/main/assets/boot.svg"
   width="100%"
-  alt="PRAVEEN OS"
+  alt="Praveen OS"
 />
 
 <br>
 
 <code>AI SYSTEMS</code>
-&nbsp;&nbsp;•&nbsp;&nbsp;
+&nbsp; • &nbsp;
 <code>SOFTWARE</code>
-&nbsp;&nbsp;•&nbsp;&nbsp;
+&nbsp; • &nbsp;
 <code>PRODUCTS</code>
-&nbsp;&nbsp;•&nbsp;&nbsp;
+&nbsp; • &nbsp;
 <code>EXPERIMENTS</code>
 
 <br><br>
@@ -46,9 +46,7 @@ connecting to operator...
 access granted.
 
 Welcome to PRAVEEN/OS.
-
 > ./whoami
-
 operator:
   name: Praveen Nimilka
   type: builder
@@ -68,20 +66,17 @@ interests:
 
 objective:
   "Build things that probably shouldn't work."
-
 possible ───────────────────────────────────── impossible
                                   ▲
                                   │
                            interesting zone
-
 > ./mission
-
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
 │  FIND COMPLEXITY                                            │
 │         │                                                   │
 │         ▼                                                   │
-│  QUESTION EVERYTHING                                        │
+│  QUESTION EVERYTHING                                       │
 │         │                                                   │
 │         ▼                                                   │
 │  BUILD THE WEIRD VERSION                                    │
@@ -104,7 +99,6 @@ I don't want to build more software.
 I want to build better ways of doing things.
 
 ~/LAB
-
 praveen@github:~/lab$ ls -la
 
 drwx------  citeshield/
@@ -115,9 +109,7 @@ drwx------  classified/
 
 5 experiments detected.
 1 directory requires elevated clearance.
-
 <details open> <summary><b><code>01 // ./citeshield</code></b></summary> <br>
-
 ╭──────────────────────────────────────────────────────────╮
 │ CITESHIELD                                      BETA ●   │
 ├──────────────────────────────────────────────────────────┤
@@ -149,11 +141,9 @@ AI-powered citation and academic-document auditing.
 STATUS :: BETA
 
 </details>
-
 <details> <summary><b><code>02 // ./aether</code></b></summary> <br>
-
 ╭──────────────────────────────────────────────────────────╮
-│ PROJECT AETHER                             EXPERIMENT ◉  │
+│ PROJECT AETHER                             EXPERIMENT ◉   │
 ├──────────────────────────────────────────────────────────┤
 │                                                          │
 │                    ·          ✦                          │
@@ -184,9 +174,7 @@ An experimental sandbox exploring AI-defined materials, physics and emergent dig
 STATUS :: EXPERIMENTAL
 
 </details>
-
 <details> <summary><b><code>03 // ./ai-infrastructure</code></b></summary> <br>
-
 research://ai-infrastructure
 
 ├── efficient-training
@@ -199,19 +187,17 @@ research://ai-infrastructure
 
 Questions I'm interested in:
 
-> Can powerful AI require dramatically less compute?
+Can powerful AI require dramatically less compute?
 
-> Can more AI move onto ordinary computers?
+Can more AI move onto ordinary computers?
 
-> Are current training architectures actually optimal?
+Are current training architectures actually optimal?
 
-> What happens if we redesign the system instead of
-  endlessly scaling the hardware?
+What happens if we redesign the system instead of endlessly scaling the hardware?
 
 STATUS :: RESEARCH
 
 </details>
-
 <details> <summary><b><code>04 // ./one-click</code></b></summary> <br>
 
 My favourite product transformation:
@@ -259,11 +245,10 @@ I like products that hide complicated engineering behind incredibly simple inter
 STATUS :: BUILDING
 
 </details>
-
 ~/stack
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=python,js,ts,react,nextjs,nodejs,pytorch,tensorflow,supabase,postgres,docker,git,github,vercel,vscode,linux&perline=8&theme=dark" />
+<img src="https://skillicons.dev/icons?i=python,js,ts,react,nextjs,nodejs,pytorch,tensorflow,supabase,postgres,docker,git,github,vercel,vscode,linux&perline=8&theme=dark" alt="Technology Stack" />
 
 </div> <br>
 LANGUAGE          Python / JavaScript / TypeScript
@@ -279,7 +264,6 @@ DATA              PostgreSQL / Supabase
 INFRASTRUCTURE    Docker / Linux / GitHub Actions
 
 SHIP              Vercel
-
 ~/system/processes
 praveen@github:~$ ps aux
 PID   CPU    PROCESS
@@ -303,7 +287,6 @@ PID   CPU    PROCESS
 SYSTEM WARNING:
 
 PID 007 cannot be terminated.
-
 ~/current
 {
   "researching": [
@@ -332,11 +315,11 @@ PID 007 cannot be terminated.
 praveen@github:~$ ./signal --status
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=PraveenNimilka&show_icons=true&hide_border=true&hide_title=true&bg_color=00000000&text_color=8b949e&icon_color=39ff88&ring_color=39ff88" />
+<img src="https://github-readme-stats.vercel.app/api?username=PraveenNimilka&show_icons=true&hide_border=true&hide_title=true&bg_color=00000000&text_color=8b949e&icon_color=39ff88&ring_color=39ff88" alt="Praveen GitHub Stats" />
 
 </div> <br> <div align="center">
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=PraveenNimilka&bg_color=00000000&color=8b949e&line=39ff88&point=f0f6fc&area=true&area_color=39ff88&hide_border=true" width="100%" />
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=PraveenNimilka&bg_color=00000000&color=8b949e&line=39ff88&point=f0f6fc&area=true&area_color=39ff88&hide_border=true" width="100%" alt="GitHub Activity Graph" />
 
 </div>
 ~/contributions
@@ -347,37 +330,32 @@ praveen@github:~$ ./contribution-engine --animate
 
 <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake.svg" />
 
-<img alt="GitHub contribution snake" src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake.svg" />
+<img alt="GitHub Contribution Snake" src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake.svg" />
 
 </picture> </div>
 ~/principles
 01
-
 BUILD > TALK
 
 
 02
-
 SIMPLE INTERFACE
 DOES NOT MEAN
 SIMPLE ENGINEERING
 
 
 03
-
 FAILURE
 IS
 DATA
 
 
 04
-
 DON'T SCALE A BAD SYSTEM.
 REDESIGN IT.
 
 
 05
-
 IF IT SOUNDS SLIGHTLY IMPOSSIBLE...
 
 INVESTIGATE IT.
@@ -423,19 +401,24 @@ another project has been detected.
 
                      CLASSIFIED
 
+
 PROJECT              ███████████████████
 
 OBJECTIVE            ██████████████████████████████
 
 ARCHITECTURE         █████████████████████████
 
+
 PROBABILITY
 OF WORKING           questionable
+
 
 PROBABILITY
 OF TRYING            100%
 
+
 STATUS                prototyping...
+
 
 ████████████████████████████████████████████████████████████
 </details>
@@ -449,8 +432,10 @@ status   :: accepting interesting ideas
 signal   :: ONLINE
 
 connection ready.
-<div align="center"> <a href="https://github.com/PraveenNimilka"> <img src="https://img.shields.io/badge/GITHUB-0D1117?style=for-the-badge&logo=github&logoColor=39ff88" /> </a> <a href="YOUR_LINKEDIN_URL"> <img src="https://img.shields.io/badge/LINKEDIN-0D1117?style=for-the-badge&logo=linkedin&logoColor=39ff88" /> </a> <a href="mailto:YOUR_EMAIL"> <img src="https://img.shields.io/badge/EMAIL-0D1117?style=for-the-badge&logo=gmail&logoColor=39ff88" /> </a> </div> <br>
+<div align="center"> <a href="https://github.com/PraveenNimilka"> <img src="https://img.shields.io/badge/GITHUB-0D1117?style=for-the-badge&logo=github&logoColor=39ff88" alt="GitHub" /> </a> <a href="YOUR_LINKEDIN_URL"> <img src="https://img.shields.io/badge/LINKEDIN-0D1117?style=for-the-badge&logo=linkedin&logoColor=39ff88" alt="LinkedIn" /> </a> <a href="mailto:YOUR_EMAIL"> <img src="https://img.shields.io/badge/EMAIL-0D1117?style=for-the-badge&logo=gmail&logoColor=39ff88" alt="Email" /> </a> </div> <br>
 <div align="center">
+SYSTEM // FINAL TRANSMISSION
+<br>
 ╭─────────────────────────────────────────────────────────────╮
 │                                                             │
 │                                                             │
@@ -473,7 +458,5 @@ closing connection...
 connection closed.
 
 █
+
 </div> ```
-
-
-
