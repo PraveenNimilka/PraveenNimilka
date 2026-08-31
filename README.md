@@ -1,30 +1,238 @@
-<!-- ==========================================================
+<!-- =========================================================
      PRAVEEN NIMILKA // PRAVEEN.OS
-     GitHub Profile README
-=========================================================== -->
+========================================================== -->
 
 <div align="center">
 
-<img
-  src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/main/assets/boot.svg"
-  width="100%"
-  alt="Praveen OS"
-/>
+<img src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/main/assets/boot.svg"
+     width="100%"
+     alt="PRAVEEN OS">
+
+<br><br>
+
+<img src="https://img.shields.io/badge/AI_SYSTEMS-0D1117?style=for-the-badge&logo=openai&logoColor=39FF88">
+<img src="https://img.shields.io/badge/SOFTWARE-0D1117?style=for-the-badge&logo=github&logoColor=39FF88">
+<img src="https://img.shields.io/badge/PRODUCTS-0D1117?style=for-the-badge&logo=vercel&logoColor=39FF88">
+<img src="https://img.shields.io/badge/EXPERIMENTS-0D1117?style=for-the-badge&logo=probot&logoColor=39FF88">
+
+<br><br>
+
+<sub>PRAVEEN.OS // SYSTEM ONLINE</sub>
+
+</div>
 
 <br>
 
-<code>AI SYSTEMS</code>
-&nbsp; • &nbsp;
-<code>SOFTWARE</code>
-&nbsp; • &nbsp;
-<code>PRODUCTS</code>
-&nbsp; • &nbsp;
-<code>EXPERIMENTS</code>
+---
+
+<div align="center">
+
+### `$ ssh praveen@mind`
+
+`connecting...` → `identity verified` → `access granted`
+
+### **WELCOME TO PRAVEEN/OS**
+
+<sub>an experimental interface to the things I'm building</sub>
+
+</div>
+
+<br>
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### `01 / OPERATOR`
+
+**Praveen Nimilka**
+
+Builder working around:
+
+`AI` `Software` `Products` `Systems`
+
+I like exploring ideas somewhere between **possible** and **slightly unreasonable**.
+
+My favourite question:
+
+> **What happens if we actually try?**
+
+</td>
+
+<td width="50%" valign="top">
+
+### `02 / CURRENT MODE`
+
+🟢 **SYSTEM:** ONLINE
+
+⚡ **MODE:** BUILDING
+
+🧪 **LAB:** ACTIVE
+
+🧠 **CURIOSITY:** 100%
+
+🚧 **PROJECTS:** IN PROGRESS
+
+🌙 **SLEEP:** UNAVAILABLE
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<div align="center">
+
+## `// MISSION`
+
+### Find complexity → question it → redesign it → build → break → learn → ship.
+
+I don't want to build more software.
+
+### I want to build **better ways of doing things.**
+
+</div>
+
+<br>
+
+---
+
+# `~/LAB`
+
+> Experimental projects currently running inside PRAVEEN.OS
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+## 🛡️ CiteShield
+
+**Citation Intelligence Engine**
+
+AI-powered academic-document analysis built to inspect references, citations and supporting evidence.
+
+**SYSTEM PIPELINE**
+
+Document  
+↓  
+Citation extraction  
+↓  
+Reference verification  
+↓  
+Evidence analysis  
+↓  
+Audit report
+
+<br>
+
+`STATUS // BETA` 🟢
+
+</td>
+
+<td width="50%" valign="top">
+
+## 🌌 Project Aether
+
+**Neural Physical Sandbox**
+
+An experiment exploring AI-defined materials, physical properties and emergent digital worlds.
+
+**SIMULATION PIPELINE**
+
+Language  
+↓  
+Neural model  
+↓  
+Physical DNA  
+↓  
+Particle behaviour  
+↓  
+Emergent world
+
+<br>
+
+`STATUS // EXPERIMENTAL` 🟣
+
+</td>
+</tr>
+
+<tr>
+<td width="50%" valign="top">
+
+## ⚡ AI Infrastructure
+
+**Experimental AI Systems Research**
+
+Exploring whether AI can become significantly more efficient and accessible.
+
+Current research signals:
+
+- Local AI
+- Efficient training
+- Memory architecture
+- Consumer hardware
+- Distributed compute
+- Model optimisation
+- Alternative architectures
+
+<br>
+
+`STATUS // RESEARCH` 🟡
+
+</td>
+
+<td width="50%" valign="top">
+
+## ◉ One-Click Software
+
+**Complexity → One Action**
+
+I like products where complicated engineering disappears behind an extremely simple interface.
+
+**BEFORE**
+
+Upload → Configure → Process → Fix → Export → Repeat
+
+**AFTER**
+
+### `[ DO IT ]`
+
+↓
+
+### `DONE.`
+
+`STATUS // BUILDING` 🔵
+
+</td>
+</tr>
+</table>
+
+<br>
+
+---
+
+<div align="center">
+
+# `~/TECH`
+
+<br>
+
+<img src="https://skillicons.dev/icons?i=python,js,ts,react,nextjs,nodejs,pytorch,tensorflow&theme=dark">
+
+<br><br>
+
+<img src="https://skillicons.dev/icons?i=supabase,postgres,docker,git,github,vercel,vscode,linux&theme=dark">
 
 <br><br>
 
 <sub>
-SYSTEM // ONLINE &nbsp;&nbsp; | &nbsp;&nbsp; OPERATOR // PRAVEEN NIMILKA
+PYTHON · JAVASCRIPT · TYPESCRIPT · REACT · NEXT.JS · NODE.JS
+</sub>
+
+<br>
+
+<sub>
+PYTORCH · POSTGRES · SUPABASE · DOCKER · LINUX · GITHUB ACTIONS · VERCEL
 </sub>
 
 </div>
@@ -33,430 +241,335 @@ SYSTEM // ONLINE &nbsp;&nbsp; | &nbsp;&nbsp; OPERATOR // PRAVEEN NIMILKA
 
 ---
 
-```console
-visitor@github:~$ ssh praveen@mind
+# `~/PROCESS MONITOR`
+
+<table>
+<tr>
+<td width="10%"><b>PID</b></td>
+<td width="10%"><b>LOAD</b></td>
+<td width="80%"><b>PROCESS</b></td>
+</tr>
+
+<tr>
+<td>001</td>
+<td>24%</td>
+<td><code>research_something_random</code></td>
+</tr>
+
+<tr>
+<td>002</td>
+<td>71%</td>
+<td><code>build_new_ai_product</code></td>
+</tr>
+
+<tr>
+<td>003</td>
+<td>93%</td>
+<td><code>why_is_this_bug_happening</code></td>
+</tr>
+
+<tr>
+<td>004</td>
+<td>52%</td>
+<td><code>redesign_everything</code></td>
+</tr>
+
+<tr>
+<td>005</td>
+<td>68%</td>
+<td><code>maybe_this_is_a_startup</code></td>
+</tr>
+
+<tr>
+<td>006</td>
+<td>87%</td>
+<td><code>make_it_simpler</code></td>
+</tr>
+
+<tr>
+<td>007</td>
+<td><b>100%</b></td>
+<td><code>start_another_project</code> ⚠️</td>
+</tr>
+</table>
+
+> ⚠️ **SYSTEM WARNING:** PID 007 cannot be terminated.
 
-connecting to operator...
-
-[✓] identity verified
-[✓] curiosity detected
-[✓] experimental mode enabled
-[✓] unnecessary ideas loaded
-
-access granted.
-
-Welcome to PRAVEEN/OS.
-> ./whoami
-operator:
-  name: Praveen Nimilka
-  type: builder
-
-currently:
-  mode: BUILDING
-  location: somewhere between idea and execution
-
-interests:
-  - artificial intelligence
-  - experimental software
-  - SaaS
-  - AI infrastructure
-  - automation
-  - product engineering
-  - developer tools
-
-objective:
-  "Build things that probably shouldn't work."
-possible ───────────────────────────────────── impossible
-                                  ▲
-                                  │
-                           interesting zone
-> ./mission
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│  FIND COMPLEXITY                                            │
-│         │                                                   │
-│         ▼                                                   │
-│  QUESTION EVERYTHING                                       │
-│         │                                                   │
-│         ▼                                                   │
-│  BUILD THE WEIRD VERSION                                    │
-│         │                                                   │
-│         ▼                                                   │
-│  BREAK IT                                                   │
-│         │                                                   │
-│         ▼                                                   │
-│  UNDERSTAND WHY                                             │
-│         │                                                   │
-│         ▼                                                   │
-│  REBUILD                                                    │
-│         │                                                   │
-│         ▼                                                   │
-│  SHIP                                                       │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-
-I don't want to build more software.
-I want to build better ways of doing things.
-
-~/LAB
-praveen@github:~/lab$ ls -la
-
-drwx------  citeshield/
-drwx------  aether/
-drwx------  ai-infrastructure/
-drwx------  one-click/
-drwx------  classified/
-
-5 experiments detected.
-1 directory requires elevated clearance.
-<details open> <summary><b><code>01 // ./citeshield</code></b></summary> <br>
-╭──────────────────────────────────────────────────────────╮
-│ CITESHIELD                                      BETA ●   │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│              Academic Document                           │
-│                     │                                    │
-│                     ▼                                    │
-│              ┌─────────────┐                             │
-│              │  CITESHIELD │                             │
-│              └──────┬──────┘                             │
-│                     │                                    │
-│          ┌──────────┼──────────┐                         │
-│          ▼          ▼          ▼                         │
-│       CITATIONS    DOI       CLAIMS                      │
-│          │          │          │                         │
-│          └──────────┼──────────┘                         │
-│                     ▼                                    │
-│              EVIDENCE ENGINE                             │
-│                     │                                    │
-│                     ▼                                    │
-│                AUDIT REPORT                              │
-│                                                          │
-├──────────────────────────────────────────────────────────┤
-│ detect // verify // explain                              │
-╰──────────────────────────────────────────────────────────╯
-
-AI-powered citation and academic-document auditing.
-
-STATUS :: BETA
-
-</details>
-<details> <summary><b><code>02 // ./aether</code></b></summary> <br>
-╭──────────────────────────────────────────────────────────╮
-│ PROJECT AETHER                             EXPERIMENT ◉   │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│                    ·          ✦                          │
-│             ◦                   ·                        │
-│                         ●                                │
-│         ✦                       ◦                        │
-│                  ◎                                       │
-│                            ·                             │
-│                                                          │
-│               NEURAL PHYSICS ENGINE                      │
-│                                                          │
-│    LANGUAGE                                              │
-│       ↓                                                  │
-│    NEURAL MODEL                                          │
-│       ↓                                                  │
-│    PHYSICAL DNA                                          │
-│       ↓                                                  │
-│    PARTICLE BEHAVIOUR                                    │
-│       ↓                                                  │
-│    EMERGENT WORLD                                        │
-│                                                          │
-├──────────────────────────────────────────────────────────┤
-│ reality.state = unstable                                 │
-╰──────────────────────────────────────────────────────────╯
-
-An experimental sandbox exploring AI-defined materials, physics and emergent digital worlds.
-
-STATUS :: EXPERIMENTAL
-
-</details>
-<details> <summary><b><code>03 // ./ai-infrastructure</code></b></summary> <br>
-research://ai-infrastructure
-
-├── efficient-training
-├── local-ai
-├── memory-architecture
-├── model-optimisation
-├── distributed-compute
-├── consumer-hardware
-└── unconventional-systems
-
-Questions I'm interested in:
-
-Can powerful AI require dramatically less compute?
-
-Can more AI move onto ordinary computers?
-
-Are current training architectures actually optimal?
-
-What happens if we redesign the system instead of endlessly scaling the hardware?
-
-STATUS :: RESEARCH
-
-</details>
-<details> <summary><b><code>04 // ./one-click</code></b></summary> <br>
-
-My favourite product transformation:
-
-BEFORE
-
-
-Upload
-   │
-   ▼
-Configure
-   │
-   ▼
-Choose settings
-   │
-   ▼
-Process
-   │
-   ▼
-Fix errors
-   │
-   ▼
-Export
-   │
-   ▼
-Repeat
-
-
-AFTER
-
-
-╭────────────────────────╮
-│                        │
-│        DO IT.          │
-│                        │
-╰────────────────────────╯
-
-            │
-            ▼
-
-          DONE.
-
-I like products that hide complicated engineering behind incredibly simple interfaces.
-
-STATUS :: BUILDING
-
-</details>
-~/stack
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=python,js,ts,react,nextjs,nodejs,pytorch,tensorflow,supabase,postgres,docker,git,github,vercel,vscode,linux&perline=8&theme=dark" alt="Technology Stack" />
-
-</div> <br>
-LANGUAGE          Python / JavaScript / TypeScript
-
-FRONTEND          React / Next.js
-
-BACKEND           Node.js / APIs
-
-AI                PyTorch / TensorFlow / LLM APIs
-
-DATA              PostgreSQL / Supabase
-
-INFRASTRUCTURE    Docker / Linux / GitHub Actions
-
-SHIP              Vercel
-~/system/processes
-praveen@github:~$ ps aux
-PID   CPU    PROCESS
-─────────────────────────────────────────────────────────────
-
-001   24%    researching_something_random
-
-002   71%    building_new_ai_product
-
-003   93%    why_is_this_bug_happening
-
-004   52%    redesign_everything
-
-005   68%    maybe_this_could_be_a_startup
-
-006   87%    make_it_simpler
-
-007   100%   start_another_project
-
-
-SYSTEM WARNING:
-
-PID 007 cannot be terminated.
-~/current
-{
-  "researching": [
-    "efficient AI",
-    "local intelligence",
-    "neural simulation",
-    "AI agents",
-    "new computing architectures"
-  ],
-
-  "building": [
-    "AI products",
-    "developer tools",
-    "automation systems",
-    "experimental interfaces"
-  ],
-
-  "questions": [
-    "Can this be 10x simpler?",
-    "Why does this require so many steps?",
-    "Could AI do this locally?",
-    "What happens if we redesign the architecture?"
-  ]
-}
-~/signal
-praveen@github:~$ ./signal --status
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=PraveenNimilka&show_icons=true&hide_border=true&hide_title=true&bg_color=00000000&text_color=8b949e&icon_color=39ff88&ring_color=39ff88" alt="Praveen GitHub Stats" />
-
-</div> <br> <div align="center">
-
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=PraveenNimilka&bg_color=00000000&color=8b949e&line=39ff88&point=f0f6fc&area=true&area_color=39ff88&hide_border=true" width="100%" alt="GitHub Activity Graph" />
-
-</div>
-~/contributions
-praveen@github:~$ ./contribution-engine --animate
-<div align="center"> <picture>
-
-<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake-dark.svg" />
-
-<source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake.svg" />
-
-<img alt="GitHub Contribution Snake" src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake.svg" />
-
-</picture> </div>
-~/principles
-01
-BUILD > TALK
-
-
-02
-SIMPLE INTERFACE
-DOES NOT MEAN
-SIMPLE ENGINEERING
-
-
-03
-FAILURE
-IS
-DATA
-
-
-04
-DON'T SCALE A BAD SYSTEM.
-REDESIGN IT.
-
-
-05
-IF IT SOUNDS SLIGHTLY IMPOSSIBLE...
-
-INVESTIGATE IT.
-<details> <summary><b><code>visitor@github:~$ sudo ./brain</code></b></summary> <br>
-[sudo] password for visitor:
-
-**********************
-
-authenticating...
-
-[████████████████████████████████] 100%
-
-ACCESS GRANTED.
-/dev/brain
-─────────────────────────────────────────────────────────────
-
-ACTIVE THOUGHTS
-
-[01] why does this feature need seven buttons?
-
-[02] surely there is a simpler architecture.
-
-[03] can this run locally?
-
-[04] wait...
-
-[05] what if...
-
-[06] that shouldn't work.
-
-[07] let's try it anyway.
-
-[08] create_new_repository
-
-─────────────────────────────────────────────────────────────
-
-WARNING
-
-another project has been detected.
-</details>
-<details> <summary><b><code>visitor@github:~$ cat /classified/README</code></b></summary> <br>
-████████████████████████████████████████████████████████████
-
-                     CLASSIFIED
-
-
-PROJECT              ███████████████████
-
-OBJECTIVE            ██████████████████████████████
-
-ARCHITECTURE         █████████████████████████
-
-
-PROBABILITY
-OF WORKING           questionable
-
-
-PROBABILITY
-OF TRYING            100%
-
-
-STATUS                prototyping...
-
-
-████████████████████████████████████████████████████████████
-</details>
-~/connect
-visitor@github:~$ ./connect
-
-finding operator...
-
-github   :: github.com/PraveenNimilka
-status   :: accepting interesting ideas
-signal   :: ONLINE
-
-connection ready.
-<div align="center"> <a href="https://github.com/PraveenNimilka"> <img src="https://img.shields.io/badge/GITHUB-0D1117?style=for-the-badge&logo=github&logoColor=39ff88" alt="GitHub" /> </a> <a href="YOUR_LINKEDIN_URL"> <img src="https://img.shields.io/badge/LINKEDIN-0D1117?style=for-the-badge&logo=linkedin&logoColor=39ff88" alt="LinkedIn" /> </a> <a href="mailto:YOUR_EMAIL"> <img src="https://img.shields.io/badge/EMAIL-0D1117?style=for-the-badge&logo=gmail&logoColor=39ff88" alt="Email" /> </a> </div> <br>
-<div align="center">
-SYSTEM // FINAL TRANSMISSION
 <br>
-╭─────────────────────────────────────────────────────────────╮
-│                                                             │
-│                                                             │
-│              WHAT IF WE ACTUALLY TRIED?                     │
-│                                                             │
-│                                                             │
-│                         PN                                  │
-│                                                             │
-╰─────────────────────────────────────────────────────────────╯
 
-<sub>PRAVEEN NIMILKA // BUILDING THE UNLIKELY</sub>
+---
+
+# `~/CURRENT SIGNAL`
+
+<table>
+<tr>
+<td width="33%" valign="top">
+
+### `RESEARCHING`
+
+🧠 Efficient AI
+
+💻 Local intelligence
+
+🌐 Distributed compute
+
+⚙️ Model optimisation
+
+🤖 AI agents
+
+</td>
+
+<td width="33%" valign="top">
+
+### `BUILDING`
+
+⚡ AI products
+
+🛠️ Developer tools
+
+🔁 Automation systems
+
+🧪 Experimental interfaces
+
+🌍 New software ideas
+
+</td>
+
+<td width="33%" valign="top">
+
+### `QUESTIONING`
+
+Can this be 10× simpler?
+
+Can this run locally?
+
+Why are seven steps necessary?
+
+Can the architecture be redesigned?
+
+</td>
+</tr>
+</table>
+
+<br>
+
+---
+
+<div align="center">
+
+# `~/GITHUB SIGNAL`
+
+<img src="https://github-readme-stats.vercel.app/api?username=PraveenNimilka&show_icons=true&hide_border=true&hide_title=true&bg_color=0D1117&text_color=8B949E&icon_color=39FF88&ring_color=39FF88"
+     height="165">
+
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=PraveenNimilka&layout=compact&hide_border=true&bg_color=0D1117&text_color=8B949E&title_color=39FF88"
+     height="165">
 
 <br><br>
 
-visitor@github:~$ exit
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=PraveenNimilka&bg_color=0D1117&color=8B949E&line=39FF88&point=FFFFFF&area=true&hide_border=true"
+     width="100%">
 
-saving curiosity...
-closing connection...
+</div>
 
-connection closed.
+<br>
 
-█
+---
 
-</div> ```
+<div align="center">
+
+# `~/CONTRIBUTION ENGINE`
+
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake-dark.svg">
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake.svg">
+  <img
+    alt="GitHub contribution animation"
+    src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/output/github-contribution-grid-snake-dark.svg">
+</picture>
+
+</div>
+
+<br>
+
+---
+
+# `~/OPERATING PRINCIPLES`
+
+<table>
+<tr>
+
+<td align="center" width="20%">
+
+### `01`
+
+**BUILD**
+
+>
+
+TALK
+
+</td>
+
+<td align="center" width="20%">
+
+### `02`
+
+SIMPLE UI
+
+≠
+
+SIMPLE ENGINEERING
+
+</td>
+
+<td align="center" width="20%">
+
+### `03`
+
+FAILURE
+
+=
+
+**DATA**
+
+</td>
+
+<td align="center" width="20%">
+
+### `04`
+
+DON'T SCALE
+
+A BAD SYSTEM.
+
+**REDESIGN IT.**
+
+</td>
+
+<td align="center" width="20%">
+
+### `05`
+
+SOUNDS IMPOSSIBLE?
+
+**INVESTIGATE.**
+
+</td>
+
+</tr>
+</table>
+
+<br>
+
+---
+
+<details>
+<summary><b>🔐 &nbsp; sudo ./brain</b></summary>
+
+<br>
+
+<div align="center">
+
+### `ACCESS GRANTED`
+
+</div>
+
+<table>
+<tr><td><code>01</code></td><td>Why does this feature need seven buttons?</td></tr>
+<tr><td><code>02</code></td><td>Surely there is a simpler architecture.</td></tr>
+<tr><td><code>03</code></td><td>Can this run locally?</td></tr>
+<tr><td><code>04</code></td><td>Wait...</td></tr>
+<tr><td><code>05</code></td><td>What if...</td></tr>
+<tr><td><code>06</code></td><td>That shouldn't work.</td></tr>
+<tr><td><code>07</code></td><td>Let's try it anyway.</td></tr>
+<tr><td><code>08</code></td><td><b>create_new_repository</b></td></tr>
+</table>
+
+<br>
+
+> ⚠️ Another project has been detected.
+
+</details>
+
+<br>
+
+<details>
+<summary><b>⚠️ &nbsp; cat /classified/README</b></summary>
+
+<br>
+
+<div align="center">
+
+## `CLASSIFIED`
+
+</div>
+
+| Field | Data |
+|---|---|
+| PROJECT | ███████████████ |
+| OBJECTIVE | ███████████████████████ |
+| ARCHITECTURE | ███████████████████ |
+| Probability of working | `questionable` |
+| Probability of trying | **100%** |
+| Status | `prototyping...` |
+
+</details>
+
+<br>
+
+---
+
+# `~/CONNECT`
+
+<div align="center">
+
+### `$ ./connect`
+
+`operator found // signal online`
+
+<br>
+
+<a href="https://github.com/PraveenNimilka">
+<img src="https://img.shields.io/badge/GITHUB-PraveenNimilka-0D1117?style=for-the-badge&logo=github&logoColor=39FF88">
+</a>
+
+<a href="YOUR_LINKEDIN_URL">
+<img src="https://img.shields.io/badge/LINKEDIN-CONNECT-0D1117?style=for-the-badge&logo=linkedin&logoColor=39FF88">
+</a>
+
+<a href="mailto:YOUR_EMAIL">
+<img src="https://img.shields.io/badge/EMAIL-SIGNAL-0D1117?style=for-the-badge&logo=gmail&logoColor=39FF88">
+</a>
+
+</div>
+
+<br>
+
+---
+
+<div align="center">
+
+<br>
+
+### `FINAL TRANSMISSION`
+
+# WHAT IF WE ACTUALLY TRIED?
+
+`PRAVEEN NIMILKA`
+
+<sub>BUILDING THE UNLIKELY.</sub>
+
+<br><br>
+
+`visitor@github:~$ exit`
+
+`connection closed.`
+
+### `█`
+
+</div>
