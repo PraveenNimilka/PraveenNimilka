@@ -81,13 +81,9 @@
 
       <feMerge>
 
-        <feMergeNode
-          in="blur"
-        />
+        <feMergeNode in="blur"/>
 
-        <feMergeNode
-          in="SourceGraphic"
-        />
+        <feMergeNode in="SourceGraphic"/>
 
       </feMerge>
 
@@ -130,7 +126,6 @@
   <g
     font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
   >
-
 
     <circle
       cx="80"
@@ -210,7 +205,7 @@
       fill="#30363d"
       font-size="9"
     >
-      2026-08-31 18:44 UTC
+      2026-08-31 18:48 UTC
     </text>
 
 

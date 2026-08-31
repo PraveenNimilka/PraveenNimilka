@@ -81,13 +81,9 @@
 
       <feMerge>
 
-        <feMergeNode
-          in="blur"
-        />
+        <feMergeNode in="blur"/>
 
-        <feMergeNode
-          in="SourceGraphic"
-        />
+        <feMergeNode in="SourceGraphic"/>
 
       </feMerge>
 
@@ -6926,8 +6922,6 @@
             
 
 
-    <!-- animated scanning field -->
-
     <rect
       x="56"
       y="157"
@@ -6946,8 +6940,6 @@
 
     </rect>
 
-
-    <!-- animated scanner beam -->
 
     <rect
       x="70"
