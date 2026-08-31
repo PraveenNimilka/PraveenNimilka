@@ -21,28 +21,26 @@ concurrency:
 
 
 jobs:
-
   build-profile:
-
     name: Build PRAVEEN.OS
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
-
     steps:
 
       # ==========================================================
-      # CHECKOUT
+      # 1. CHECKOUT
       # ==========================================================
 
       - name: Checkout profile repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
 
       # ==========================================================
-      # PREPARE
+      # 2. PREPARE
       # ==========================================================
 
       - name: Prepare asset directory
@@ -51,7 +49,7 @@ jobs:
 
 
       # ==========================================================
-      # GENERATE GITHUB SIGNAL
+      # 3. GENERATE GITHUB SIGNAL
       # ==========================================================
 
       - name: Generate GitHub Signal
@@ -72,19 +70,11 @@ jobs:
           from datetime import datetime, timezone
 
 
-          # ======================================================
-          # CONFIG
-          # ======================================================
-
           OWNER = os.environ["OWNER"]
           TOKEN = os.environ["GH_TOKEN"]
 
           API = "https://api.github.com"
 
-
-          # ======================================================
-          # REST API
-          # ======================================================
 
           def github_api(path):
 
@@ -127,13 +117,12 @@ jobs:
 
 
           # ======================================================
-          # USER
+          # USER INFO
           # ======================================================
 
           user = github_api(
               f"/users/{urllib.parse.quote(OWNER)}"
           ) or {}
-
 
           followers = int(
               user.get("followers") or 0
@@ -141,13 +130,12 @@ jobs:
 
 
           # ======================================================
-          # FETCH ALL PUBLIC OWNER REPOSITORIES
+          # PUBLIC REPOSITORIES
           # ======================================================
 
           repositories = []
 
           page = 1
-
 
           while True:
 
@@ -171,18 +159,10 @@ jobs:
               page += 1
 
 
-          # ======================================================
-          # FILTER REPOSITORIES
-          # ======================================================
-
           original_repositories = [
-
               repo
-
               for repo in repositories
-
               if not repo.get("fork", False)
-
           ]
 
 
@@ -191,19 +171,10 @@ jobs:
           )
 
 
-          # Remove the profile repository from recent projects.
-
           project_repositories = [
-
               repo
-
               for repo in original_repositories
-
-              if repo.get(
-                  "name",
-                  ""
-              ).lower() != OWNER.lower()
-
+              if repo.get("name", "").lower() != OWNER.lower()
           ]
 
 
@@ -212,30 +183,13 @@ jobs:
           # ======================================================
 
           total_stars = sum(
-
-              int(
-                  repo.get(
-                      "stargazers_count"
-                  ) or 0
-              )
-
-              for repo
-              in original_repositories
-
+              int(repo.get("stargazers_count") or 0)
+              for repo in original_repositories
           )
 
-
           total_forks = sum(
-
-              int(
-                  repo.get(
-                      "forks_count"
-                  ) or 0
-              )
-
-              for repo
-              in original_repositories
-
+              int(repo.get("forks_count") or 0)
+              for repo in original_repositories
           )
 
 
@@ -245,46 +199,29 @@ jobs:
 
           language_counts = {}
 
-
           for repo in project_repositories:
 
-              language = repo.get(
-                  "language"
-              )
+              language = repo.get("language")
 
               if not language:
                   continue
 
               language_counts[language] = (
-                  language_counts.get(
-                      language,
-                      0
-                  )
-                  + 1
+                  language_counts.get(language, 0) + 1
               )
 
 
           top_languages = sorted(
-
               language_counts.items(),
-
-              key=lambda pair: (
-                  -pair[1],
-                  pair[0]
-              )
-
+              key=lambda pair: (-pair[1], pair[0])
           )[:4]
 
 
           if top_languages:
 
               language_line = "  /  ".join(
-
                   language.upper()
-
-                  for language, _
-                  in top_languages
-
+                  for language, _ in top_languages
               )
 
           else:
@@ -295,43 +232,28 @@ jobs:
 
 
           # ======================================================
-          # RECENT PUBLIC PROJECTS
+          # RECENT PROJECTS
           # ======================================================
 
           recent_projects = project_repositories[:4]
 
 
-          # ======================================================
-          # HELPERS
-          # ======================================================
-
           def safe(value):
-
               return escape(
                   str(value),
                   quote=True
               )
 
 
-          def trim(
-              value,
-              maximum=30
-          ):
+          def trim(value, maximum=30):
 
               value = str(value)
 
               if len(value) <= maximum:
                   return value
 
-              return (
-                  value[:maximum - 1]
-                  + "…"
-              )
+              return value[:maximum - 1] + "…"
 
-
-          # ======================================================
-          # PROJECT ROWS
-          # ======================================================
 
           project_rows = []
 
@@ -351,7 +273,6 @@ jobs:
 
                   y = row_positions[index]
 
-
                   repo_name = safe(
                       trim(
                           repo.get(
@@ -362,25 +283,16 @@ jobs:
                       )
                   )
 
-
                   language = safe(
                       trim(
-                          repo.get(
-                              "language"
-                          )
-                          or "unknown",
+                          repo.get("language") or "unknown",
                           14
                       )
                   )
 
-
                   repo_stars = int(
-                      repo.get(
-                          "stargazers_count"
-                      )
-                      or 0
+                      repo.get("stargazers_count") or 0
                   )
-
 
                   project_rows.append(
                       f'''
@@ -426,7 +338,6 @@ jobs:
                       '''
                   )
 
-
           else:
 
               project_rows.append(
@@ -465,7 +376,7 @@ jobs:
 
 
           # ======================================================
-          # GITHUB SIGNAL SVG
+          # SIGNAL SVG
           # ======================================================
 
           signal_svg = f'''<svg
@@ -551,13 +462,9 @@ jobs:
 
                 <feMerge>
 
-                  <feMergeNode
-                    in="blur"
-                  />
+                  <feMergeNode in="blur"/>
 
-                  <feMergeNode
-                    in="SourceGraphic"
-                  />
+                  <feMergeNode in="SourceGraphic"/>
 
                 </feMerge>
 
@@ -600,7 +507,6 @@ jobs:
             <g
               font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
             >
-
 
               <circle
                 cx="80"
@@ -888,19 +794,16 @@ jobs:
               )
 
 
-          print("")
           print("GitHub Signal generated.")
           print(f"Public repos : {public_repo_count}")
           print(f"Stars        : {total_stars}")
           print(f"Followers    : {followers}")
-          print(f"Projects     : {len(project_repositories)}")
-          print("")
 
           PYTHON
 
 
       # ==========================================================
-      # GENERATE CONTRIBUTION ENGINE
+      # 4. GENERATE CONTRIBUTION ENGINE
       # ==========================================================
 
       - name: Generate Contribution Engine
@@ -921,10 +824,6 @@ jobs:
           TOKEN = os.environ["GH_TOKEN"]
           OWNER = os.environ["OWNER"]
 
-
-          # ======================================================
-          # GRAPHQL
-          # ======================================================
 
           query = """
           query($login: String!) {
@@ -961,60 +860,32 @@ jobs:
 
 
           payload = json.dumps({
-
               "query": query,
-
               "variables": {
                   "login": OWNER
               }
-
-          }).encode(
-              "utf-8"
-          )
+          }).encode("utf-8")
 
 
           request = urllib.request.Request(
-
               "https://api.github.com/graphql",
-
               data=payload,
-
               headers={
-
-                  "Authorization":
-                      f"Bearer {TOKEN}",
-
-                  "Content-Type":
-                      "application/json",
-
-                  "Accept":
-                      "application/vnd.github+json",
-
-                  "User-Agent":
-                      "praveen-os-profile"
-
+                  "Authorization": f"Bearer {TOKEN}",
+                  "Content-Type": "application/json",
+                  "Accept": "application/vnd.github+json",
+                  "User-Agent": "praveen-os-profile"
               }
-
           )
 
 
-          try:
+          with urllib.request.urlopen(
+              request,
+              timeout=30
+          ) as response:
 
-              with urllib.request.urlopen(
-                  request,
-                  timeout=30
-              ) as response:
-
-                  result = json.loads(
-                      response.read().decode(
-                          "utf-8"
-                      )
-                  )
-
-          except Exception as error:
-
-              raise RuntimeError(
-                  f"GraphQL request failed: {error}"
+              result = json.loads(
+                  response.read().decode("utf-8")
               )
 
 
@@ -1079,10 +950,6 @@ jobs:
           ]
 
 
-          # ======================================================
-          # COLORS
-          # ======================================================
-
           colors = {
 
               "NONE":
@@ -1104,7 +971,7 @@ jobs:
 
 
           # ======================================================
-          # CONTRIBUTION CELLS
+          # CELLS
           # ======================================================
 
           cell_markup = []
@@ -1273,7 +1140,7 @@ jobs:
 
 
           # ======================================================
-          # CONTRIBUTION SVG
+          # SVG
           # ======================================================
 
           contribution_svg = f'''<svg
@@ -1359,13 +1226,9 @@ jobs:
 
                 <feMerge>
 
-                  <feMergeNode
-                    in="blur"
-                  />
+                  <feMergeNode in="blur"/>
 
-                  <feMergeNode
-                    in="SourceGraphic"
-                  />
+                  <feMergeNode in="SourceGraphic"/>
 
                 </feMerge>
 
@@ -1488,8 +1351,6 @@ jobs:
               {grid_markup}
 
 
-              <!-- animated scanning field -->
-
               <rect
                 x="{START_X - 18}"
                 y="{START_Y - 7}"
@@ -1508,8 +1369,6 @@ jobs:
 
               </rect>
 
-
-              <!-- animated scanner beam -->
 
               <rect
                 x="{START_X - 4}"
@@ -1602,21 +1461,16 @@ jobs:
               )
 
 
-          print("")
           print("Contribution Engine generated.")
           print(
               f"Total contributions: {total_contributions}"
           )
-          print(
-              f"Weeks rendered: {len(displayed_weeks)}"
-          )
-          print("")
 
           PYTHON
 
 
       # ==========================================================
-      # VALIDATE GENERATED FILES
+      # 5. VALIDATE GENERATED ASSETS
       # ==========================================================
 
       - name: Validate generated assets
@@ -1632,29 +1486,70 @@ jobs:
 
 
       # ==========================================================
-      # COMMIT BOTH ASSETS
+      # 6. SAFELY COMMIT GENERATED ASSETS
       # ==========================================================
 
       - name: Commit profile assets
+        shell: bash
         run: |
-          set -e
+          set -euo pipefail
+
+          echo "Preserving generated assets..."
+
+          mkdir -p /tmp/praveen-profile-assets
+
+          cp assets/github-signal.svg \
+             /tmp/praveen-profile-assets/github-signal.svg
+
+          cp assets/contribution-engine.svg \
+             /tmp/praveen-profile-assets/contribution-engine.svg
+
 
           git config user.name "praveen-os[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
+          echo "Fetching latest main..."
+
+          git fetch origin main
+
+
+          echo "Syncing local branch with origin/main..."
+
+          git reset --hard origin/main
+
+
+          echo "Restoring generated assets..."
+
+          mkdir -p assets
+
+          cp /tmp/praveen-profile-assets/github-signal.svg \
+             assets/github-signal.svg
+
+          cp /tmp/praveen-profile-assets/contribution-engine.svg \
+             assets/contribution-engine.svg
+
 
           git add \
             assets/github-signal.svg \
             assets/contribution-engine.svg
 
+
           if git diff --cached --quiet; then
 
-            echo "No profile changes detected."
-
-          else
-
-            git commit \
-              -m "chore: refresh PRAVEEN.OS telemetry [skip ci]"
-
-            git push origin HEAD:${{ github.ref_name }}
+            echo "✓ No profile asset changes."
+            exit 0
 
           fi
+
+
+          git commit \
+            -m "chore: refresh PRAVEEN.OS telemetry [skip ci]"
+
+
+          echo "Pushing generated assets to main..."
+
+          git push origin HEAD:main
+
+
+          echo "✓ PRAVEEN.OS profile assets updated."
