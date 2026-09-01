@@ -391,7 +391,7 @@ Can the architecture be redesigned?
 <div align="center">
 
 <img
-  src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/main/assets/contribution-engine.svg?v=4"
+  src="https://raw.githubusercontent.com/PraveenNimilka/PraveenNimilka/main/assets/contribution-engine.svg?v=6"
   width="100%"
   alt="PRAVEEN.OS Contribution Engine"
 />
