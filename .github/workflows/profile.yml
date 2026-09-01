@@ -19,50 +19,40 @@ concurrency:
   group: praveen-os-profile
   cancel-in-progress: true
 
-
 jobs:
   build-profile:
-
     name: Build PRAVEEN.OS
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:
-
       # ==========================================================
       # CHECKOUT
       # ==========================================================
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
 
-
       # ==========================================================
       # PREPARE
       # ==========================================================
-
       - name: Prepare assets
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p assets
 
-
       # ==========================================================
       # GENERATE GITHUB SIGNAL
       # ==========================================================
-
       - name: Generate GitHub Signal
         env:
           GH_TOKEN: ${{ github.token }}
           OWNER: ${{ github.repository_owner }}
-
         run: |
           python3 <<'PYTHON'
-
           import os
           import json
           import urllib.request
@@ -70,19 +60,11 @@ jobs:
           from html import escape
           from datetime import datetime, timezone
 
-
           OWNER = os.environ["OWNER"]
           TOKEN = os.environ["GH_TOKEN"]
-
           API = "https://api.github.com"
 
-
-          # ======================================================
-          # API HELPER
-          # ======================================================
-
           def api(path):
-
               request = urllib.request.Request(
                   API + path,
                   headers={
@@ -92,837 +74,237 @@ jobs:
                       "User-Agent": "praveen-os-profile"
                   }
               )
-
-              with urllib.request.urlopen(
-                  request,
-                  timeout=30
-              ) as response:
-
-                  return json.loads(
-                      response.read().decode("utf-8")
-                  )
-
-
-          # ======================================================
-          # USER
-          # ======================================================
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  return json.loads(response.read().decode("utf-8"))
 
           try:
-
-              user = api(
-                  f"/users/{urllib.parse.quote(OWNER)}"
-              )
-
-          except Exception as error:
-
-              print(
-                  f"User API warning: {error}"
-              )
-
+              user = api(f"/users/{urllib.parse.quote(OWNER)}")
+          except Exception:
               user = {}
 
-
-          followers = int(
-              user.get("followers") or 0
-          )
-
-
-          # ======================================================
-          # PUBLIC REPOSITORIES
-          # ======================================================
+          followers = int(user.get("followers") or 0)
 
           repositories = []
-
           page = 1
 
           while True:
-
               try:
-
                   result = api(
                       f"/users/{urllib.parse.quote(OWNER)}/repos"
-                      f"?type=owner"
-                      f"&sort=updated"
-                      f"&direction=desc"
-                      f"&per_page=100"
-                      f"&page={page}"
+                      f"?type=owner&sort=updated&direction=desc&per_page=100&page={page}"
                   )
-
-              except Exception as error:
-
-                  print(
-                      f"Repository API warning: {error}"
-                  )
-
+              except Exception:
                   break
 
-
-              if not isinstance(
-                  result,
-                  list
-              ):
+              if not isinstance(result, list):
                   break
 
-
-              repositories.extend(
-                  result
-              )
-
+              repositories.extend(result)
 
               if len(result) < 100:
                   break
 
-
               page += 1
 
-
           original_repositories = [
-              repo
-              for repo in repositories
+              repo for repo in repositories
               if not repo.get("fork", False)
           ]
 
-
-          public_repo_count = len(
-              original_repositories
-          )
-
-
-          # Remove profile repository from project list
+          public_repo_count = len(original_repositories)
 
           projects = [
-              repo
-              for repo in original_repositories
-              if repo.get(
-                  "name",
-                  ""
-              ).lower() != OWNER.lower()
+              repo for repo in original_repositories
+              if repo.get("name", "").lower() != OWNER.lower()
           ]
 
-
-          # ======================================================
-          # TOTALS
-          # ======================================================
-
           total_stars = sum(
-              int(
-                  repo.get(
-                      "stargazers_count"
-                  ) or 0
-              )
+              int(repo.get("stargazers_count") or 0)
               for repo in original_repositories
           )
-
 
           total_forks = sum(
-              int(
-                  repo.get(
-                      "forks_count"
-                  ) or 0
-              )
+              int(repo.get("forks_count") or 0)
               for repo in original_repositories
           )
 
-
-          # ======================================================
-          # LANGUAGES
-          # ======================================================
-
           language_counts = {}
-
-
           for repo in projects:
-
-              language = repo.get(
-                  "language"
-              )
-
+              language = repo.get("language")
               if not language:
                   continue
-
-
-              language_counts[
-                  language
-              ] = (
-                  language_counts.get(
-                      language,
-                      0
-                  )
-                  + 1
-              )
-
+              language_counts[language] = language_counts.get(language, 0) + 1
 
           top_languages = sorted(
               language_counts.items(),
-              key=lambda item: (
-                  -item[1],
-                  item[0]
-              )
+              key=lambda item: (-item[1], item[0])
           )[:4]
 
-
           if top_languages:
-
               language_line = "  /  ".join(
-                  language.upper()
-                  for language, _
-                  in top_languages
+                  language.upper() for language, _ in top_languages
               )
-
           else:
-
-              language_line = (
-                  "AI  /  SOFTWARE  /  SYSTEMS  /  EXPERIMENTS"
-              )
-
-
-          # ======================================================
-          # HELPERS
-          # ======================================================
+              language_line = "AI  /  SOFTWARE  /  SYSTEMS  /  EXPERIMENTS"
 
           def safe(value):
+              return escape(str(value), quote=True)
 
-              return escape(
-                  str(value),
-                  quote=True
-              )
-
-
-          def trim(
-              value,
-              maximum=28
-          ):
-
+          def trim(value, maximum=28):
               value = str(value)
-
-              if len(value) <= maximum:
-                  return value
-
-              return (
-                  value[:maximum - 1]
-                  + "…"
-              )
-
-
-          # ======================================================
-          # RECENT PROJECTS
-          # ======================================================
+              return value if len(value) <= maximum else value[:maximum - 1] + "…"
 
           recent = projects[:4]
-
           rows = []
-
-          row_y = [
-              307,
-              343,
-              379,
-              415
-          ]
-
+          row_y = [307, 343, 379, 415]
 
           if recent:
+              for index, repo in enumerate(recent):
+                  y = row_y[index]
+                  name = safe(trim(repo.get("name", "repository"), 30))
+                  language = safe(trim(repo.get("language") or "unknown", 15))
+                  stars = int(repo.get("stargazers_count") or 0)
 
-              for index, repo in enumerate(
-                  recent
-              ):
-
-                  y = row_y[
-                      index
-                  ]
-
-
-                  name = safe(
-                      trim(
-                          repo.get(
-                              "name",
-                              "repository"
-                          ),
-                          30
-                      )
-                  )
-
-
-                  language = safe(
-                      trim(
-                          repo.get(
-                              "language"
-                          )
-                          or "unknown",
-                          15
-                      )
-                  )
-
-
-                  stars = int(
-                      repo.get(
-                          "stargazers_count"
-                      )
-                      or 0
-                  )
-
-
-                  rows.append(
-                      f'''
-                      <g>
-
-                        <text
-                          x="82"
-                          y="{y}"
-                          fill="#39ff88"
-                          font-size="11"
-                        >
-                          {index + 1:02d}
-                        </text>
-
-                        <text
-                          x="126"
-                          y="{y}"
-                          fill="#d0d7de"
-                          font-size="12"
-                        >
-                          {name}
-                        </text>
-
-                        <text
-                          x="505"
-                          y="{y}"
-                          fill="#7d8590"
-                          font-size="11"
-                        >
-                          {language}
-                        </text>
-
-                        <text
-                          x="680"
-                          y="{y}"
-                          fill="#7d8590"
-                          font-size="11"
-                        >
-                          ★ {stars}
-                        </text>
-
-                      </g>
-                      '''
-                  )
-
-
+                  rows.append(f'''
+                  <g>
+                    <text x="82" y="{y}" fill="#39ff88" font-size="11">{index + 1:02d}</text>
+                    <text x="126" y="{y}" fill="#d0d7de" font-size="12">{name}</text>
+                    <text x="505" y="{y}" fill="#7d8590" font-size="11">{language}</text>
+                    <text x="680" y="{y}" fill="#7d8590" font-size="11">★ {stars}</text>
+                  </g>
+                  ''')
           else:
+              rows.append('''
+              <text x="82" y="327" fill="#7d8590" font-size="12">
+                No public project repositories detected.
+              </text>
+              <text x="82" y="353" fill="#484f58" font-size="10">
+                Profile repository excluded from project list.
+              </text>
+              ''')
 
-              rows.append(
-                  '''
-                  <text
-                    x="82"
-                    y="327"
-                    fill="#7d8590"
-                    font-size="12"
-                  >
-                    No public project repositories detected.
-                  </text>
+          row_markup = "\n".join(rows)
+          sync_time = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
-                  <text
-                    x="82"
-                    y="353"
-                    fill="#484f58"
-                    font-size="10"
-                  >
-                    Profile repository excluded from project list.
-                  </text>
-                  '''
-              )
-
-
-          row_markup = "\n".join(
-              rows
-          )
-
-
-          sync_time = datetime.now(
-              timezone.utc
-          ).strftime(
-              "%Y-%m-%d %H:%M UTC"
-          )
-
-
-          # ======================================================
-          # SIGNAL SVG
-          # ======================================================
-
-          svg = f'''<svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1100"
-            height="475"
-            viewBox="0 0 1100 475"
-            role="img"
-          >
-
+          svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="475" viewBox="0 0 1100 475" role="img">
             <defs>
-
-              <linearGradient
-                id="bg"
-                x1="0"
-                y1="0"
-                x2="1"
-                y2="1"
-              >
-
-                <stop
-                  offset="0%"
-                  stop-color="#090d12"
-                />
-
-                <stop
-                  offset="100%"
-                  stop-color="#0d1117"
-                />
-
+              <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#090d12"/>
+                <stop offset="100%" stop-color="#0d1117"/>
               </linearGradient>
 
-
-              <linearGradient
-                id="beam"
-                x1="0"
-                x2="1"
-              >
-
-                <stop
-                  offset="0%"
-                  stop-color="#39ff88"
-                  stop-opacity="0"
-                />
-
-                <stop
-                  offset="50%"
-                  stop-color="#39ff88"
-                  stop-opacity=".9"
-                />
-
-                <stop
-                  offset="100%"
-                  stop-color="#39ff88"
-                  stop-opacity="0"
-                />
-
+              <linearGradient id="beam" x1="0" x2="1">
+                <stop offset="0%" stop-color="#39ff88" stop-opacity="0"/>
+                <stop offset="50%" stop-color="#39ff88" stop-opacity=".9"/>
+                <stop offset="100%" stop-color="#39ff88" stop-opacity="0"/>
               </linearGradient>
 
-
-              <filter
-                id="glow"
-                x="-100%"
-                y="-100%"
-                width="300%"
-                height="300%"
-              >
-
-                <feGaussianBlur
-                  stdDeviation="4"
-                  result="blur"
-                />
-
+              <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="4" result="blur"/>
                 <feMerge>
                   <feMergeNode in="blur"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
-
               </filter>
-
             </defs>
 
+            <rect x="1" y="1" width="1098" height="473" rx="16" fill="url(#bg)" stroke="#30363d" stroke-width="2"/>
 
-            <rect
-              x="1"
-              y="1"
-              width="1098"
-              height="473"
-              rx="16"
-              fill="url(#bg)"
-              stroke="#30363d"
-              stroke-width="2"
-            />
-
-
-            <rect
-              x="-280"
-              y="1"
-              width="280"
-              height="2"
-              fill="url(#beam)"
-            >
-
-              <animate
-                attributeName="x"
-                from="-280"
-                to="1100"
-                dur="5s"
-                repeatCount="indefinite"
-              />
-
+            <rect x="-280" y="1" width="280" height="2" fill="url(#beam)">
+              <animate attributeName="x" from="-280" to="1100" dur="5s" repeatCount="indefinite"/>
             </rect>
 
-
-            <g
-              font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
-            >
-
-
-              <circle
-                cx="80"
-                cy="58"
-                r="5"
-                fill="#39ff88"
-                filter="url(#glow)"
-              >
-
-                <animate
-                  attributeName="opacity"
-                  values="1;.2;1"
-                  dur="1.7s"
-                  repeatCount="indefinite"
-                />
-
+            <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
+              <circle cx="80" cy="58" r="5" fill="#39ff88" filter="url(#glow)">
+                <animate attributeName="opacity" values="1;.2;1" dur="1.7s" repeatCount="indefinite"/>
               </circle>
 
+              <text x="99" y="63" fill="#39ff88" font-size="12" letter-spacing="2">GITHUB SIGNAL // LIVE</text>
+              <text x="1018" y="62" text-anchor="end" fill="#484f58" font-size="9">PRAVEEN.OS</text>
 
-              <text
-                x="99"
-                y="63"
-                fill="#39ff88"
-                font-size="12"
-                letter-spacing="2"
-              >
-                GITHUB SIGNAL // LIVE
-              </text>
+              <text x="80" y="108" fill="#39ff88" font-size="12">praveen@github</text>
+              <text x="202" y="108" fill="#7d8590" font-size="12">:~$</text>
+              <text x="236" y="108" fill="#d0d7de" font-size="12">./signal --live</text>
+              <text x="1018" y="108" text-anchor="end" fill="#30363d" font-size="9">{safe(sync_time)}</text>
 
+              <line x1="80" y1="132" x2="1018" y2="132" stroke="#21262d"/>
 
-              <text
-                x="1018"
-                y="62"
-                text-anchor="end"
-                fill="#484f58"
-                font-size="9"
-              >
-                PRAVEEN.OS
-              </text>
+              <text x="80" y="176" fill="#7d8590" font-size="9" letter-spacing="1.5">PUBLIC REPOS</text>
+              <text x="330" y="176" fill="#7d8590" font-size="9" letter-spacing="1.5">TOTAL STARS</text>
+              <text x="570" y="176" fill="#7d8590" font-size="9" letter-spacing="1.5">FOLLOWERS</text>
+              <text x="810" y="176" fill="#7d8590" font-size="9" letter-spacing="1.5">SYSTEM</text>
 
+              <text x="80" y="218" fill="#f0f6fc" font-size="30" font-weight="700">{public_repo_count}</text>
+              <text x="330" y="218" fill="#f0f6fc" font-size="30" font-weight="700">{total_stars}</text>
+              <text x="570" y="218" fill="#f0f6fc" font-size="30" font-weight="700">{followers}</text>
+              <text x="810" y="218" fill="#39ff88" font-size="28" font-weight="700">ONLINE</text>
 
-              <text
-                x="80"
-                y="108"
-                fill="#39ff88"
-                font-size="12"
-              >
-                praveen@github
-              </text>
+              <text x="80" y="252" fill="#484f58" font-size="9" letter-spacing="1.3">{safe(language_line)}</text>
+              <text x="1018" y="252" fill="#484f58" text-anchor="end" font-size="9">FORKS // {total_forks}</text>
 
-
-              <text
-                x="202"
-                y="108"
-                fill="#7d8590"
-                font-size="12"
-              >
-                :~$
-              </text>
-
-
-              <text
-                x="236"
-                y="108"
-                fill="#d0d7de"
-                font-size="12"
-              >
-                ./signal --live
-              </text>
-
-
-              <text
-                x="1018"
-                y="108"
-                text-anchor="end"
-                fill="#30363d"
-                font-size="9"
-              >
-                {safe(sync_time)}
-              </text>
-
-
-              <line
-                x1="80"
-                y1="132"
-                x2="1018"
-                y2="132"
-                stroke="#21262d"
-              />
-
-
-              <text
-                x="80"
-                y="176"
-                fill="#7d8590"
-                font-size="9"
-                letter-spacing="1.5"
-              >
-                PUBLIC REPOS
-              </text>
-
-
-              <text
-                x="330"
-                y="176"
-                fill="#7d8590"
-                font-size="9"
-                letter-spacing="1.5"
-              >
-                TOTAL STARS
-              </text>
-
-
-              <text
-                x="570"
-                y="176"
-                fill="#7d8590"
-                font-size="9"
-                letter-spacing="1.5"
-              >
-                FOLLOWERS
-              </text>
-
-
-              <text
-                x="810"
-                y="176"
-                fill="#7d8590"
-                font-size="9"
-                letter-spacing="1.5"
-              >
-                SYSTEM
-              </text>
-
-
-              <text
-                x="80"
-                y="218"
-                fill="#f0f6fc"
-                font-size="30"
-                font-weight="700"
-              >
-                {public_repo_count}
-              </text>
-
-
-              <text
-                x="330"
-                y="218"
-                fill="#f0f6fc"
-                font-size="30"
-                font-weight="700"
-              >
-                {total_stars}
-              </text>
-
-
-              <text
-                x="570"
-                y="218"
-                fill="#f0f6fc"
-                font-size="30"
-                font-weight="700"
-              >
-                {followers}
-              </text>
-
-
-              <text
-                x="810"
-                y="218"
-                fill="#39ff88"
-                font-size="28"
-                font-weight="700"
-              >
-                ONLINE
-              </text>
-
-
-              <text
-                x="80"
-                y="252"
-                fill="#484f58"
-                font-size="9"
-                letter-spacing="1.3"
-              >
-                {safe(language_line)}
-              </text>
-
-
-              <text
-                x="1018"
-                y="252"
-                fill="#484f58"
-                text-anchor="end"
-                font-size="9"
-              >
-                FORKS // {total_forks}
-              </text>
-
-
-              <line
-                x1="80"
-                y1="268"
-                x2="1018"
-                y2="268"
-                stroke="#21262d"
-              />
-
-
-              <text
-                x="80"
-                y="289"
-                fill="#484f58"
-                font-size="9"
-                letter-spacing="1.5"
-              >
-                RECENT PUBLIC PROJECTS
-              </text>
-
+              <line x1="80" y1="268" x2="1018" y2="268" stroke="#21262d"/>
+              <text x="80" y="289" fill="#484f58" font-size="9" letter-spacing="1.5">RECENT PUBLIC PROJECTS</text>
 
               {row_markup}
 
+              <text x="80" y="447" fill="#30363d" font-size="9">DATA // GITHUB PUBLIC API</text>
+              <text x="1018" y="447" fill="#30363d" text-anchor="end" font-size="9">PRIVATE DATA // NOT EXPOSED</text>
 
-              <text
-                x="80"
-                y="447"
-                fill="#30363d"
-                font-size="9"
-              >
-                DATA // GITHUB PUBLIC API
-              </text>
-
-
-              <text
-                x="1018"
-                y="447"
-                fill="#30363d"
-                text-anchor="end"
-                font-size="9"
-              >
-                PRIVATE DATA // NOT EXPOSED
-              </text>
-
-
-              <rect
-                x="1012"
-                y="417"
-                width="7"
-                height="14"
-                fill="#39ff88"
-              >
-
-                <animate
-                  attributeName="opacity"
-                  values="1;0;1"
-                  dur="1s"
-                  repeatCount="indefinite"
-                />
-
+              <rect x="1012" y="417" width="7" height="14" fill="#39ff88">
+                <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
               </rect>
-
             </g>
-
           </svg>'''
 
-
-          os.makedirs(
-              "assets",
-              exist_ok=True
-          )
-
-
-          with open(
-              "assets/github-signal.svg",
-              "w",
-              encoding="utf-8"
-          ) as file:
-
+          os.makedirs("assets", exist_ok=True)
+          with open("assets/github-signal.svg", "w", encoding="utf-8") as file:
               file.write(svg)
 
-
-          print(
-              "✓ GitHub signal generated"
-          )
-
+          print("✓ GitHub signal generated")
           PYTHON
 
-
       # ==========================================================
-      # GENERATE CONTRIBUTION ENGINE
+      # GENERATE COOLER CONTRIBUTION ENGINE + SNAKE ORBIT
       # ==========================================================
-
       - name: Generate Contribution Engine
         env:
           GH_TOKEN: ${{ github.token }}
           OWNER: ${{ github.repository_owner }}
-
         run: |
           python3 <<'PYTHON'
-
           import os
           import json
           import urllib.request
           from datetime import datetime
 
-
           TOKEN = os.environ["GH_TOKEN"]
           OWNER = os.environ["OWNER"]
 
-
-          # ======================================================
-          # GRAPHQL QUERY
-          # ======================================================
-
           query = """
           query($login: String!) {
-
             user(login: $login) {
-
               contributionsCollection {
-
                 contributionCalendar {
-
                   totalContributions
-
                   weeks {
-
                     firstDay
-
                     contributionDays {
-
                       contributionCount
                       contributionLevel
                       date
                       weekday
-
                     }
-
                   }
-
                 }
-
               }
-
             }
-
           }
           """
 
-
           payload = json.dumps({
               "query": query,
-              "variables": {
-                  "login": OWNER
-              }
-          }).encode(
-              "utf-8"
-          )
-
+              "variables": {"login": OWNER}
+          }).encode("utf-8")
 
           request = urllib.request.Request(
               "https://api.github.com/graphql",
@@ -935,706 +317,368 @@ jobs:
               }
           )
 
-
-          with urllib.request.urlopen(
-              request,
-              timeout=30
-          ) as response:
-
-              result = json.loads(
-                  response.read().decode("utf-8")
-              )
-
+          with urllib.request.urlopen(request, timeout=30) as response:
+              result = json.loads(response.read().decode("utf-8"))
 
           if result.get("errors"):
+              raise RuntimeError(json.dumps(result["errors"], indent=2))
 
-              raise RuntimeError(
-                  json.dumps(
-                      result["errors"],
-                      indent=2
-                  )
-              )
-
-
-          user = (
-              result
-              .get("data", {})
-              .get("user")
-          )
-
-
+          user = result.get("data", {}).get("user")
           if not user:
+              raise RuntimeError(f"User not found: {OWNER}")
 
-              raise RuntimeError(
-                  f"User not found: {OWNER}"
+          calendar = user["contributionsCollection"]["contributionCalendar"]
+          total = int(calendar["totalContributions"])
+          weeks = calendar["weeks"][-53:]
+
+          all_days = []
+          for week in weeks:
+              all_days.extend(week.get("contributionDays", []))
+
+          active_days = sum(
+              1 for day in all_days
+              if int(day.get("contributionCount", 0)) > 0
+          )
+
+          max_day = 0
+          for day in all_days:
+              max_day = max(max_day, int(day.get("contributionCount", 0)))
+
+          current_streak = 0
+          for day in reversed(all_days):
+              count = int(day.get("contributionCount", 0))
+              if count > 0:
+                  current_streak += 1
+              elif current_streak > 0:
+                  break
+
+          active_weeks = 0
+          for week in weeks:
+              week_total = sum(
+                  int(day.get("contributionCount", 0))
+                  for day in week.get("contributionDays", [])
               )
-
-
-          calendar = (
-              user
-              ["contributionsCollection"]
-              ["contributionCalendar"]
-          )
-
-
-          total = int(
-              calendar[
-                  "totalContributions"
-              ]
-          )
-
-
-          weeks = calendar[
-              "weeks"
-          ][-53:]
-
-
-          # ======================================================
-          # GRID
-          # ======================================================
+              if week_total > 0:
+                  active_weeks += 1
 
           WIDTH = 1100
-          HEIGHT = 390
+          HEIGHT = 430
 
-          CELL = 13
+          CELL = 12
           GAP = 4
+          STEP = CELL + GAP
 
-          STEP = (
-              CELL
-              + GAP
+          GRID_X = 150
+          GRID_Y = 175
+          GRID_W = max(len(weeks), 1) * STEP
+          GRID_H = 7 * STEP
+
+          FRAME_X = GRID_X - 28
+          FRAME_Y = GRID_Y - 30
+          FRAME_W = GRID_W + 64
+          FRAME_H = GRID_H + 58
+          R = 18
+
+          snake_path = (
+              f"M {FRAME_X + R} {FRAME_Y} "
+              f"H {FRAME_X + FRAME_W - R} "
+              f"Q {FRAME_X + FRAME_W} {FRAME_Y} {FRAME_X + FRAME_W} {FRAME_Y + R} "
+              f"V {FRAME_Y + FRAME_H - R} "
+              f"Q {FRAME_X + FRAME_W} {FRAME_Y + FRAME_H} {FRAME_X + FRAME_W - R} {FRAME_Y + FRAME_H} "
+              f"H {FRAME_X + R} "
+              f"Q {FRAME_X} {FRAME_Y + FRAME_H} {FRAME_X} {FRAME_Y + FRAME_H - R} "
+              f"V {FRAME_Y + R} "
+              f"Q {FRAME_X} {FRAME_Y} {FRAME_X + R} {FRAME_Y} Z"
           )
 
-          GRID_X = 126
-          GRID_Y = 154
-
-
           colors = {
-              "NONE": "#161b22",
+              "NONE": "#141a21",
               "FIRST_QUARTILE": "#0e4429",
               "SECOND_QUARTILE": "#006d32",
               "THIRD_QUARTILE": "#26a641",
               "FOURTH_QUARTILE": "#39ff88"
           }
 
-
           borders = {
-              "NONE": "#30363d",
+              "NONE": "#2b3440",
               "FIRST_QUARTILE": "#155f3c",
               "SECOND_QUARTILE": "#128a47",
               "THIRD_QUARTILE": "#38c765",
               "FOURTH_QUARTILE": "#69ffaa"
           }
 
-
-          # ======================================================
-          # CELLS
-          # ======================================================
-
           cells = []
+          for week_index, week in enumerate(weeks):
+              for day in week.get("contributionDays", []):
+                  weekday = int(day.get("weekday", 0))
+                  x = GRID_X + week_index * STEP
+                  y = GRID_Y + weekday * STEP
+                  level = day.get("contributionLevel", "NONE")
+                  fill = colors.get(level, colors["NONE"])
+                  border = borders.get(level, borders["NONE"])
+                  count = int(day.get("contributionCount", 0))
+                  date = day.get("date", "")
 
+                  cells.append(f'''
+                  <g>
+                    <title>{date}: {count} contributions</title>
+                    <rect
+                      x="{x}"
+                      y="{y}"
+                      width="{CELL}"
+                      height="{CELL}"
+                      rx="3"
+                      fill="{fill}"
+                      stroke="{border}"
+                      stroke-width="1"
+                    />
+                  </g>
+                  ''')
 
-          for week_index, week in enumerate(
-              weeks
-          ):
-
-              for day in week.get(
-                  "contributionDays",
-                  []
-              ):
-
-                  weekday = int(
-                      day.get(
-                          "weekday",
-                          0
-                      )
-                  )
-
-
-                  x = (
-                      GRID_X
-                      + week_index * STEP
-                  )
-
-
-                  y = (
-                      GRID_Y
-                      + weekday * STEP
-                  )
-
-
-                  level = day.get(
-                      "contributionLevel",
-                      "NONE"
-                  )
-
-
-                  fill = colors.get(
-                      level,
-                      colors["NONE"]
-                  )
-
-
-                  border = borders.get(
-                      level,
-                      borders["NONE"]
-                  )
-
-
-                  count = int(
-                      day.get(
-                          "contributionCount",
-                          0
-                      )
-                  )
-
-
-                  date = day.get(
-                      "date",
-                      ""
-                  )
-
-
-                  cells.append(
-                      f'''
-                      <g>
-
-                        <title>
-                          {date}: {count} contributions
-                        </title>
-
-                        <rect
-                          x="{x}"
-                          y="{y}"
-                          width="{CELL}"
-                          height="{CELL}"
-                          rx="3"
-                          fill="{fill}"
-                          stroke="{border}"
-                          stroke-width="1"
-                        />
-
-                      </g>
-                      '''
-                  )
-
-
-          cells_markup = "\n".join(
-              cells
-          )
-
-
-          # ======================================================
-          # MONTH LABELS
-          # ======================================================
+          cells_markup = "\n".join(cells)
 
           months = []
-
           last_month = None
 
-
-          for index, week in enumerate(
-              weeks
-          ):
-
-              first_day = week.get(
-                  "firstDay"
-              )
-
-
+          for index, week in enumerate(weeks):
+              first_day = week.get("firstDay")
               if not first_day:
                   continue
 
-
               try:
-
-                  date = datetime.strptime(
-                      first_day,
-                      "%Y-%m-%d"
-                  )
-
+                  date = datetime.strptime(first_day, "%Y-%m-%d")
               except Exception:
-
                   continue
 
-
-              key = (
-                  date.year,
-                  date.month
-              )
-
-
+              key = (date.year, date.month)
               if key == last_month:
                   continue
-
-
               last_month = key
 
+              x = GRID_X + index * STEP
+              months.append(f'''
+              <text x="{x}" y="157" fill="#7d8590" font-size="9">
+                {date.strftime("%b")}
+              </text>
+              ''')
 
-              x = (
-                  GRID_X
-                  + index * STEP
-              )
+          months_markup = "\n".join(months)
 
-
-              months.append(
-                  f'''
-                  <text
-                    x="{x}"
-                    y="136"
-                    fill="#7d8590"
-                    font-size="9"
-                  >
-                    {date.strftime("%b")}
-                  </text>
-                  '''
-              )
-
-
-          months_markup = "\n".join(
-              months
-          )
-
-
-          grid_width = max(
-              len(weeks),
-              1
-          ) * STEP
-
-
-          # ======================================================
-          # SVG
-          # ======================================================
-
-          svg = f'''<svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="{WIDTH}"
-            height="{HEIGHT}"
-            viewBox="0 0 {WIDTH} {HEIGHT}"
-            role="img"
-          >
-
+          svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img">
             <defs>
-
-              <linearGradient
-                id="bg"
-                x1="0"
-                y1="0"
-                x2="1"
-                y2="1"
-              >
-
-                <stop
-                  offset="0%"
-                  stop-color="#090d12"
-                />
-
-                <stop
-                  offset="100%"
-                  stop-color="#0d1117"
-                />
-
+              <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#090d12"/>
+                <stop offset="100%" stop-color="#0d1117"/>
               </linearGradient>
 
-
-              <linearGradient
-                id="scanner"
-                x1="0"
-                x2="1"
-              >
-
-                <stop
-                  offset="0%"
-                  stop-color="#39ff88"
-                  stop-opacity="0"
-                />
-
-                <stop
-                  offset="50%"
-                  stop-color="#39ff88"
-                  stop-opacity=".18"
-                />
-
-                <stop
-                  offset="100%"
-                  stop-color="#39ff88"
-                  stop-opacity="0"
-                />
-
+              <linearGradient id="scan" x1="0" x2="1">
+                <stop offset="0%" stop-color="#39ff88" stop-opacity="0"/>
+                <stop offset="50%" stop-color="#39ff88" stop-opacity=".16"/>
+                <stop offset="100%" stop-color="#39ff88" stop-opacity="0"/>
               </linearGradient>
 
+              <linearGradient id="snakeGlow" x1="0" x2="1">
+                <stop offset="0%" stop-color="#39ff88" stop-opacity=".15"/>
+                <stop offset="100%" stop-color="#39ff88" stop-opacity="0"/>
+              </linearGradient>
 
-              <filter
-                id="glow"
-                x="-100%"
-                y="-100%"
-                width="300%"
-                height="300%"
-              >
-
-                <feGaussianBlur
-                  stdDeviation="3"
-                  result="blur"
-                />
-
+              <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
                 <feMerge>
                   <feMergeNode in="blur"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
-
               </filter>
 
+              <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="6" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
 
+            <rect x="1" y="1" width="1098" height="428" rx="18" fill="url(#bg)" stroke="#30363d" stroke-width="2"/>
 
-            <rect
-              x="1"
-              y="1"
-              width="1098"
-              height="388"
-              rx="16"
-              fill="url(#bg)"
-              stroke="#30363d"
-              stroke-width="2"
-            />
+            <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace">
 
-
-            <g
-              font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
-            >
-
-
-              <!-- HEADER -->
-
-              <circle
-                cx="74"
-                cy="54"
-                r="5"
-                fill="#39ff88"
-                filter="url(#glow)"
-              >
-
-                <animate
-                  attributeName="opacity"
-                  values="1;.2;1"
-                  dur="1.5s"
-                  repeatCount="indefinite"
-                />
-
+              <!-- Header -->
+              <circle cx="74" cy="54" r="5" fill="#39ff88" filter="url(#glow)">
+                <animate attributeName="opacity" values="1;.2;1" dur="1.5s" repeatCount="indefinite"/>
               </circle>
 
-
-              <text
-                x="94"
-                y="59"
-                fill="#39ff88"
-                font-size="12"
-                letter-spacing="2"
-              >
+              <text x="94" y="59" fill="#39ff88" font-size="12" letter-spacing="2">
                 CONTRIBUTION ENGINE // LIVE
               </text>
 
-
-              <text
-                x="1026"
-                y="59"
-                text-anchor="end"
-                fill="#484f58"
-                font-size="9"
-              >
+              <text x="1026" y="59" text-anchor="end" fill="#484f58" font-size="9">
                 PRAVEEN.OS
               </text>
 
+              <!-- Command -->
+              <text x="74" y="96" fill="#39ff88" font-size="11">praveen@github</text>
+              <text x="190" y="96" fill="#7d8590" font-size="11">:~$</text>
+              <text x="221" y="96" fill="#d0d7de" font-size="11">./contributions --snake-mode</text>
 
-              <!-- COMMAND -->
-
-              <text
-                x="74"
-                y="96"
-                fill="#39ff88"
-                font-size="11"
-              >
-                praveen@github
-              </text>
-
-
-              <text
-                x="190"
-                y="96"
-                fill="#7d8590"
-                font-size="11"
-              >
-                :~$
-              </text>
-
-
-              <text
-                x="221"
-                y="96"
-                fill="#d0d7de"
-                font-size="11"
-              >
-                ./contributions --scan
-              </text>
-
-
-              <text
-                x="1026"
-                y="96"
-                text-anchor="end"
-                fill="#39ff88"
-                font-size="11"
-              >
+              <text x="1026" y="96" text-anchor="end" fill="#39ff88" font-size="11">
                 {total} EVENTS
               </text>
 
+              <line x1="74" y1="116" x2="1026" y2="116" stroke="#21262d"/>
 
-              <line
-                x1="74"
-                y1="116"
-                x2="1026"
-                y2="116"
-                stroke="#21262d"
+              <!-- Orbit frame -->
+              <rect
+                x="{FRAME_X}"
+                y="{FRAME_Y}"
+                width="{FRAME_W}"
+                height="{FRAME_H}"
+                rx="{R}"
+                fill="none"
+                stroke="#1b2530"
+                stroke-width="1.5"
               />
 
+              <path
+                d="{snake_path}"
+                fill="none"
+                stroke="#153624"
+                stroke-width="2"
+                stroke-dasharray="10 10"
+                opacity=".55"
+              />
 
-              <!-- MONTHS -->
+              <!-- Snake glow trail -->
+              <path
+                d="{snake_path}"
+                fill="none"
+                stroke="url(#snakeGlow)"
+                stroke-width="6"
+                opacity=".55"
+              />
 
+              <!-- Month labels -->
               {months_markup}
 
+              <!-- Day labels -->
+              <text x="108" y="{GRID_Y + 23}" fill="#55606d" font-size="9">MON</text>
+              <text x="108" y="{GRID_Y + 55}" fill="#55606d" font-size="9">WED</text>
+              <text x="108" y="{GRID_Y + 87}" fill="#55606d" font-size="9">FRI</text>
 
-              <!-- DAY LABELS -->
-
-              <text
-                x="82"
-                y="183"
-                fill="#484f58"
-                font-size="9"
-              >
-                MON
-              </text>
-
-
-              <text
-                x="82"
-                y="217"
-                fill="#484f58"
-                font-size="9"
-              >
-                WED
-              </text>
-
-
-              <text
-                x="82"
-                y="251"
-                fill="#484f58"
-                font-size="9"
-              >
-                FRI
-              </text>
-
-
-              <!-- MATRIX -->
-
+              <!-- Contribution grid -->
               {cells_markup}
 
-
-              <!-- SCANNING COLUMN -->
-
+              <!-- Scanner -->
               <rect
-                x="{GRID_X - 10}"
-                y="{GRID_Y - 5}"
-                width="32"
-                height="124"
-                fill="url(#scanner)"
+                x="{GRID_X - 8}"
+                y="{GRID_Y - 4}"
+                width="24"
+                height="{GRID_H + 4}"
+                fill="url(#scan)"
+                pointer-events="none"
               >
-
                 <animate
                   attributeName="x"
-                  from="{GRID_X - 10}"
-                  to="{GRID_X + grid_width - 10}"
-                  dur="8s"
+                  from="{GRID_X - 8}"
+                  to="{GRID_X + GRID_W - 8}"
+                  dur="7s"
                   repeatCount="indefinite"
                 />
-
               </rect>
-
-
-              <!-- SCANNER LINE -->
 
               <rect
                 x="{GRID_X}"
-                y="{GRID_Y - 5}"
+                y="{GRID_Y - 4}"
                 width="2"
-                height="124"
+                height="{GRID_H + 4}"
                 fill="#39ff88"
-                opacity=".7"
+                opacity=".65"
                 filter="url(#glow)"
+                pointer-events="none"
               >
-
                 <animate
                   attributeName="x"
                   from="{GRID_X}"
-                  to="{GRID_X + grid_width}"
-                  dur="8s"
+                  to="{GRID_X + GRID_W}"
+                  dur="7s"
                   repeatCount="indefinite"
                 />
-
               </rect>
 
+              <!-- Snake head -->
+              <circle r="6" fill="#39ff88" filter="url(#softGlow)">
+                <animateMotion dur="12s" repeatCount="indefinite" path="{snake_path}" rotate="auto"/>
+              </circle>
 
-              <!-- LEGEND -->
+              <!-- Snake body -->
+              <circle r="5.2" fill="#30e67c" opacity=".95">
+                <animateMotion dur="12s" begin="-0.20s" repeatCount="indefinite" path="{snake_path}" rotate="auto"/>
+              </circle>
 
-              <text
-                x="126"
-                y="304"
-                fill="#484f58"
-                font-size="9"
-              >
-                LESS
-              </text>
+              <circle r="4.5" fill="#27c96a" opacity=".9">
+                <animateMotion dur="12s" begin="-0.40s" repeatCount="indefinite" path="{snake_path}" rotate="auto"/>
+              </circle>
 
+              <circle r="3.9" fill="#20a95a" opacity=".85">
+                <animateMotion dur="12s" begin="-0.60s" repeatCount="indefinite" path="{snake_path}" rotate="auto"/>
+              </circle>
 
-              <rect
-                x="164"
-                y="294"
-                width="11"
-                height="11"
-                rx="3"
-                fill="#161b22"
-                stroke="#30363d"
-              />
+              <circle r="3.3" fill="#1a8a4a" opacity=".8">
+                <animateMotion dur="12s" begin="-0.80s" repeatCount="indefinite" path="{snake_path}" rotate="auto"/>
+              </circle>
 
+              <!-- Legend -->
+              <text x="{GRID_X}" y="330" fill="#484f58" font-size="9">LESS</text>
 
-              <rect
-                x="181"
-                y="294"
-                width="11"
-                height="11"
-                rx="3"
-                fill="#0e4429"
-              />
+              <rect x="{GRID_X + 38}" y="320" width="11" height="11" rx="3" fill="#141a21" stroke="#2b3440"/>
+              <rect x="{GRID_X + 55}" y="320" width="11" height="11" rx="3" fill="#0e4429"/>
+              <rect x="{GRID_X + 72}" y="320" width="11" height="11" rx="3" fill="#006d32"/>
+              <rect x="{GRID_X + 89}" y="320" width="11" height="11" rx="3" fill="#26a641"/>
+              <rect x="{GRID_X + 106}" y="320" width="11" height="11" rx="3" fill="#39ff88"/>
 
+              <text x="{GRID_X + 126}" y="330" fill="#484f58" font-size="9">MORE</text>
 
-              <rect
-                x="198"
-                y="294"
-                width="11"
-                height="11"
-                rx="3"
-                fill="#006d32"
-              />
+              <!-- Stats -->
+              <text x="700" y="330" fill="#55606d" font-size="9">ACTIVE DAYS</text>
+              <text x="700" y="349" fill="#d0d7de" font-size="13">{active_days}</text>
 
+              <text x="805" y="330" fill="#55606d" font-size="9">MAX / DAY</text>
+              <text x="805" y="349" fill="#d0d7de" font-size="13">{max_day}</text>
 
-              <rect
-                x="215"
-                y="294"
-                width="11"
-                height="11"
-                rx="3"
-                fill="#26a641"
-              />
+              <text x="900" y="330" fill="#55606d" font-size="9">STREAK</text>
+              <text x="900" y="349" fill="#d0d7de" font-size="13">{current_streak}</text>
 
+              <text x="972" y="330" fill="#55606d" font-size="9">SNAKE</text>
+              <text x="972" y="349" fill="#39ff88" font-size="13">ORBITING</text>
 
-              <rect
-                x="232"
-                y="294"
-                width="11"
-                height="11"
-                rx="3"
-                fill="#39ff88"
-              />
+              <!-- Footer -->
+              <line x1="74" y1="372" x2="1026" y2="372" stroke="#21262d"/>
 
-
-              <text
-                x="254"
-                y="304"
-                fill="#484f58"
-                font-size="9"
-              >
-                MORE
-              </text>
-
-
-              <line
-                x1="74"
-                y1="326"
-                x2="1026"
-                y2="326"
-                stroke="#21262d"
-              />
-
-
-              <text
-                x="74"
-                y="353"
-                fill="#484f58"
-                font-size="9"
-                letter-spacing="1.3"
-              >
+              <text x="74" y="399" fill="#484f58" font-size="9" letter-spacing="1.3">
                 ACTIVITY MATRIX // LAST 53 WEEKS
               </text>
 
-
-              <text
-                x="1026"
-                y="353"
-                text-anchor="end"
-                fill="#484f58"
-                font-size="9"
-              >
-                SCANNING CONTRIBUTION HISTORY
+              <text x="1026" y="399" text-anchor="end" fill="#484f58" font-size="9">
+                ACTIVE WEEKS // {active_weeks}
               </text>
 
-
-              <rect
-                x="1019"
-                y="369"
-                width="7"
-                height="13"
-                fill="#39ff88"
-              >
-
-                <animate
-                  attributeName="opacity"
-                  values="1;0;1"
-                  dur="1s"
-                  repeatCount="indefinite"
-                />
-
+              <rect x="1019" y="385" width="7" height="13" fill="#39ff88">
+                <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
               </rect>
 
             </g>
-
           </svg>'''
 
-
-          os.makedirs(
-              "assets",
-              exist_ok=True
-          )
-
-
-          with open(
-              "assets/contribution-engine.svg",
-              "w",
-              encoding="utf-8"
-          ) as file:
-
+          os.makedirs("assets", exist_ok=True)
+          with open("assets/contribution-engine.svg", "w", encoding="utf-8") as file:
               file.write(svg)
 
-
-          print(
-              f"✓ Contribution engine generated: {total} events"
-          )
-
+          print(f"✓ Contribution engine generated: {total} events")
           PYTHON
-
 
       # ==========================================================
       # VALIDATE GENERATED FILES
       # ==========================================================
-
       - name: Validate generated assets
         shell: bash
         run: |
@@ -1644,170 +688,65 @@ jobs:
           test -s assets/contribution-engine.svg
 
           echo "Generated:"
-          ls -lh \
-            assets/github-signal.svg \
-            assets/contribution-engine.svg
-
+          ls -lh assets/github-signal.svg assets/contribution-engine.svg
 
       # ==========================================================
       # SAFE COMMIT
       # ==========================================================
-
       - name: Commit generated profile assets
         shell: bash
         run: |
           set -euo pipefail
 
-
-          # ------------------------------------------------------
-          # Preserve generated files
-          # ------------------------------------------------------
-
           TEMP_DIR="$(mktemp -d)"
 
-          cp \
-            assets/github-signal.svg \
-            "$TEMP_DIR/github-signal.svg"
+          cp assets/github-signal.svg "$TEMP_DIR/github-signal.svg"
+          cp assets/contribution-engine.svg "$TEMP_DIR/contribution-engine.svg"
 
-          cp \
-            assets/contribution-engine.svg \
-            "$TEMP_DIR/contribution-engine.svg"
+          git config user.name "praveen-os[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-
-          # ------------------------------------------------------
-          # Configure Git
-          # ------------------------------------------------------
-
-          git config \
-            user.name \
-            "praveen-os[bot]"
-
-          git config \
-            user.email \
-            "41898282+github-actions[bot]@users.noreply.github.com"
-
-
-          # ------------------------------------------------------
-          # Synchronise with newest remote main
-          # ------------------------------------------------------
-
-          git fetch \
-            origin \
-            main
-
-          git reset \
-            --hard \
-            origin/main
-
-
-          # ------------------------------------------------------
-          # Restore generated assets
-          # ------------------------------------------------------
+          git fetch origin main
+          git reset --hard origin/main
 
           mkdir -p assets
+          cp "$TEMP_DIR/github-signal.svg" assets/github-signal.svg
+          cp "$TEMP_DIR/contribution-engine.svg" assets/contribution-engine.svg
 
-          cp \
-            "$TEMP_DIR/github-signal.svg" \
-            assets/github-signal.svg
-
-          cp \
-            "$TEMP_DIR/contribution-engine.svg" \
-            assets/contribution-engine.svg
-
-
-          git add \
-            assets/github-signal.svg \
-            assets/contribution-engine.svg
-
-
-          # ------------------------------------------------------
-          # No changes
-          # ------------------------------------------------------
+          git add assets/github-signal.svg assets/contribution-engine.svg
 
           if git diff --cached --quiet; then
-
             echo "✓ Dynamic profile already current."
             exit 0
-
           fi
 
-
-          # ------------------------------------------------------
-          # Commit
-          # ------------------------------------------------------
-
-          git commit \
-            -m "chore: refresh PRAVEEN.OS telemetry [skip ci]"
-
-
-          # ------------------------------------------------------
-          # Push with safe retry
-          # ------------------------------------------------------
+          git commit -m "chore: refresh PRAVEEN.OS telemetry [skip ci]"
 
           if git push origin HEAD:main; then
-
             echo "✓ Profile updated."
             exit 0
-
           fi
-
 
           echo "Remote changed. Retrying..."
 
+          cp assets/github-signal.svg "$TEMP_DIR/github-signal.svg"
+          cp assets/contribution-engine.svg "$TEMP_DIR/contribution-engine.svg"
 
-          # Save generated files again
-
-          cp \
-            assets/github-signal.svg \
-            "$TEMP_DIR/github-signal.svg"
-
-          cp \
-            assets/contribution-engine.svg \
-            "$TEMP_DIR/contribution-engine.svg"
-
-
-          git fetch \
-            origin \
-            main
-
-
-          git reset \
-            --hard \
-            origin/main
-
+          git fetch origin main
+          git reset --hard origin/main
 
           mkdir -p assets
+          cp "$TEMP_DIR/github-signal.svg" assets/github-signal.svg
+          cp "$TEMP_DIR/contribution-engine.svg" assets/contribution-engine.svg
 
-
-          cp \
-            "$TEMP_DIR/github-signal.svg" \
-            assets/github-signal.svg
-
-          cp \
-            "$TEMP_DIR/contribution-engine.svg" \
-            assets/contribution-engine.svg
-
-
-          git add \
-            assets/github-signal.svg \
-            assets/contribution-engine.svg
-
+          git add assets/github-signal.svg assets/contribution-engine.svg
 
           if git diff --cached --quiet; then
-
             echo "✓ Remote already contains generated assets."
             exit 0
-
           fi
 
-
-          git commit \
-            -m "chore: refresh PRAVEEN.OS telemetry [skip ci]"
-
-
-          git push \
-            origin \
-            HEAD:main
-
+          git commit -m "chore: refresh PRAVEEN.OS telemetry [skip ci]"
+          git push origin HEAD:main
 
           echo "✓ Retry successful."
